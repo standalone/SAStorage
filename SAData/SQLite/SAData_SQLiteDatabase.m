@@ -7,7 +7,7 @@
 //
 
 #import "SAData_SQLiteDatabase.h"
-#import "SAData_Internal_SQL.h"
+#import "SAData_Internal_SQL_Database.h"
 
 
 @interface SAData_SQLiteDatabase ()
