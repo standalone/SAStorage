@@ -23,7 +23,7 @@
 		B5DAF51F172C6AB600296B17 /* SAData_Proxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF519172C6AB600296B17 /* SAData_Proxy.m */; };
 		B5DAF520172C6AB600296B17 /* SAData_Query.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF51B172C6AB600296B17 /* SAData_Query.m */; };
 		B5DAF521172C6AB600296B17 /* SAData_Record.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF51D172C6AB600296B17 /* SAData_Record.m */; };
-		B5DAF527172C790600296B17 /* SAData_Scheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF526172C790100296B17 /* SAData_Scheme.m */; };
+		B5DAF527172C790600296B17 /* SAData_Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF526172C790100296B17 /* SAData_Schema.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,8 +53,8 @@
 		B5DAF51B172C6AB600296B17 /* SAData_Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_Query.m; sourceTree = "<group>"; };
 		B5DAF51C172C6AB600296B17 /* SAData_Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAData_Record.h; sourceTree = "<group>"; };
 		B5DAF51D172C6AB600296B17 /* SAData_Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_Record.m; sourceTree = "<group>"; };
-		B5DAF525172C790000296B17 /* SAData_Scheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAData_Scheme.h; sourceTree = "<group>"; };
-		B5DAF526172C790100296B17 /* SAData_Scheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAData_Scheme.m; sourceTree = "<group>"; };
+		B5DAF525172C790000296B17 /* SAData_Schema.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAData_Schema.h; sourceTree = "<group>"; };
+		B5DAF526172C790100296B17 /* SAData_Schema.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAData_Schema.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +157,8 @@
 				B5DAF51B172C6AB600296B17 /* SAData_Query.m */,
 				B5DAF51C172C6AB600296B17 /* SAData_Record.h */,
 				B5DAF51D172C6AB600296B17 /* SAData_Record.m */,
-				B5DAF525172C790000296B17 /* SAData_Scheme.h */,
-				B5DAF526172C790100296B17 /* SAData_Scheme.m */,
+				B5DAF525172C790000296B17 /* SAData_Schema.h */,
+				B5DAF526172C790100296B17 /* SAData_Schema.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -237,7 +237,7 @@
 				B5DAF521172C6AB600296B17 /* SAData_Record.m in Sources */,
 				2BB79133172C70F100AA8360 /* SAData_SQLiteDatabase.m in Sources */,
 				2BB79136172C712400AA8360 /* SAData_Internal_SQL.m in Sources */,
-				B5DAF527172C790600296B17 /* SAData_Scheme.m in Sources */,
+				B5DAF527172C790600296B17 /* SAData_Schema.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

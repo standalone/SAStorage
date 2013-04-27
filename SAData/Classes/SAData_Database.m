@@ -7,16 +7,33 @@
 //
 
 #import "SAData_Database.h"
-
+#import "SAData_SQLiteDatabase.h"
 
 
 
 @implementation SAData_Database
 
-+ (id) databaseWithURL: (NSURL *) url basedOn: (SAData_Scheme *) schema {
-	SAData_Database				*db = [[self alloc] init];
++ (id) databaseWithURL: (NSURL *) url ofType: (SAData_Database_Type) type basedOn: (SAData_Schema *) schema {
+	SAData_Database				*db = nil;
+	
+	switch (type) {
+		case SAData_Database_SQL:
+			db = [[SAData_SQLiteDatabase alloc] initWithURL: url andSchema: schema];
+			break;
+			
+		default:
+			break;
+	}
 	
 	return db;
+}
+
+- (id) initWithURL: (NSURL *) url andSchema: (SAData_Schema *) schema {
+	if ((self = [super init])) {
+		self.url = url;
+		self.schema = schema;
+	}
+	return self;
 }
 
 - (void) recordsMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCallback) completion {
