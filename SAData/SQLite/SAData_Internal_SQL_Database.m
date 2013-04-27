@@ -1,5 +1,5 @@
 //
-//  SAData_Internal_SQL.m
+//  SAData_Internal_SQL_Database.m
 //  SADataTester
 //
 //  Created by Chris Cieslak on 4/27/13.
@@ -44,6 +44,7 @@ NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
             self.fileURL = url;
         } else {
             NSLog(@"Does not yet support http URLs.");
+            return nil;
         }
     }
     return self;

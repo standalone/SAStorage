@@ -1,5 +1,5 @@
 //
-//  SAData_Internal_SQL.h
+//  SAData_Internal_SQL_Database.h
 //  SADataTester
 //
 //  Created by Chris Cieslak on 4/27/13.
@@ -10,10 +10,12 @@
 
 extern NSString * const kSADataSQLiteErrorDomain;
 
+@class SAData_Internal_SQL_ResultSet;
+
 @interface SAData_Internal_SQL_Database : NSObject
 
-+ (SAData_Internal_SQL *)databaseWithURL:(NSURL *)url;
-- (SAData_Internal_SQL *)initWithURL:(NSURL *)url;
++ (SAData_Internal_SQL_Database *)databaseWithURL:(NSURL *)url;
+- (SAData_Internal_SQL_Database *)initWithURL:(NSURL *)url;
 
 - (BOOL)openWithError:(NSError **)error;
 - (BOOL)closeWithError:(NSError **)error;
