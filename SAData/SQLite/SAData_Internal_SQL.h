@@ -16,6 +16,7 @@ extern NSString * const kSADataSQLiteErrorDomain;
 - (SAData_Internal_SQL *)initWithURL:(NSURL *)url;
 
 - (BOOL)openWithError:(NSError **)error;
+- (BOOL)closeWithError:(NSError **)error;
 
 @property (nonatomic, readonly) NSURL *fileURL;
 
