@@ -57,7 +57,7 @@ NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
     
     if (self.databaseOpen) return YES;
     
-    int err = sqlite3_open([[self.fileURL path] fileSystemRepresentation], &_handle);
+    int err = sqlite3_open([[self.fileURL path] UTF8String], &_handle);
     
     if (err != SQLITE_OK) {
         *error = [[NSError alloc] initWithDomain:kSADataSQLiteErrorDomain code:err userInfo:nil];
