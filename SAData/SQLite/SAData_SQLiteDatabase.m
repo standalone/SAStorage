@@ -11,7 +11,7 @@
 
 
 @interface SAData_SQLiteDatabase ()
-@property (nonatomic, strong) SAData_Internal_SQL *sql;
+@property (nonatomic, strong) SAData_Internal_SQL_Database *sql;
 
 @end
 
@@ -19,7 +19,7 @@
 
 - (id) initWithURL: (NSURL *) url andSchema: (SAData_Schema *) schema {
 	if ((self = [super initWithURL: url andSchema: schema])) {
-		self.sql = [SAData_Internal_SQL databaseWithURL: url];
+		self.sql = [SAData_Internal_SQL_Database databaseWithURL: url];
 	}
 	return self;
 }
