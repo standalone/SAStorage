@@ -1,13 +1,13 @@
 //
-//  SAData_Scheme.h
+//  SAData_Schema.m
 //  SADataTester
 //
 //  Created by Ben Gottlieb on 4/27/13.
 //  Copyright (c) 2013 Stand Alone, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SAData_Schema.h"
 
-@interface SAData_Scheme : NSObject
+@implementation SAData_Schema
 
 @end
