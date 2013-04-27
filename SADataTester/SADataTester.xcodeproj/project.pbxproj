@@ -27,8 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2BB79131172C70F100AA8360 /* SAData_SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAData_SQLiteDatabase.h; path = ../SQLite/SAData_SQLiteDatabase.h; sourceTree = "<group>"; };
-		2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SAData_SQLiteDatabase.m; path = ../SQLite/SAData_SQLiteDatabase.m; sourceTree = "<group>"; };
+		2BB79131172C70F100AA8360 /* SAData_SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAData_SQLiteDatabase.h; sourceTree = "<group>"; };
+		2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_SQLiteDatabase.m; sourceTree = "<group>"; };
 		2BB79134172C712400AA8360 /* SAData_Internal_SQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAData_Internal_SQL.h; sourceTree = "<group>"; };
 		2BB79135172C712400AA8360 /* SAData_Internal_SQL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_Internal_SQL.m; sourceTree = "<group>"; };
 		2BB79137172C719B00AA8360 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -77,6 +77,8 @@
 			children = (
 				2BB79134172C712400AA8360 /* SAData_Internal_SQL.h */,
 				2BB79135172C712400AA8360 /* SAData_Internal_SQL.m */,
+				2BB79131172C70F100AA8360 /* SAData_SQLiteDatabase.h */,
+				2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -147,8 +149,6 @@
 		B5DAF515172C6AB600296B17 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2BB79131172C70F100AA8360 /* SAData_SQLiteDatabase.h */,
-				2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */,
 				B5DAF516172C6AB600296B17 /* SAData_Database.h */,
 				B5DAF517172C6AB600296B17 /* SAData_Database.m */,
 				B5DAF518172C6AB600296B17 /* SAData_Proxy.h */,
