@@ -10,7 +10,7 @@
 
 extern NSString * const kSADataSQLiteErrorDomain;
 
-@interface SAData_Internal_SQL : NSObject
+@interface SAData_Internal_SQL_Database : NSObject
 
 + (SAData_Internal_SQL *)databaseWithURL:(NSURL *)url;
 - (SAData_Internal_SQL *)initWithURL:(NSURL *)url;
@@ -19,5 +19,6 @@ extern NSString * const kSADataSQLiteErrorDomain;
 - (BOOL)closeWithError:(NSError **)error;
 
 @property (nonatomic, readonly) NSURL *fileURL;
+@property (nonatomic, readonly) BOOL databaseOpen;
 
 @end

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2BB79133172C70F100AA8360 /* SAData_SQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */; };
-		2BB79136172C712400AA8360 /* SAData_Internal_SQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB79135172C712400AA8360 /* SAData_Internal_SQL.m */; };
+		2BB79136172C712400AA8360 /* SAData_Internal_SQL_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB79135172C712400AA8360 /* SAData_Internal_SQL_Database.m */; };
 		2BB79138172C719B00AA8360 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB79137172C719B00AA8360 /* libsqlite3.dylib */; };
 		B5DAF4E9172C66B900296B17 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DAF4E8172C66B900296B17 /* UIKit.framework */; };
 		B5DAF4EB172C66B900296B17 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DAF4EA172C66B900296B17 /* Foundation.framework */; };
@@ -29,8 +29,8 @@
 /* Begin PBXFileReference section */
 		2BB79131172C70F100AA8360 /* SAData_SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAData_SQLiteDatabase.h; sourceTree = "<group>"; };
 		2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_SQLiteDatabase.m; sourceTree = "<group>"; };
-		2BB79134172C712400AA8360 /* SAData_Internal_SQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAData_Internal_SQL.h; sourceTree = "<group>"; };
-		2BB79135172C712400AA8360 /* SAData_Internal_SQL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_Internal_SQL.m; sourceTree = "<group>"; };
+		2BB79134172C712400AA8360 /* SAData_Internal_SQL_Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAData_Internal_SQL_Database.h; sourceTree = "<group>"; };
+		2BB79135172C712400AA8360 /* SAData_Internal_SQL_Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_Internal_SQL_Database.m; sourceTree = "<group>"; };
 		2BB79137172C719B00AA8360 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B5DAF4E5172C66B900296B17 /* SADataTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SADataTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAF4E8172C66B900296B17 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -75,8 +75,8 @@
 		2BB79130172C6E9C00AA8360 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
-				2BB79134172C712400AA8360 /* SAData_Internal_SQL.h */,
-				2BB79135172C712400AA8360 /* SAData_Internal_SQL.m */,
+				2BB79134172C712400AA8360 /* SAData_Internal_SQL_Database.h */,
+				2BB79135172C712400AA8360 /* SAData_Internal_SQL_Database.m */,
 				2BB79131172C70F100AA8360 /* SAData_SQLiteDatabase.h */,
 				2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */,
 			);
@@ -236,7 +236,7 @@
 				B5DAF520172C6AB600296B17 /* SAData_Query.m in Sources */,
 				B5DAF521172C6AB600296B17 /* SAData_Record.m in Sources */,
 				2BB79133172C70F100AA8360 /* SAData_SQLiteDatabase.m in Sources */,
-				2BB79136172C712400AA8360 /* SAData_Internal_SQL.m in Sources */,
+				2BB79136172C712400AA8360 /* SAData_Internal_SQL_Database.m in Sources */,
 				B5DAF527172C790600296B17 /* SAData_Schema.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

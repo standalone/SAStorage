@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Stand Alone, Inc. All rights reserved.
 //
 
-#import "SAData_Internal_SQL.h"
+#import "SAData_Internal_SQL_Database.h"
 #import <sqlite3.h>
 
 NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
 
-@interface SAData_Internal_SQL ()
+@interface SAData_Internal_SQL_Database ()
 
 @property (nonatomic, strong) NSLock *lock;
 @property (nonatomic, strong) NSURL *fileURL;
@@ -19,7 +19,7 @@ NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
 
 @end
 
-@implementation SAData_Internal_SQL {
+@implementation SAData_Internal_SQL_Database {
     
     sqlite3 *_handle;
     
@@ -28,14 +28,14 @@ NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
 
 #pragma mark Init
 
-+ (SAData_Internal_SQL *)databaseWithURL:(NSURL *)url {
++ (SAData_Internal_SQL_Database *)databaseWithURL:(NSURL *)url {
     
-    SAData_Internal_SQL *db = [[SAData_Internal_SQL alloc] initWithURL:url];
+    SAData_Internal_SQL_Database *db = [[SAData_Internal_SQL_Database alloc] initWithURL:url];
     return db;
     
 }
 
-- (SAData_Internal_SQL *)initWithURL:(NSURL *)url {
+- (SAData_Internal_SQL_Database *)initWithURL:(NSURL *)url {
     
     self = [super init];
     if (self) {
