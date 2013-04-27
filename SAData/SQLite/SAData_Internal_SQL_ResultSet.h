@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SAData_Internal_SQL_ResultSet : NSObject
+@interface SAData_Internal_SQL_ResultSet : NSObject<NSFastEnumeration>
+
+@property (nonatomic, readonly) NSUInteger count;
 
 @end

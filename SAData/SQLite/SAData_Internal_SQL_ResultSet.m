@@ -10,4 +10,12 @@
 
 @implementation SAData_Internal_SQL_ResultSet
 
+#pragma mark NSFastEnumeration
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len {
+    
+    
+    
+}
+
 @end
