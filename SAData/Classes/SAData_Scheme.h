@@ -1,5 +1,5 @@
 //
-//  SA_SAData_Scheme.h
+//  SAData_Scheme.h
 //  SADataTester
 //
 //  Created by Ben Gottlieb on 4/27/13.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SA_SAData_Scheme : NSObject
+@interface SAData_Scheme : NSObject
 
 @end
