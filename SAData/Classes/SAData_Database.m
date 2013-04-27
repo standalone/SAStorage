@@ -8,14 +8,35 @@
 
 #import "SAData_Database.h"
 
-typedef void (^SAData_QueryCallback)(NSArray *results, NSError *error);
 
 
-@class SAData_Query;
 
 @implementation SAData_Database
 
-- (void) recordsMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCallback) completion;
++ (id) databaseWithURL: (NSURL *) url basedOn: (SAData_Scheme *) schema {
+	SAData_Database				*db = [[self alloc] init];
+	
+	return db;
+}
+
+- (void) recordsMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCallback) completion {
+	
+}
+
+- (void) proxiesMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCallback) completion {
+	
+}
+
+- (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCallback) completion {
+	
+	
+}
+
+- (void) numberOfRecordsMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCountCallback) completion {
+	
+}
+
+
 
 
 @end

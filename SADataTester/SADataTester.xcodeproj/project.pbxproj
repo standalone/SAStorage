@@ -20,6 +20,7 @@
 		B5DAF51F172C6AB600296B17 /* SAData_Proxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF519172C6AB600296B17 /* SAData_Proxy.m */; };
 		B5DAF520172C6AB600296B17 /* SAData_Query.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF51B172C6AB600296B17 /* SAData_Query.m */; };
 		B5DAF521172C6AB600296B17 /* SAData_Record.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF51D172C6AB600296B17 /* SAData_Record.m */; };
+		B5DAF524172C6C8A00296B17 /* SA_SAData_Scheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF523172C6C8900296B17 /* SA_SAData_Scheme.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		B5DAF51B172C6AB600296B17 /* SAData_Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_Query.m; sourceTree = "<group>"; };
 		B5DAF51C172C6AB600296B17 /* SAData_Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAData_Record.h; sourceTree = "<group>"; };
 		B5DAF51D172C6AB600296B17 /* SAData_Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_Record.m; sourceTree = "<group>"; };
+		B5DAF522172C6C8900296B17 /* SA_SAData_Scheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SA_SAData_Scheme.h; sourceTree = "<group>"; };
+		B5DAF523172C6C8900296B17 /* SA_SAData_Scheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SA_SAData_Scheme.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 				B5DAF51B172C6AB600296B17 /* SAData_Query.m */,
 				B5DAF51C172C6AB600296B17 /* SAData_Record.h */,
 				B5DAF51D172C6AB600296B17 /* SAData_Record.m */,
+				B5DAF522172C6C8900296B17 /* SA_SAData_Scheme.h */,
+				B5DAF523172C6C8900296B17 /* SA_SAData_Scheme.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				B5DAF51F172C6AB600296B17 /* SAData_Proxy.m in Sources */,
 				B5DAF520172C6AB600296B17 /* SAData_Query.m in Sources */,
 				B5DAF521172C6AB600296B17 /* SAData_Record.m in Sources */,
+				B5DAF524172C6C8A00296B17 /* SA_SAData_Scheme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
