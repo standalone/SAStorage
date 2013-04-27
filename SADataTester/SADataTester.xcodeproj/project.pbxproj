@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BB79133172C70F100AA8360 /* SAData_SQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */; };
+		2BB79136172C712400AA8360 /* SAData_SQLT_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB79135172C712400AA8360 /* SAData_SQLT_Database.m */; };
+		2BB79138172C719B00AA8360 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB79137172C719B00AA8360 /* libsqlite3.dylib */; };
 		B5DAF4E9172C66B900296B17 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DAF4E8172C66B900296B17 /* UIKit.framework */; };
 		B5DAF4EB172C66B900296B17 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DAF4EA172C66B900296B17 /* Foundation.framework */; };
 		B5DAF4ED172C66B900296B17 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DAF4EC172C66B900296B17 /* CoreGraphics.framework */; };
@@ -24,6 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BB79131172C70F100AA8360 /* SAData_SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAData_SQLiteDatabase.h; path = ../SQLite/SAData_SQLiteDatabase.h; sourceTree = "<group>"; };
+		2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SAData_SQLiteDatabase.m; path = ../SQLite/SAData_SQLiteDatabase.m; sourceTree = "<group>"; };
+		2BB79134172C712400AA8360 /* SAData_SQLT_Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAData_SQLT_Database.h; sourceTree = "<group>"; };
+		2BB79135172C712400AA8360 /* SAData_SQLT_Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_SQLT_Database.m; sourceTree = "<group>"; };
+		2BB79137172C719B00AA8360 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B5DAF4E5172C66B900296B17 /* SADataTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SADataTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAF4E8172C66B900296B17 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5DAF4EA172C66B900296B17 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BB79138172C719B00AA8360 /* libsqlite3.dylib in Frameworks */,
 				B5DAF4E9172C66B900296B17 /* UIKit.framework in Frameworks */,
 				B5DAF4EB172C66B900296B17 /* Foundation.framework in Frameworks */,
 				B5DAF4ED172C66B900296B17 /* CoreGraphics.framework in Frameworks */,
@@ -63,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BB79130172C6E9C00AA8360 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				2BB79134172C712400AA8360 /* SAData_SQLT_Database.h */,
+				2BB79135172C712400AA8360 /* SAData_SQLT_Database.m */,
+			);
+			path = SQLite;
+			sourceTree = "<group>";
+		};
 		B5DAF4DC172C66B900296B17 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +102,7 @@
 		B5DAF4E7172C66B900296B17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BB79137172C719B00AA8360 /* libsqlite3.dylib */,
 				B5DAF4E8172C66B900296B17 /* UIKit.framework */,
 				B5DAF4EA172C66B900296B17 /* Foundation.framework */,
 				B5DAF4EC172C66B900296B17 /* CoreGraphics.framework */,
@@ -118,6 +137,7 @@
 		B5DAF514172C6AB600296B17 /* SAData */ = {
 			isa = PBXGroup;
 			children = (
+				2BB79130172C6E9C00AA8360 /* SQLite */,
 				B5DAF515172C6AB600296B17 /* Classes */,
 			);
 			name = SAData;
@@ -127,6 +147,8 @@
 		B5DAF515172C6AB600296B17 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2BB79131172C70F100AA8360 /* SAData_SQLiteDatabase.h */,
+				2BB79132172C70F100AA8360 /* SAData_SQLiteDatabase.m */,
 				B5DAF516172C6AB600296B17 /* SAData_Database.h */,
 				B5DAF517172C6AB600296B17 /* SAData_Database.m */,
 				B5DAF518172C6AB600296B17 /* SAData_Proxy.h */,
@@ -214,6 +236,8 @@
 				B5DAF520172C6AB600296B17 /* SAData_Query.m in Sources */,
 				B5DAF521172C6AB600296B17 /* SAData_Record.m in Sources */,
 				B5DAF524172C6C8A00296B17 /* SA_SAData_Scheme.m in Sources */,
+				2BB79133172C70F100AA8360 /* SAData_SQLiteDatabase.m in Sources */,
+				2BB79136172C712400AA8360 /* SAData_SQLT_Database.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
