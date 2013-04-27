@@ -21,7 +21,7 @@ NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
 
 @implementation SAData_Internal_SQL {
     
-    sqlite3 *handle;
+    sqlite3 *_handle;
     
 }
 
@@ -56,7 +56,7 @@ NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
     
     if (self.databaseOpen) return YES;
     
-    int err = sqlite3_open([[self.fileURL path] UTF8String], &handle);
+    int err = sqlite3_open([[self.fileURL path] UTF8String], &_handle);
     
     if (err != SQLITE_OK) {
         *error = [[NSError alloc] initWithDomain:kSADataSQLiteErrorDomain code:err userInfo:nil];
@@ -65,6 +65,22 @@ NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
     
     self.databaseOpen = YES;
     return YES;
+    
+}
+
+- (BOOL)closeWithError:(NSError **)error {
+    
+    if (!_handle) return NO;
+    int err = sqlite3_close(_handle);
+    
+    if (err != SQLITE_OK) {
+        *error = [[NSError alloc] initWithDomain:kSADataSQLiteErrorDomain code:err userInfo:nil];
+        return NO;
+    }
+    
+    self.databaseOpen = NO;
+    _handle = NULL;
+    return NO;
     
 }
 
