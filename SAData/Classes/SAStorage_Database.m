@@ -36,6 +36,23 @@
 	return self;
 }
 
+//=============================================================================================================================
+#pragma mark Record Changes
+- (void) markRecord: (SAStorage_Record *) record changed: (BOOL) changed {
+	if (changed && self.changedRecords == nil) self.changedRecords = [NSMutableSet set];
+	
+	if (changed)
+		[self.changedRecords addObject: record];
+	else
+		[self.changedRecords removeObject: record];
+}
+
+//=============================================================================================================================
+#pragma mark Overrides
+- (void) saveWithCompletion: (SAStorage_ErrorCallback) completion {
+	
+}
+
 - (void) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
 	
 }

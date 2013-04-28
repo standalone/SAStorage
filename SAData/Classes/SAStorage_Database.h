@@ -19,6 +19,7 @@ typedef NS_ENUM(uint8_t, SAStorage_Database_Type) {
 typedef void (^SAStorage_QueryCallback)(NSArray *results, NSError *error);
 typedef void (^SAStorage_QueryCountCallback)(NSUInteger count, NSError *error);
 typedef void (^SAStorage_RecordCallback)(SAStorage_Record *record, NSError *error);
+typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 
 @interface SAStorage_Database : NSObject
@@ -32,17 +33,19 @@ typedef void (^SAStorage_RecordCallback)(SAStorage_Record *record, NSError *erro
 - (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
 
 - (void) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion;
-
+- (void) saveWithCompletion: (SAStorage_ErrorCallback) completion;
 
 //Inserting data
 - (void) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion;
 
-
+//Modifying Records
+- (void) markRecord: (SAStorage_Record *) record changed: (BOOL) changed;
 
 //inheritable instance methods & properties
 
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) SAStorage_Schema *schema;
+@property (nonatomic, strong) NSMutableSet *changedRecords;
 
 - (id) initWithURL: (NSURL *) url andSchema: (SAStorage_Schema *) schema;
 - (SAStorage_Record *) resolveProxy: (SAStorage_Proxy *) proxy;
