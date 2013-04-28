@@ -10,7 +10,7 @@
 
 const SAStorage_RecordIDType		SAStorage_RecordIDNone = 0L;
 const NSString						*SAStorage_RecordIDURLPrefix = @"sastorage";
-
+const NSString						*SAStorage_ErrorDomain = @"SAStorage_ErrorDomain";
 
 @implementation SAStorage
 

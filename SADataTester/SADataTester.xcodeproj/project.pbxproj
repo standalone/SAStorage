@@ -73,6 +73,7 @@
 		B5DAF540172D6D0100296B17 /* SAStorage_SchemaField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SchemaField.m; sourceTree = "<group>"; };
 		B5DAF541172D6D0100296B17 /* SAStorage_SchemaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_SchemaTable.h; sourceTree = "<group>"; };
 		B5DAF542172D6D0100296B17 /* SAStorage_SchemaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SchemaTable.m; sourceTree = "<group>"; };
+		B5DAF54A172DC05400296B17 /* SAStorage_Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Errors.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +185,7 @@
 				B5DAF51D172C6AB600296B17 /* SAStorage_Record.m */,
 				B5DAF529172CC84500296B17 /* SAStorage_RecordCache.h */,
 				B5DAF52A172CC84500296B17 /* SAStorage_RecordCache.m */,
+				B5DAF54A172DC05400296B17 /* SAStorage_Errors.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
