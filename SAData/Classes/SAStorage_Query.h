@@ -13,9 +13,9 @@
 @property (nonatomic, strong) NSPredicate *predicate;
 @property (nonatomic, strong) NSString *sql;
 @property (nonatomic, strong) NSArray *arguments;
+@property (nonatomic, strong) NSString *tableName;
 
-
-+ (id) queryWithPredicate: (NSPredicate *) predicate;
-+ (id) queryWithSQL: (NSString *) sql andArgs: (NSArray *) args;
++ (id) queryInTable: (NSString *) tableName withPredicate: (NSPredicate *) predicate;
++ (id) queryInTable: (NSString *) tableName withSQL: (NSString *) sql andArgs: (NSArray *) args;
 
 @end
