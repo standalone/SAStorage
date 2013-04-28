@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAStorage_Headers.h"
 
 @interface SAStorage_Record : NSObject
+
+@property (nonatomic, readonly) SAStorage_RecordIDType recordID;
 
 @end

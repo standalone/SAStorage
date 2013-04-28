@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAStorage_Headers.h"
+
+@class SAStorage_Record;
 
 @interface SAStorage_RecordCache : NSObject
+
+- (void) cacheRecord: (SAStorage_Record *) record;
+- (SAStorage_Record *) recordWithID: (SAStorage_RecordIDType) recordID;
+- (void) clearRecord: (SAStorage_Record *) record;
 
 @end
