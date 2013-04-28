@@ -53,7 +53,11 @@
 	
 }
 
+- (SAData_Record *) resolveProxy: (SAData_Proxy *) proxy {
+	return nil;
+}
 
-
-
+- (void) insertNewRecordOfType: (NSString *) recordType completion: (SAData_RecordCallback) completion {
+	
+}
 @end

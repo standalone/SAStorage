@@ -14,22 +14,28 @@ typedef NS_ENUM(uint8_t, SAData_Database_Type) {
 };
 
 
-@class SAData_Query, SAData_Schema;
+@class SAData_Query, SAData_Schema, SAData_Record, SAData_Proxy;
 
 typedef void (^SAData_QueryCallback)(NSArray *results, NSError *error);
 typedef void (^SAData_QueryCountCallback)(NSUInteger count, NSError *error);
+typedef void (^SAData_RecordCallback)(SAData_Record *record, NSError *error);
 
 
 @interface SAData_Database : NSObject
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAData_Database_Type) type basedOn: (SAData_Schema *) schema;
 
+
+//Fetching data
 - (void) recordsMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCallback) completion;
 - (void) proxiesMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCallback) completion;
 - (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCallback) completion;
 
 - (void) numberOfRecordsMatchingQuery: (SAData_Query *) query completion: (SAData_QueryCountCallback) completion;
 
+
+//Inserting data
+- (void) insertNewRecordOfType: (NSString *) recordType completion: (SAData_RecordCallback) completion;
 
 
 
@@ -39,6 +45,7 @@ typedef void (^SAData_QueryCountCallback)(NSUInteger count, NSError *error);
 @property (nonatomic, strong) SAData_Schema *schema;
 
 - (id) initWithURL: (NSURL *) url andSchema: (SAData_Schema *) schema;
+- (SAData_Record *) resolveProxy: (SAData_Proxy *) proxy;
 
 
 @end

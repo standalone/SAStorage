@@ -58,6 +58,7 @@
 		B5DAF51D172C6AB600296B17 /* SAData_Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAData_Record.m; sourceTree = "<group>"; };
 		B5DAF525172C790000296B17 /* SAData_Schema.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAData_Schema.h; sourceTree = "<group>"; };
 		B5DAF526172C790100296B17 /* SAData_Schema.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAData_Schema.m; sourceTree = "<group>"; };
+		B5DAF528172CB4D300296B17 /* SAData_Headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAData_Headers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +165,7 @@
 				B5DAF51D172C6AB600296B17 /* SAData_Record.m */,
 				B5DAF525172C790000296B17 /* SAData_Schema.h */,
 				B5DAF526172C790100296B17 /* SAData_Schema.m */,
+				B5DAF528172CB4D300296B17 /* SAData_Headers.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

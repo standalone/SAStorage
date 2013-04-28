@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAData_Headers.h"
+
+@class SAData_Database;
 
 @interface SAData_Proxy : NSProxy
+
+@property (nonatomic, weak) SAData_Database *database;
+@property (nonatomic, strong) NSString *table;
+@property (nonatomic) SAData_RecordIDType recordID;
 
 @end
