@@ -25,4 +25,5 @@
 + (id) recordInDatabase: (SAStorage_Database *) db andTable: (NSString *) tableName withRecordID: (SAStorage_RecordIDType) recordID;
 
 - (void) populateBackingDictionaryFromDictionary: (NSDictionary *) dict;
+- (BOOL) matchesPredicate: (NSPredicate *) predicate;
 @end

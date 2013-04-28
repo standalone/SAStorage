@@ -55,8 +55,15 @@
 }
 
 
+- (BOOL) matchesPredicate: (NSPredicate *) predicate {
+	return [predicate evaluateWithObject: self];
+}
+
 //=============================================================================================================================
 #pragma mark Maintenance
+- (id) valueForKey: (NSString *) key { return [self.backingDictionary valueForKey: key]; }
+- (void) setValue: (id) value forKey: (NSString *) key { [self.backingDictionary setValue: value forKey: key]; }
+
 - (id) objectForKeyedSubscript: (id) key {
 	return self.backingDictionary[key];
 }
