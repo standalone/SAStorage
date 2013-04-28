@@ -34,5 +34,5 @@ typedef NS_ENUM(uint8_t, SAStorage_SchemaField_Type) {
 
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 + (id) fieldWithDictionary: (NSDictionary *) dict;
-
++ (id) fieldNamed: (NSString *) name ofType: (SAStorage_SchemaField_Type) type;
 @end

@@ -21,6 +21,14 @@
 	return field;
 }
 
++ (id) fieldNamed: (NSString *) name ofType: (SAStorage_SchemaField_Type) type {
+	SAStorage_SchemaField			*field = [[self alloc] init];
+	
+	field.name = name;
+	field.type = type;
+	return field;
+}
+
 - (NSString *) description {
 	if (self.isRelationship) {
 		return [NSString stringWithFormat: @"%@: %@ to %@.%@", self.name, [SAStorage_SchemaField fieldTypeToString: self.type], self.relatedTo, self.relatedBy];

@@ -36,16 +36,32 @@
 		return;
 	}
 	
-	self.tables = [NSMutableArray array];
+	self.tables = [NSMutableDictionary dictionary];
 	for (NSDictionary *tableDict in dictionary[@"tables"]) {
 		SAStorage_SchemaTable			*table = [SAStorage_SchemaTable tableWithDictionary: tableDict];
 		
-		if (table) [self.tables addObject: table];
+		self.tables[table.name] = table;
 	}	
 }
 
 - (NSString *) description {
 	return [NSString stringWithFormat: @"%@", self.tables];
+}
+
+
+//=============================================================================================================================
+#pragma mark Maintenance
+- (id) objectForKeyedSubscript: (id) key {
+	return self.tables[key];
+}
+
+- (void) setObject: (id) obj forKeyedSubscript: (id) key {
+	if (![obj isKindOfClass: [SAStorage_SchemaTable class]]) return;
+	
+	if (obj)
+		self.tables[key] = obj;
+	else
+		[self.tables removeObjectForKey: key];
 }
 
 

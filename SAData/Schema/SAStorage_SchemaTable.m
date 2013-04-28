@@ -14,13 +14,13 @@
 	SAStorage_SchemaTable			*table = [[self alloc] init];
 	
 	table.name = dict[@"name"];
-	table.fields = [NSMutableArray array];
+	table.fields = [NSMutableDictionary dictionary];
 	if (dict[@"class"]) table.objectClass = NSClassFromString(dict[@"class"]);
 	
 	for (NSDictionary *fieldDict in dict[@"columns"]) {
 		SAStorage_SchemaField			*field = [SAStorage_SchemaField fieldWithDictionary: fieldDict];
 		
-		if (field) [table.fields addObject: field];
+		if (field) table.fields[field.name] = field;
 	}
 	return table;
 }
@@ -38,4 +38,20 @@
 - (NSString *) description {
 	return [NSString stringWithFormat: @"%@, fields: %@", self.name, self.fields];
 }
+
+//=============================================================================================================================
+#pragma mark Maintenance
+- (id) objectForKeyedSubscript: (id) key {
+	return self.fields[key];
+}
+
+- (void) setObject: (id) obj forKeyedSubscript: (id) key {
+	if (![obj isKindOfClass: [SAStorage_SchemaField class]]) return;
+	
+	if (obj)
+		self.fields[key] = obj;
+	else
+		[self.fields removeObjectForKey: key];
+}
+
 @end

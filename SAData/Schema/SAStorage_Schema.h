@@ -11,7 +11,7 @@
 @interface SAStorage_Schema : NSObject
 @property (nonatomic, strong) NSData *JSONRepresentation;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
-@property (nonatomic, strong) NSMutableArray *tables;
+@property (nonatomic, strong) NSMutableDictionary *tables;
 
 + (id) schemaWithJSONRepresentation: (NSData *) json;
 + (id) schemaWithContentsOfURL: (NSURL *) url;

@@ -193,10 +193,10 @@
 			children = (
 				B5DAF53D172D6D0100296B17 /* SAStorage_Schema.h */,
 				B5DAF53E172D6D0100296B17 /* SAStorage_Schema.m */,
-				B5DAF53F172D6D0100296B17 /* SAStorage_SchemaField.h */,
-				B5DAF540172D6D0100296B17 /* SAStorage_SchemaField.m */,
 				B5DAF541172D6D0100296B17 /* SAStorage_SchemaTable.h */,
 				B5DAF542172D6D0100296B17 /* SAStorage_SchemaTable.m */,
+				B5DAF53F172D6D0100296B17 /* SAStorage_SchemaField.h */,
+				B5DAF540172D6D0100296B17 /* SAStorage_SchemaField.m */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
