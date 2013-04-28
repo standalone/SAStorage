@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Stand Alone, Inc. All rights reserved.
 //
 
-#import "SAStorage_Database.h"
+#import "SAStorage_Headers.h"
 #import "SAStorage_SQLiteDatabase.h"
-
 
 
 @implementation SAStorage_Database
@@ -34,6 +33,14 @@
 		self.schema = schema;
 	}
 	return self;
+}
+
+- (void) postInitSetup {
+	_uuid = [self metadataValueForKey: @"uuid"];
+	if (self.uuid == nil) {
+		_uuid = [SAStorage uuid];
+		[self setMetadataValue: _uuid forKey: @"uuid"];
+	}
 }
 
 //=============================================================================================================================
@@ -77,4 +84,13 @@
 - (void) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion {
 	
 }
+
+- (NSString *) metadataValueForKey: (NSString *) key {
+	return nil;
+}
+
+- (void) setMetadataValue: (NSString *) value forKey: (NSString *) key {
+	
+}
+
 @end

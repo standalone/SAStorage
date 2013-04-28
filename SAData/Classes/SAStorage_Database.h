@@ -23,6 +23,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 
 @interface SAStorage_Database : NSObject
+@property (nonatomic, readonly) NSString *uuid;
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema;
 
@@ -40,6 +41,13 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 //Modifying Records
 - (void) markRecord: (SAStorage_Record *) record changed: (BOOL) changed;
+
+//metadata
+- (NSString *) metadataValueForKey: (NSString *) key;
+- (void) setMetadataValue: (NSString *) value forKey: (NSString *) key;
+
+//Maintenance
+- (void) postInitSetup;
 
 //inheritable instance methods & properties
 

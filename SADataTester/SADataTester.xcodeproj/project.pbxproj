@@ -26,6 +26,7 @@
 		B5DAF521172C6AB600296B17 /* SAStorage_Record.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF51D172C6AB600296B17 /* SAStorage_Record.m */; };
 		B5DAF527172C790600296B17 /* SAStorage_Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF526172C790100296B17 /* SAStorage_Schema.m */; };
 		B5DAF52B172CC84600296B17 /* SAStorage_RecordCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF52A172CC84500296B17 /* SAStorage_RecordCache.m */; };
+		B5DAF52E172D53E800296B17 /* SAStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF52D172D53E700296B17 /* SAStorage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		B5DAF528172CB4D300296B17 /* SAStorage_Headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAStorage_Headers.h; sourceTree = "<group>"; };
 		B5DAF529172CC84500296B17 /* SAStorage_RecordCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_RecordCache.h; sourceTree = "<group>"; };
 		B5DAF52A172CC84500296B17 /* SAStorage_RecordCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_RecordCache.m; sourceTree = "<group>"; };
+		B5DAF52C172D53E500296B17 /* SAStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage.h; sourceTree = "<group>"; };
+		B5DAF52D172D53E700296B17 /* SAStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,9 @@
 		B5DAF515172C6AB600296B17 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B5DAF528172CB4D300296B17 /* SAStorage_Headers.h */,
+				B5DAF52C172D53E500296B17 /* SAStorage.h */,
+				B5DAF52D172D53E700296B17 /* SAStorage.m */,
 				B5DAF516172C6AB600296B17 /* SAStorage_Database.h */,
 				B5DAF517172C6AB600296B17 /* SAStorage_Database.m */,
 				B5DAF518172C6AB600296B17 /* SAStorage_Proxy.h */,
@@ -168,7 +174,6 @@
 				B5DAF51D172C6AB600296B17 /* SAStorage_Record.m */,
 				B5DAF525172C790000296B17 /* SAStorage_Schema.h */,
 				B5DAF526172C790100296B17 /* SAStorage_Schema.m */,
-				B5DAF528172CB4D300296B17 /* SAStorage_Headers.h */,
 				B5DAF529172CC84500296B17 /* SAStorage_RecordCache.h */,
 				B5DAF52A172CC84500296B17 /* SAStorage_RecordCache.m */,
 			);
@@ -252,6 +257,7 @@
 				B5DAF527172C790600296B17 /* SAStorage_Schema.m in Sources */,
 				2BB7913B172C806100AA8360 /* SAStorage_Internal_SQL_ResultSet.m in Sources */,
 				B5DAF52B172CC84600296B17 /* SAStorage_RecordCache.m in Sources */,
+				B5DAF52E172D53E800296B17 /* SAStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
