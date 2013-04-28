@@ -10,6 +10,7 @@
 
 
 typedef NS_ENUM(uint8_t, SAStorage_SchemaField_Type) {
+	SAStorage_SchemaField_None,
 	SAStorage_SchemaField_Integer,
 	SAStorage_SchemaField_Float,
 	SAStorage_SchemaField_Double,
@@ -28,6 +29,8 @@ typedef NS_ENUM(uint8_t, SAStorage_SchemaField_Type) {
 @property (nonatomic) SAStorage_SchemaField_Type type;
 @property (nonatomic, strong) NSString *relatedTo;				//if a relationship, what table does it point to?
 @property (nonatomic, strong) NSString *relatedBy;				//…and what field in that table
+@property (nonatomic) BOOL sortedOn;
+@property (nonatomic, readonly) BOOL isRelationship;
 
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 + (id) fieldWithDictionary: (NSDictionary *) dict;

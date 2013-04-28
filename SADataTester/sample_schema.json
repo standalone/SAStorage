@@ -5,32 +5,27 @@
 				"class" : "CT_Contact",
 				"columns" : [
 							 {
-							 "first_name" : {
+							 "name": "first_name",
 							 "type" : "string"
-							 }
 							 },
 							 {
-							 "last_name" : {
+							 "name": "last_name",
 							 "type" : "string",
 							 "indexed" : true
-							 }
 							 },
 							 {
-							 "age" : {
+							 "name": "age",
 							 "type" : "integer"
-							 }
 							 },
 							 {
-							 "dob" : {
+							 "name": "dob",
 							 "type" : "date"
-							 }
 							 },
 							 {
-							 "spouse" : {
+							 "name": "spouse",
 							 "type" : "one-to-one",
-							 "destination" : "Contacts",
-							 "reverse" : "spouse"
-							 }
+							 "relatedTo" : "Contacts",
+							 "relatedBy" : "spouse"
 							 }
 							 ]
 				}

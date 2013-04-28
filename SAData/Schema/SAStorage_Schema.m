@@ -44,6 +44,10 @@
 	}	
 }
 
+- (NSString *) description {
+	return [NSString stringWithFormat: @"%@", self.tables];
+}
+
 
 @end
 

@@ -15,12 +15,27 @@
 	
 	table.name = dict[@"name"];
 	table.fields = [NSMutableArray array];
+	if (dict[@"class"]) table.objectClass = NSClassFromString(dict[@"class"]);
 	
-	for (NSDictionary *fieldDict in dict[@"fields"]) {
+	for (NSDictionary *fieldDict in dict[@"columns"]) {
 		SAStorage_SchemaField			*field = [SAStorage_SchemaField fieldWithDictionary: fieldDict];
 		
 		if (field) [table.fields addObject: field];
 	}
 	return table;
+}
+
+- (NSDictionary *) dictionaryRepresentation {
+	NSMutableDictionary			*dict = @{
+		@"name": self.name,
+		@"fields": [self.fields valueForKey: @"dictionaryRepresentation"]
+	}.mutableCopy;
+	
+	if (self.objectClass) dict[@"class"] = NSStringFromClass(self.objectClass);
+	return dict;
+}
+
+- (NSString *) description {
+	return [NSString stringWithFormat: @"%@, fields: %@", self.name, self.fields];
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "SA_AppDelegate.h"
+#import "SAStorage_Schema.h"
 
 @implementation SA_AppDelegate
 
@@ -16,6 +17,14 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+	
+	
+	NSURL				*url = [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"];
+	
+	SAStorage_Schema	*schema = [SAStorage_Schema schemaWithContentsOfURL: url];
+	
+	NSLog(@"Schema: %@", schema);
+	
     return YES;
 }
 
