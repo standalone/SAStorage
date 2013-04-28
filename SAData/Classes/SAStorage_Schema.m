@@ -11,3 +11,13 @@
 @implementation SAStorage_Schema
 
 @end
+
+
+@implementation SAStorage_SchemaTable
+
+@end
+
+@implementation SAStorage_SchemaField
+
+@end
+
