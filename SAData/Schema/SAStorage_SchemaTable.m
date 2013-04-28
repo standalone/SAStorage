@@ -28,7 +28,7 @@
 - (NSDictionary *) dictionaryRepresentation {
 	NSMutableDictionary			*dict = @{
 		@"name": self.name,
-		@"fields": [self.fields valueForKey: @"dictionaryRepresentation"]
+		@"fields": [[self.fields allValues] valueForKey: @"dictionaryRepresentation"]
 	}.mutableCopy;
 	
 	if (self.objectClass) dict[@"class"] = NSStringFromClass(self.objectClass);

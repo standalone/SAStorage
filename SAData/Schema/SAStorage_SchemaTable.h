@@ -14,4 +14,9 @@
 @property (nonatomic, strong) NSMutableDictionary *fields;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 + (id) tableWithDictionary: (NSDictionary *) dict;
+
+
+- (id) objectForKeyedSubscript: (id) key;
+- (void) setObject: (id) obj forKeyedSubscript: (id) key;
+
 @end

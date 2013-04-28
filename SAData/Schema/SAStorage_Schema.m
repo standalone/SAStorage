@@ -44,6 +44,23 @@
 	}	
 }
 
+- (NSDictionary *) dictionaryRepresentation {
+	static NSArray			*sort = nil;
+	
+	if (sort == nil) sort = @[ [NSSortDescriptor sortDescriptorWithKey: @"name" ascending: YES] ];
+	
+	return @{ @"tables": [[self.tables.allValues sortedArrayUsingDescriptors: sort] valueForKey: @"dictionaryRepresentation"] };
+}
+
+- (NSData *) JSONRepresentation {
+	NSDictionary			*dictionary = self.dictionaryRepresentation;
+	NSError					*error = nil;
+	NSData					*data = [NSJSONSerialization dataWithJSONObject: dictionary options: NSJSONWritingPrettyPrinted error: &error];
+	
+	if (error) NSLog(@"Error converting a schema to JSON: %@", error);
+	return data;
+}
+
 - (NSString *) description {
 	return [NSString stringWithFormat: @"%@", self.tables];
 }

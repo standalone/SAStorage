@@ -15,6 +15,10 @@
 
 + (id) schemaWithJSONRepresentation: (NSData *) json;
 + (id) schemaWithContentsOfURL: (NSURL *) url;
+
+- (id) objectForKeyedSubscript: (id) key;
+- (void) setObject: (id) obj forKeyedSubscript: (id) key;
+
 @end
 
 
