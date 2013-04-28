@@ -9,5 +9,18 @@
 #import "SAStorage_Query.h"
 
 @implementation SAStorage_Query
++ (id) queryWithPredicate: (NSPredicate *) predicate {
+	SAStorage_Query				*query = [[self alloc] init];
+	query.predicate = predicate;
+	return query;
+}
+
++ (id) queryWithSQL: (NSString *) sql andArgs: (NSArray *) args {
+	SAStorage_Query				*query = [[self alloc] init];
+	query.sql = sql;
+	query.arguments = args;
+	return query;
+}
+
 
 @end
