@@ -39,6 +39,7 @@
 	return [NSString stringWithFormat: @"%@, fields: %@", self.name, self.fields];
 }
 
+
 //=============================================================================================================================
 #pragma mark Maintenance
 - (id) objectForKeyedSubscript: (id) key {
@@ -54,4 +55,10 @@
 		[self.fields removeObjectForKey: key];
 }
 
+- (NSUInteger) hash {
+	NSUInteger				hash = self.name.hash;
+	
+	for (SAStorage_SchemaField *field in self.fields) { hash += field.hash; }
+	return hash;
+}
 @end

@@ -18,9 +18,11 @@
 @property (nonatomic, readonly) NSString *tableName;
 @property (nonatomic, readonly) NSString *uuid;
 @property (nonatomic, strong) NSMutableDictionary *backingDictionary;
+@property (nonatomic, readonly) NSDictionary *dictionaryValue;
 
 @property (nonatomic) BOOL recordHasChanges;
 
 + (id) recordInDatabase: (SAStorage_Database *) db andTable: (NSString *) tableName withRecordID: (SAStorage_RecordIDType) recordID;
 
+- (void) populateBackingDictionaryFromDictionary: (NSDictionary *) dict;
 @end

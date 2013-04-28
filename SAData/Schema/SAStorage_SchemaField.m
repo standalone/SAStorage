@@ -29,6 +29,8 @@
 	return field;
 }
 
+- (NSUInteger) hash { return self.name.hash + self.type * 1024 + self.relatedBy.hash + self.relatedTo.hash + self.sortedOn * 24; }
+
 - (NSString *) description {
 	if (self.isRelationship) {
 		return [NSString stringWithFormat: @"%@: %@ to %@.%@", self.name, [SAStorage_SchemaField fieldTypeToString: self.type], self.relatedTo, self.relatedBy];

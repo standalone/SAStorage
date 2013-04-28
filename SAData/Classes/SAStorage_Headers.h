@@ -7,3 +7,5 @@
 #import "SAStorage_Query.h"
 #import "SAStorage_Proxy.h"
 #import "SAStorage_Schema.h"
+#import "SAStorage_SchemaTable.h"
+#import "SAStorage_SchemaField.h"

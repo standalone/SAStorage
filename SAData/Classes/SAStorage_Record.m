@@ -30,8 +30,15 @@
 	[self.db deleteRecord: self];
 }
 
+- (void) populateBackingDictionaryFromDictionary: (NSDictionary *) dict {
+	for (NSString *key in dict) {
+		self.backingDictionary[key] = dict[key];
+	}
+}
+
 //=============================================================================================================================
 #pragma mark Properties
+- (NSDictionary *) dictionaryValue { return self.backingDictionary; }
 
 - (void) setRecordHasChanges: (BOOL) recordHasChanges {
 	_recordHasChanges = recordHasChanges;

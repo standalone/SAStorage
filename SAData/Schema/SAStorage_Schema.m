@@ -81,6 +81,12 @@
 		[self.tables removeObjectForKey: key];
 }
 
+- (NSUInteger) hash {
+	NSUInteger				hash = 0L;
+	
+	for (SAStorage_SchemaTable *table in self.tables) { hash += table.hash; }
+	return hash;
+}
 
 @end
 
