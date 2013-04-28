@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) SAStorage_Database *db;
 @property (nonatomic, readonly) NSString *tableName;
 @property (nonatomic, readonly) NSString *uuid;
+@property (nonatomic, strong) NSMutableDictionary *backingDictionary;
 
 @property (nonatomic) BOOL recordHasChanges;
 
