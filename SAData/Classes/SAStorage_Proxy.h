@@ -16,5 +16,8 @@
 @property (nonatomic, weak) SAStorage_Database *database;
 @property (nonatomic, strong) NSString *table;
 @property (nonatomic) SAStorage_RecordIDType recordID;
+@property (nonatomic, readonly) SAStorage_Record *resolvedRecord;			//synchronous
+
+- (void) resolvedRecordWithCompletionBlock: (SAStorage_RecordCallback) completion;		//async
 
 @end
