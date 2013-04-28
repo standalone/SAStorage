@@ -1,5 +1,5 @@
 //
-//  SAData_Internal_SQL_ResultSet.h
+//  SAStorage_Internal_SQL_ResultSet.h
 //  SADataTester
 //
 //  Created by Chris Cieslak on 4/27/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SAData_Internal_SQL_ResultSet : NSObject<NSFastEnumeration>
+@interface SAStorage_Internal_SQL_ResultSet : NSObject<NSFastEnumeration>
 
 @property (nonatomic, readonly) NSUInteger count;
 

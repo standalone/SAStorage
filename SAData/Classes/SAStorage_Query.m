@@ -1,13 +1,13 @@
 //
-//  SAData_Query.h
+//  SAStorage_Query.m
 //  SADataTester
 //
 //  Created by Ben Gottlieb on 4/27/13.
 //  Copyright (c) 2013 Stand Alone, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SAStorage_Query.h"
 
-@interface SAData_Query : NSObject
+@implementation SAStorage_Query
 
 @end

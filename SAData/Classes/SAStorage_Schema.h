@@ -1,5 +1,5 @@
 //
-//  SAData_Record.h
+//  SAStorage_Schema.h
 //  SADataTester
 //
 //  Created by Ben Gottlieb on 4/27/13.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SAData_Record : NSObject
+@interface SAStorage_Schema : NSObject
 
 @end
