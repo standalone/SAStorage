@@ -41,6 +41,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 //Modifying Records
 - (void) markRecord: (SAStorage_Record *) record changed: (BOOL) changed;
+- (void) deleteRecord: (id) record;						//can pass either a record or a proxy
 
 //metadata
 - (NSString *) metadataValueForKey: (NSString *) key;

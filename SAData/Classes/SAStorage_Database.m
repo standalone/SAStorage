@@ -93,4 +93,7 @@
 	
 }
 
+- (void) deleteRecord: (id) record {
+	
+}
 @end

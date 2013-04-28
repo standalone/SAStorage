@@ -20,6 +20,7 @@
 - (id) initWithURL: (NSURL *) url andSchema: (SAStorage_Schema *) schema {
 	if ((self = [super initWithURL: url andSchema: schema])) {
 		self.sql = [SAStorage_Internal_SQL_Database databaseWithURL: url];
+		[self postInitSetup];
 	}
 	return self;
 }

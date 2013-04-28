@@ -24,6 +24,15 @@
 	return record;
 }
 
+//=============================================================================================================================
+#pragma mark Actions
+- (void) deleteRecord {
+	[self.db deleteRecord: self];
+}
+
+//=============================================================================================================================
+#pragma mark Properties
+
 - (void) setRecordHasChanges: (BOOL) recordHasChanges {
 	_recordHasChanges = recordHasChanges;
 	[self.db markRecord: self changed: recordHasChanges];
@@ -37,5 +46,6 @@
 	
 	return [NSString stringWithFormat: @"%@://%@/%@/%u", SAStorage_RecordIDURLPrefix, self.db, self.tableName, self.recordID];
 }
+
 
 @end
