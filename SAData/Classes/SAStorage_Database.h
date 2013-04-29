@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(uint8_t, SAStorage_Database_Type) {
 	SAStorage_Database_any,
-	SAStorage_Database_SQL
+	SAStorage_Database_SQL,
+	SAStorage_Database_JSON
 };
 
 
@@ -24,6 +25,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 @interface SAStorage_Database : NSObject
 @property (nonatomic, readonly) NSString *uuid;
+@property (nonatomic) BOOL dirty;
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema;
 
@@ -32,6 +34,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 - (void) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
 - (void) proxiesMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
 - (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
+- (void) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion;
 
 - (void) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion;
 - (void) saveWithCompletion: (SAStorage_ErrorCallback) completion;
@@ -41,7 +44,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 //Modifying Records
 - (void) markRecord: (SAStorage_Record *) record changed: (BOOL) changed;
-- (void) deleteRecord: (id) record;						//can pass either a record or a proxy
+- (void) deleteRecord: (id) recordOrProxy;						//can pass either a record or a proxy
 
 //metadata
 - (NSString *) metadataValueForKey: (NSString *) key;

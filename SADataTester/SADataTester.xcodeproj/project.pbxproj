@@ -30,6 +30,7 @@
 		B5DAF543172D6D0100296B17 /* SAStorage_Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF53E172D6D0100296B17 /* SAStorage_Schema.m */; };
 		B5DAF544172D6D0100296B17 /* SAStorage_SchemaField.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF540172D6D0100296B17 /* SAStorage_SchemaField.m */; };
 		B5DAF545172D6D0100296B17 /* SAStorage_SchemaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF542172D6D0100296B17 /* SAStorage_SchemaTable.m */; };
+		B5DAF54E172DC14E00296B17 /* SAStorage_JSONDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DAF54D172DC14E00296B17 /* SAStorage_JSONDatabase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,8 @@
 		B5DAF541172D6D0100296B17 /* SAStorage_SchemaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_SchemaTable.h; sourceTree = "<group>"; };
 		B5DAF542172D6D0100296B17 /* SAStorage_SchemaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SchemaTable.m; sourceTree = "<group>"; };
 		B5DAF54A172DC05400296B17 /* SAStorage_Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Errors.h; sourceTree = "<group>"; };
+		B5DAF54C172DC14E00296B17 /* SAStorage_JSONDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_JSONDatabase.h; sourceTree = "<group>"; };
+		B5DAF54D172DC14E00296B17 /* SAStorage_JSONDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_JSONDatabase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +164,7 @@
 		B5DAF514172C6AB600296B17 /* SAData */ = {
 			isa = PBXGroup;
 			children = (
+				B5DAF54B172DC14700296B17 /* JSON */,
 				B5DAF53C172D6CFC00296B17 /* Schema */,
 				2BB79130172C6E9C00AA8360 /* SQLite */,
 				B5DAF515172C6AB600296B17 /* Classes */,
@@ -201,6 +205,15 @@
 				B5DAF540172D6D0100296B17 /* SAStorage_SchemaField.m */,
 			);
 			path = Schema;
+			sourceTree = "<group>";
+		};
+		B5DAF54B172DC14700296B17 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAF54C172DC14E00296B17 /* SAStorage_JSONDatabase.h */,
+				B5DAF54D172DC14E00296B17 /* SAStorage_JSONDatabase.m */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +297,7 @@
 				B5DAF543172D6D0100296B17 /* SAStorage_Schema.m in Sources */,
 				B5DAF544172D6D0100296B17 /* SAStorage_SchemaField.m in Sources */,
 				B5DAF545172D6D0100296B17 /* SAStorage_SchemaTable.m in Sources */,
+				B5DAF54E172DC14E00296B17 /* SAStorage_JSONDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

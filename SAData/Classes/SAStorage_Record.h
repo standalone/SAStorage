@@ -18,7 +18,7 @@
 @property (nonatomic, readonly) NSString *tableName;
 @property (nonatomic, readonly) NSString *uuid;
 @property (nonatomic, strong) NSMutableDictionary *backingDictionary;
-@property (nonatomic, readonly) NSDictionary *dictionaryValue;
+@property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 
 @property (nonatomic) BOOL recordHasChanges;
 
@@ -26,4 +26,9 @@
 
 - (void) populateBackingDictionaryFromDictionary: (NSDictionary *) dict;
 - (BOOL) matchesPredicate: (NSPredicate *) predicate;
+- (NSDictionary *) dictionaryWithFields: (NSSet *) fields;
+
+- (id) objectForKeyedSubscript: (id) key;
+- (void) setObject: (id) obj forKeyedSubscript: (id) key;
+
 @end

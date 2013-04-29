@@ -8,7 +8,7 @@
 
 #import "SAStorage_Headers.h"
 #import "SAStorage_SQLiteDatabase.h"
-
+#import "SAStorage_JSONDatabase.h"
 
 @implementation SAStorage_Database
 
@@ -16,6 +16,10 @@
 	SAStorage_Database				*db = nil;
 	
 	switch (type) {
+		case SAStorage_Database_JSON:
+			db = [[SAStorage_JSONDatabase alloc] initWithURL: url andSchema: schema];
+			break;
+			
 		case SAStorage_Database_SQL:
 			db = [[SAStorage_SQLiteDatabase alloc] initWithURL: url andSchema: schema];
 			break;
@@ -54,6 +58,10 @@
 		[self.changedRecords removeObject: record];
 }
 
+- (BOOL) dirty {
+	return _dirty || self.changedRecords.count > 0;
+}
+
 //=============================================================================================================================
 #pragma mark Overrides
 - (void) saveWithCompletion: (SAStorage_ErrorCallback) completion {
@@ -70,6 +78,9 @@
 
 - (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
 	
+}
+
+- (void) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
 	
 }
 
@@ -93,7 +104,7 @@
 	
 }
 
-- (void) deleteRecord: (id) record {
+- (void) deleteRecord: (id) recordOrProxy {
 	
 }
 @end

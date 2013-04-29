@@ -20,7 +20,7 @@
 	record->_db = db;
 	record->_tableName = tableName;
 	record->_recordID = recordID;
-	
+
 	return record;
 }
 
@@ -31,6 +31,7 @@
 }
 
 - (void) populateBackingDictionaryFromDictionary: (NSDictionary *) dict {
+	if (self.backingDictionary == nil) self.backingDictionary = [NSMutableDictionary dictionary];
 	for (NSString *key in dict) {
 		self.backingDictionary[key] = dict[key];
 	}
@@ -38,7 +39,7 @@
 
 //=============================================================================================================================
 #pragma mark Properties
-- (NSDictionary *) dictionaryValue { return self.backingDictionary; }
+- (NSDictionary *) dictionaryRepresentation { return self.backingDictionary; }
 
 - (void) setRecordHasChanges: (BOOL) recordHasChanges {
 	_recordHasChanges = recordHasChanges;
@@ -59,9 +60,22 @@
 	return [predicate evaluateWithObject: self];
 }
 
+- (NSDictionary *) dictionaryWithFields: (NSSet *) fields {
+	NSMutableDictionary				*results = [NSMutableDictionary dictionary];
+	
+	for (NSString *key in fields) {
+		id				value = results[key];
+		
+		if (value) results[key] = value;
+	}
+	return results;
+}
+
 //=============================================================================================================================
 #pragma mark Maintenance
-- (id) valueForKey: (NSString *) key { return [self.backingDictionary valueForKey: key]; }
+- (id) valueForKey: (NSString *) key {
+	return [self.backingDictionary valueForKey: key];
+}
 - (void) setValue: (id) value forKey: (NSString *) key { [self.backingDictionary setValue: value forKey: key]; }
 
 - (id) objectForKeyedSubscript: (id) key {
