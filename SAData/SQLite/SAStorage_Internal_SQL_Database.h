@@ -12,6 +12,8 @@ extern NSString * const kSADataSQLiteErrorDomain;
 
 @class SAStorage_Internal_SQL_ResultSet;
 
+typedef void(^SAStorage_Internal_SQLCompletionBlock)(NSError *error, SAStorage_Internal_SQL_ResultSet *resultSet);
+
 @interface SAStorage_Internal_SQL_Database : NSObject
 
 + (SAStorage_Internal_SQL_Database *)databaseWithURL:(NSURL *)url;
@@ -19,6 +21,8 @@ extern NSString * const kSADataSQLiteErrorDomain;
 
 - (BOOL)openWithError:(NSError **)error;
 - (BOOL)closeWithError:(NSError **)error;
+
+- (void)executeQueryWithSQL:(NSString *)sql parameters:(NSArray *)params completionBlock:(SAStorage_Internal_SQLCompletionBlock)block;
 
 @property (nonatomic, readonly) NSURL *fileURL;
 @property (nonatomic, readonly) BOOL databaseOpen;
