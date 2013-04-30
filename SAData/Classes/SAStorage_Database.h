@@ -15,9 +15,9 @@ typedef NS_ENUM(uint8_t, SAStorage_Database_Type) {
 };
 
 
-@class SAStorage_Query, SAStorage_Schema, SAStorage_Record, SAStorage_Proxy;
+@class SAStorage_Query, SAStorage_Schema, SAStorage_Record, SAStorage_Proxy, SAStorage_ResultSet;
 
-typedef void (^SAStorage_QueryCallback)(NSArray *results, NSError *error);
+typedef void (^SAStorage_QueryCallback)(SAStorage_ResultSet *results, NSError *error);
 typedef void (^SAStorage_QueryCountCallback)(NSUInteger count, NSError *error);
 typedef void (^SAStorage_RecordCallback)(SAStorage_Record *record, NSError *error);
 typedef void (^SAStorage_ErrorCallback)(NSError *error);
@@ -32,7 +32,6 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 //Fetching data
 - (void) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
-- (void) proxiesMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
 - (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
 - (void) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion;
 

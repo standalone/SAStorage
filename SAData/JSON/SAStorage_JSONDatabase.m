@@ -100,11 +100,7 @@
 	} else
 		results = query.sortedBy ? [records sortedArrayUsingDescriptors: query.sortedBy] : records.copy;
 	
-	completion(results, nil);
-}
-
-- (void) proxiesMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
-	[self recordsMatchingQuery: query completion: completion];		//proxies are not supported or needed by JSON stores
+	completion([SAStorage_ResultSet resultSetWithRecords: results], nil);
 }
 
 - (void) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
@@ -159,7 +155,7 @@
 	for (SAStorage_Record *record in records) {
 		if ([record matchesPredicate: query.predicate]) [results addObject: [record dictionaryWithFields: fields]];
 	}
-	completion(results, nil);
+	completion([SAStorage_ResultSet resultSetWithRecords: results], nil);
 }
 
 - (void) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion {

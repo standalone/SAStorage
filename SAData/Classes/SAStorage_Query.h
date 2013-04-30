@@ -10,6 +10,7 @@
 
 @interface SAStorage_Query : NSObject
 
+@property (nonatomic) BOOL alwaysFetchRecords;
 @property (nonatomic, strong) NSPredicate *predicate;
 @property (nonatomic, strong) NSString *sql;
 @property (nonatomic, strong) NSArray *arguments;			//arguments for the sql statement
