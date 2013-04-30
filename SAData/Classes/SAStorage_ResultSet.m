@@ -21,4 +21,16 @@
 	return results;
 }
 
+- (void) setObject: (id) obj atIndexedSubscript: (NSUInteger) idx {
+	//don't do anything by default; probably never will
+}
+
+- (id) objectAtIndexedSubscript: (NSUInteger) idx {
+	if (idx >= self.internalRecords.count) return nil;
+	return self.internalRecords[idx];
+}
+
+- (NSUInteger) count { return self.internalRecords.count; }
+
+
 @end

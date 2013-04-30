@@ -9,5 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface SAStorage_ResultSet : NSObject
+
+@property (nonatomic, readonly) NSUInteger count;
+
 + (id) resultSetWithRecords: (NSArray *) records;
+
+- (void) setObject: (id) obj atIndexedSubscript: (NSUInteger) idx;
+- (id) objectAtIndexedSubscript: (NSUInteger) idx;
+
 @end
