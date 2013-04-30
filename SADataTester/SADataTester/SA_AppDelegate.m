@@ -7,7 +7,7 @@
 //
 
 #import "SA_AppDelegate.h"
-#import "SAStorage_Schema.h"
+#import "SAStorage_Headers.h"
 
 @implementation SA_AppDelegate
 
@@ -23,7 +23,31 @@
 	
 	SAStorage_Schema	*schema = [SAStorage_Schema schemaWithContentsOfURL: url];
 	
+	schema[@"Contacts"][@"phone_number"] = [SAStorage_SchemaField fieldNamed: @"phone_number" ofType: SAStorage_SchemaField_String];
+	
 	NSLog(@"Schema: %@", schema);
+	NSLog(@"%@", [NSString stringWithUTF8String: schema.JSONRepresentation.bytes]);
+	
+	NSURL						*databaseURL = [NSURL fileURLWithPath: [@"~/Documents/Contacts.json" stringByExpandingTildeInPath]];
+	SAStorage_Database			*database = [SAStorage_Database databaseWithURL: databaseURL ofType: SAStorage_Database_JSON basedOn: schema];
+	SAStorage_Query				*query = [SAStorage_Query queryInTable: @"Contacts" withPredicate: [NSPredicate predicateWithFormat: @"first_name == 'Bill'"]];
+	__block SAStorage_Record	*foundRecord = nil;
+	
+	[database anyRecordMatchingQuery: query completion: ^(SAStorage_Record *record, NSError *error) {
+		foundRecord = record;
+	}];
+	
+	if (foundRecord == nil) {
+		[database insertNewRecordOfType: @"Contacts" completion:^(SAStorage_Record *record, NSError *error) {
+			record[@"first_name"] = @"Bill";
+			record[@"last_name"] = @"Smith";
+			record[@"phone_number"] = @"311";
+			record.recordHasChanges = YES;
+			[database saveWithCompletion: nil];
+		}];
+	}
+	
+	
 	
     return YES;
 }

@@ -10,4 +10,12 @@
 
 @implementation SAStorage_Proxy
 
+- (SAStorage_Record *) resolvedRecord {
+	return nil;
+}
+
+- (void) resolvedRecordWithCompletionBlock: (SAStorage_RecordCallback) completion {
+
+}
+
 @end
