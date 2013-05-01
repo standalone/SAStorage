@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SAStorage_Headers.h"
+#import "SAStorage_Record.h"
+#import "SAStorage_Database.h"
 
 @class SAStorage_Database;
 

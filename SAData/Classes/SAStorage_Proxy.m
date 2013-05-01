@@ -15,7 +15,7 @@
 }
 
 - (void) resolvedRecordWithCompletionBlock: (SAStorage_RecordCallback) completion {
-
+	
 }
 
 @end

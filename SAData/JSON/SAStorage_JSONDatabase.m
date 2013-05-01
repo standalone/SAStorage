@@ -7,8 +7,7 @@
 //
 
 #import "SAStorage_JSONDatabase.h"
-#import "SAStorage_Headers.h"
-#import "SAStorage_Record.h"
+#import "SAStorage.h"
 
 @interface NSMutableArray (SAStorage_JSONDatabase)
 - (id) dictionaryRepresentation;

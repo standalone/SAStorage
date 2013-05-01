@@ -7,7 +7,7 @@
 //
 
 #import "SA_AppDelegate.h"
-#import "SAStorage_Headers.h"
+#import <SAStorage/SAStorage.h>
 
 @interface CT_Contact : SAStorage_Record
 

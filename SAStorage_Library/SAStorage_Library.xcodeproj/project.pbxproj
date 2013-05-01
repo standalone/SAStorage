@@ -6,6 +6,22 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B5980E5F1730BCD800D77EE8 /* Combined Library */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B5980E601730BCD800D77EE8 /* Build configuration list for PBXAggregateTarget "Combined Library" */;
+			buildPhases = (
+				B5980E631730BE3300D77EE8 /* Build Simulator Library */,
+				B5980E641730BEC900D77EE8 /* Build Device Library */,
+				B5980E651730BEDD00D77EE8 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Combined Library";
+			productName = "Combined Library";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B5980DCC1730B05B00D77EE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980DCB1730B05B00D77EE8 /* UIKit.framework */; };
 		B5980DCE1730B05B00D77EE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980DCD1730B05B00D77EE8 /* Foundation.framework */; };
@@ -21,6 +37,66 @@
 		B5980DEC1730B05B00D77EE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980DCD1730B05B00D77EE8 /* Foundation.framework */; };
 		B5980DF41730B05B00D77EE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5980DF21730B05B00D77EE8 /* InfoPlist.strings */; };
 		B5980DF71730B05B00D77EE8 /* SAStorage_LibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980DF61730B05B00D77EE8 /* SAStorage_LibraryTests.m */; };
+		B5980E231730B0C000D77EE8 /* SAStorage_Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E031730B0C000D77EE8 /* SAStorage_Tools.m */; };
+		B5980E241730B0C000D77EE8 /* SAStorage_Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E031730B0C000D77EE8 /* SAStorage_Tools.m */; };
+		B5980E251730B0C000D77EE8 /* SAStorage_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E051730B0C000D77EE8 /* SAStorage_Database.m */; };
+		B5980E261730B0C000D77EE8 /* SAStorage_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E051730B0C000D77EE8 /* SAStorage_Database.m */; };
+		B5980E271730B0C000D77EE8 /* SAStorage_Proxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E091730B0C000D77EE8 /* SAStorage_Proxy.m */; };
+		B5980E281730B0C000D77EE8 /* SAStorage_Proxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E091730B0C000D77EE8 /* SAStorage_Proxy.m */; };
+		B5980E291730B0C000D77EE8 /* SAStorage_Query.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0B1730B0C000D77EE8 /* SAStorage_Query.m */; };
+		B5980E2A1730B0C000D77EE8 /* SAStorage_Query.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0B1730B0C000D77EE8 /* SAStorage_Query.m */; };
+		B5980E2B1730B0C000D77EE8 /* SAStorage_Record.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0D1730B0C000D77EE8 /* SAStorage_Record.m */; };
+		B5980E2C1730B0C000D77EE8 /* SAStorage_Record.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0D1730B0C000D77EE8 /* SAStorage_Record.m */; };
+		B5980E2D1730B0C000D77EE8 /* SAStorage_RecordCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0F1730B0C000D77EE8 /* SAStorage_RecordCache.m */; };
+		B5980E2E1730B0C000D77EE8 /* SAStorage_RecordCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0F1730B0C000D77EE8 /* SAStorage_RecordCache.m */; };
+		B5980E2F1730B0C000D77EE8 /* SAStorage_ResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E111730B0C000D77EE8 /* SAStorage_ResultSet.m */; };
+		B5980E301730B0C000D77EE8 /* SAStorage_ResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E111730B0C000D77EE8 /* SAStorage_ResultSet.m */; };
+		B5980E311730B0C000D77EE8 /* SAStorage_JSONDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E141730B0C000D77EE8 /* SAStorage_JSONDatabase.m */; };
+		B5980E321730B0C000D77EE8 /* SAStorage_JSONDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E141730B0C000D77EE8 /* SAStorage_JSONDatabase.m */; };
+		B5980E331730B0C000D77EE8 /* SAStorage_Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E171730B0C000D77EE8 /* SAStorage_Schema.m */; };
+		B5980E341730B0C000D77EE8 /* SAStorage_Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E171730B0C000D77EE8 /* SAStorage_Schema.m */; };
+		B5980E351730B0C000D77EE8 /* SAStorage_SchemaField.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E191730B0C000D77EE8 /* SAStorage_SchemaField.m */; };
+		B5980E361730B0C000D77EE8 /* SAStorage_SchemaField.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E191730B0C000D77EE8 /* SAStorage_SchemaField.m */; };
+		B5980E371730B0C000D77EE8 /* SAStorage_SchemaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E1B1730B0C000D77EE8 /* SAStorage_SchemaTable.m */; };
+		B5980E381730B0C000D77EE8 /* SAStorage_SchemaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E1B1730B0C000D77EE8 /* SAStorage_SchemaTable.m */; };
+		B5980E391730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E1E1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m */; };
+		B5980E3A1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E1E1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m */; };
+		B5980E3B1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E201730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m */; };
+		B5980E3C1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E201730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m */; };
+		B5980E3D1730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E221730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m */; };
+		B5980E3E1730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E221730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m */; };
+		B5980E401730B13700D77EE8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */; };
+		B5980E461730B6A200D77EE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980DCD1730B05B00D77EE8 /* Foundation.framework */; };
+		B5980E511730B6D100D77EE8 /* SAStorage_Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E031730B0C000D77EE8 /* SAStorage_Tools.m */; };
+		B5980E521730B6D100D77EE8 /* SAStorage_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E051730B0C000D77EE8 /* SAStorage_Database.m */; };
+		B5980E531730B6D100D77EE8 /* SAStorage_Proxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E091730B0C000D77EE8 /* SAStorage_Proxy.m */; };
+		B5980E541730B6D100D77EE8 /* SAStorage_Query.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0B1730B0C000D77EE8 /* SAStorage_Query.m */; };
+		B5980E551730B6D100D77EE8 /* SAStorage_Record.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0D1730B0C000D77EE8 /* SAStorage_Record.m */; };
+		B5980E561730B6D100D77EE8 /* SAStorage_RecordCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E0F1730B0C000D77EE8 /* SAStorage_RecordCache.m */; };
+		B5980E571730B6D100D77EE8 /* SAStorage_ResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E111730B0C000D77EE8 /* SAStorage_ResultSet.m */; };
+		B5980E581730B6D100D77EE8 /* SAStorage_JSONDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E141730B0C000D77EE8 /* SAStorage_JSONDatabase.m */; };
+		B5980E591730B6D100D77EE8 /* SAStorage_Schema.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E171730B0C000D77EE8 /* SAStorage_Schema.m */; };
+		B5980E5A1730B6D100D77EE8 /* SAStorage_SchemaField.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E191730B0C000D77EE8 /* SAStorage_SchemaField.m */; };
+		B5980E5B1730B6D100D77EE8 /* SAStorage_SchemaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E1B1730B0C000D77EE8 /* SAStorage_SchemaTable.m */; };
+		B5980E5C1730B6D100D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E1E1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m */; };
+		B5980E5D1730B6D100D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E201730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m */; };
+		B5980E5E1730B6D100D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980E221730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m */; };
+		B5980E681730C12600D77EE8 /* SAStorage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E021730B0C000D77EE8 /* SAStorage.h */; };
+		B5980E691730C13600D77EE8 /* SAStorage_Database.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E041730B0C000D77EE8 /* SAStorage_Database.h */; };
+		B5980E6A1730C13800D77EE8 /* SAStorage_Errors.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E061730B0C000D77EE8 /* SAStorage_Errors.h */; };
+		B5980E6B1730C13B00D77EE8 /* SAStorage_Tools.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E071730B0C000D77EE8 /* SAStorage_Tools.h */; };
+		B5980E6C1730C13C00D77EE8 /* SAStorage_Proxy.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E081730B0C000D77EE8 /* SAStorage_Proxy.h */; };
+		B5980E6D1730C13E00D77EE8 /* SAStorage_Query.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E0A1730B0C000D77EE8 /* SAStorage_Query.h */; };
+		B5980E6E1730C14000D77EE8 /* SAStorage_Record.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E0C1730B0C000D77EE8 /* SAStorage_Record.h */; };
+		B5980E6F1730C14400D77EE8 /* SAStorage_RecordCache.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E0E1730B0C000D77EE8 /* SAStorage_RecordCache.h */; };
+		B5980E701730C14500D77EE8 /* SAStorage_ResultSet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E101730B0C000D77EE8 /* SAStorage_ResultSet.h */; };
+		B5980E711730C18000D77EE8 /* SAStorage_JSONDatabase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E131730B0C000D77EE8 /* SAStorage_JSONDatabase.h */; };
+		B5980E721730C18100D77EE8 /* SAStorage_Schema.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E161730B0C000D77EE8 /* SAStorage_Schema.h */; };
+		B5980E731730C18200D77EE8 /* SAStorage_SchemaField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E181730B0C000D77EE8 /* SAStorage_SchemaField.h */; };
+		B5980E741730C18400D77EE8 /* SAStorage_SchemaTable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E1A1730B0C000D77EE8 /* SAStorage_SchemaTable.h */; };
+		B5980E751730C18600D77EE8 /* SAStorage_Internal_SQL_Database.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E1D1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.h */; };
+		B5980E761730C18700D77EE8 /* SAStorage_Internal_SQL_ResultSet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E1F1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.h */; };
+		B5980E771730C18A00D77EE8 /* SAStorage_SQLiteDatabase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E211730B0C000D77EE8 /* SAStorage_SQLiteDatabase.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +108,34 @@
 			remoteInfo = SAStorage_Library;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B5980E431730B6A200D77EE8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = headers;
+			dstSubfolderSpec = 16;
+			files = (
+				B5980E681730C12600D77EE8 /* SAStorage.h in CopyFiles */,
+				B5980E691730C13600D77EE8 /* SAStorage_Database.h in CopyFiles */,
+				B5980E701730C14500D77EE8 /* SAStorage_ResultSet.h in CopyFiles */,
+				B5980E6E1730C14000D77EE8 /* SAStorage_Record.h in CopyFiles */,
+				B5980E731730C18200D77EE8 /* SAStorage_SchemaField.h in CopyFiles */,
+				B5980E721730C18100D77EE8 /* SAStorage_Schema.h in CopyFiles */,
+				B5980E751730C18600D77EE8 /* SAStorage_Internal_SQL_Database.h in CopyFiles */,
+				B5980E711730C18000D77EE8 /* SAStorage_JSONDatabase.h in CopyFiles */,
+				B5980E761730C18700D77EE8 /* SAStorage_Internal_SQL_ResultSet.h in CopyFiles */,
+				B5980E741730C18400D77EE8 /* SAStorage_SchemaTable.h in CopyFiles */,
+				B5980E6F1730C14400D77EE8 /* SAStorage_RecordCache.h in CopyFiles */,
+				B5980E771730C18A00D77EE8 /* SAStorage_SQLiteDatabase.h in CopyFiles */,
+				B5980E6C1730C13C00D77EE8 /* SAStorage_Proxy.h in CopyFiles */,
+				B5980E6D1730C13E00D77EE8 /* SAStorage_Query.h in CopyFiles */,
+				B5980E6B1730C13B00D77EE8 /* SAStorage_Tools.h in CopyFiles */,
+				B5980E6A1730C13800D77EE8 /* SAStorage_Errors.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B5980DC81730B05B00D77EE8 /* SAStorage_Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SAStorage_Library.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +157,40 @@
 		B5980DF31730B05B00D77EE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5980DF51730B05B00D77EE8 /* SAStorage_LibraryTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAStorage_LibraryTests.h; sourceTree = "<group>"; };
 		B5980DF61730B05B00D77EE8 /* SAStorage_LibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAStorage_LibraryTests.m; sourceTree = "<group>"; };
+		B5980E021730B0C000D77EE8 /* SAStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage.h; sourceTree = "<group>"; };
+		B5980E031730B0C000D77EE8 /* SAStorage_Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_Tools.m; sourceTree = "<group>"; };
+		B5980E041730B0C000D77EE8 /* SAStorage_Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Database.h; sourceTree = "<group>"; };
+		B5980E051730B0C000D77EE8 /* SAStorage_Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_Database.m; sourceTree = "<group>"; };
+		B5980E061730B0C000D77EE8 /* SAStorage_Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Errors.h; sourceTree = "<group>"; };
+		B5980E071730B0C000D77EE8 /* SAStorage_Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Tools.h; sourceTree = "<group>"; };
+		B5980E081730B0C000D77EE8 /* SAStorage_Proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Proxy.h; sourceTree = "<group>"; };
+		B5980E091730B0C000D77EE8 /* SAStorage_Proxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_Proxy.m; sourceTree = "<group>"; };
+		B5980E0A1730B0C000D77EE8 /* SAStorage_Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Query.h; sourceTree = "<group>"; };
+		B5980E0B1730B0C000D77EE8 /* SAStorage_Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_Query.m; sourceTree = "<group>"; };
+		B5980E0C1730B0C000D77EE8 /* SAStorage_Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Record.h; sourceTree = "<group>"; };
+		B5980E0D1730B0C000D77EE8 /* SAStorage_Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_Record.m; sourceTree = "<group>"; };
+		B5980E0E1730B0C000D77EE8 /* SAStorage_RecordCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_RecordCache.h; sourceTree = "<group>"; };
+		B5980E0F1730B0C000D77EE8 /* SAStorage_RecordCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_RecordCache.m; sourceTree = "<group>"; };
+		B5980E101730B0C000D77EE8 /* SAStorage_ResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_ResultSet.h; sourceTree = "<group>"; };
+		B5980E111730B0C000D77EE8 /* SAStorage_ResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_ResultSet.m; sourceTree = "<group>"; };
+		B5980E131730B0C000D77EE8 /* SAStorage_JSONDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_JSONDatabase.h; sourceTree = "<group>"; };
+		B5980E141730B0C000D77EE8 /* SAStorage_JSONDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_JSONDatabase.m; sourceTree = "<group>"; };
+		B5980E161730B0C000D77EE8 /* SAStorage_Schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Schema.h; sourceTree = "<group>"; };
+		B5980E171730B0C000D77EE8 /* SAStorage_Schema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_Schema.m; sourceTree = "<group>"; };
+		B5980E181730B0C000D77EE8 /* SAStorage_SchemaField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_SchemaField.h; sourceTree = "<group>"; };
+		B5980E191730B0C000D77EE8 /* SAStorage_SchemaField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SchemaField.m; sourceTree = "<group>"; };
+		B5980E1A1730B0C000D77EE8 /* SAStorage_SchemaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_SchemaTable.h; sourceTree = "<group>"; };
+		B5980E1B1730B0C000D77EE8 /* SAStorage_SchemaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SchemaTable.m; sourceTree = "<group>"; };
+		B5980E1D1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Internal_SQL_Database.h; sourceTree = "<group>"; };
+		B5980E1E1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_Internal_SQL_Database.m; sourceTree = "<group>"; };
+		B5980E1F1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Internal_SQL_ResultSet.h; sourceTree = "<group>"; };
+		B5980E201730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_Internal_SQL_ResultSet.m; sourceTree = "<group>"; };
+		B5980E211730B0C000D77EE8 /* SAStorage_SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_SQLiteDatabase.h; sourceTree = "<group>"; };
+		B5980E221730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SQLiteDatabase.m; sourceTree = "<group>"; };
+		B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B5980E451730B6A200D77EE8 /* libSAStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5980E491730B6A200D77EE8 /* SAStorage-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAStorage-Prefix.pch"; sourceTree = "<group>"; };
+		B5980E671730BFB100D77EE8 /* BuildLibrary.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = BuildLibrary.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5980E401730B13700D77EE8 /* libsqlite3.dylib in Frameworks */,
 				B5980DCC1730B05B00D77EE8 /* UIKit.framework in Frameworks */,
 				B5980DCE1730B05B00D77EE8 /* Foundation.framework in Frameworks */,
 				B5980DD01730B05B00D77EE8 /* CoreGraphics.framework in Frameworks */,
@@ -76,16 +215,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5980E421730B6A200D77EE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5980E461730B6A200D77EE8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B5980DBF1730B05B00D77EE8 = {
 			isa = PBXGroup;
 			children = (
+				B5980E661730BFB100D77EE8 /* Scripts */,
+				B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */,
 				B5980DD11730B05B00D77EE8 /* SAStorage_Library */,
 				B5980DEF1730B05B00D77EE8 /* SAStorage_LibraryTests */,
+				B5980E471730B6A200D77EE8 /* SAStorage */,
 				B5980DCA1730B05B00D77EE8 /* Frameworks */,
 				B5980DC91730B05B00D77EE8 /* Products */,
+				B5980E001730B0C000D77EE8 /* SAData */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +245,7 @@
 			children = (
 				B5980DC81730B05B00D77EE8 /* SAStorage_Library.app */,
 				B5980DE81730B05B00D77EE8 /* SAStorage_LibraryTests.octest */,
+				B5980E451730B6A200D77EE8 /* libSAStorage.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +304,101 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B5980E001730B0C000D77EE8 /* SAData */ = {
+			isa = PBXGroup;
+			children = (
+				B5980E011730B0C000D77EE8 /* Classes */,
+				B5980E121730B0C000D77EE8 /* JSON */,
+				B5980E151730B0C000D77EE8 /* Schema */,
+				B5980E1C1730B0C000D77EE8 /* SQLite */,
+			);
+			name = SAData;
+			path = ../SAData;
+			sourceTree = "<group>";
+		};
+		B5980E011730B0C000D77EE8 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B5980E021730B0C000D77EE8 /* SAStorage.h */,
+				B5980E031730B0C000D77EE8 /* SAStorage_Tools.m */,
+				B5980E041730B0C000D77EE8 /* SAStorage_Database.h */,
+				B5980E051730B0C000D77EE8 /* SAStorage_Database.m */,
+				B5980E061730B0C000D77EE8 /* SAStorage_Errors.h */,
+				B5980E071730B0C000D77EE8 /* SAStorage_Tools.h */,
+				B5980E081730B0C000D77EE8 /* SAStorage_Proxy.h */,
+				B5980E091730B0C000D77EE8 /* SAStorage_Proxy.m */,
+				B5980E0A1730B0C000D77EE8 /* SAStorage_Query.h */,
+				B5980E0B1730B0C000D77EE8 /* SAStorage_Query.m */,
+				B5980E0C1730B0C000D77EE8 /* SAStorage_Record.h */,
+				B5980E0D1730B0C000D77EE8 /* SAStorage_Record.m */,
+				B5980E0E1730B0C000D77EE8 /* SAStorage_RecordCache.h */,
+				B5980E0F1730B0C000D77EE8 /* SAStorage_RecordCache.m */,
+				B5980E101730B0C000D77EE8 /* SAStorage_ResultSet.h */,
+				B5980E111730B0C000D77EE8 /* SAStorage_ResultSet.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B5980E121730B0C000D77EE8 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				B5980E131730B0C000D77EE8 /* SAStorage_JSONDatabase.h */,
+				B5980E141730B0C000D77EE8 /* SAStorage_JSONDatabase.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		B5980E151730B0C000D77EE8 /* Schema */ = {
+			isa = PBXGroup;
+			children = (
+				B5980E161730B0C000D77EE8 /* SAStorage_Schema.h */,
+				B5980E171730B0C000D77EE8 /* SAStorage_Schema.m */,
+				B5980E181730B0C000D77EE8 /* SAStorage_SchemaField.h */,
+				B5980E191730B0C000D77EE8 /* SAStorage_SchemaField.m */,
+				B5980E1A1730B0C000D77EE8 /* SAStorage_SchemaTable.h */,
+				B5980E1B1730B0C000D77EE8 /* SAStorage_SchemaTable.m */,
+			);
+			path = Schema;
+			sourceTree = "<group>";
+		};
+		B5980E1C1730B0C000D77EE8 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				B5980E1D1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.h */,
+				B5980E1E1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m */,
+				B5980E1F1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.h */,
+				B5980E201730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m */,
+				B5980E211730B0C000D77EE8 /* SAStorage_SQLiteDatabase.h */,
+				B5980E221730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m */,
+			);
+			path = SQLite;
+			sourceTree = "<group>";
+		};
+		B5980E471730B6A200D77EE8 /* SAStorage */ = {
+			isa = PBXGroup;
+			children = (
+				B5980E481730B6A200D77EE8 /* Supporting Files */,
+			);
+			path = SAStorage;
+			sourceTree = "<group>";
+		};
+		B5980E481730B6A200D77EE8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B5980E491730B6A200D77EE8 /* SAStorage-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5980E661730BFB100D77EE8 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				B5980E671730BFB100D77EE8 /* BuildLibrary.sh */,
+			);
+			name = Scripts;
+			path = SAStorage_Library/Scripts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -191,6 +438,23 @@
 			productReference = B5980DE81730B05B00D77EE8 /* SAStorage_LibraryTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		B5980E441730B6A200D77EE8 /* SAStorage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5980E4E1730B6A200D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage" */;
+			buildPhases = (
+				B5980E411730B6A200D77EE8 /* Sources */,
+				B5980E421730B6A200D77EE8 /* Frameworks */,
+				B5980E431730B6A200D77EE8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SAStorage;
+			productName = SAStorage;
+			productReference = B5980E451730B6A200D77EE8 /* libSAStorage.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -215,6 +479,8 @@
 			targets = (
 				B5980DC71730B05B00D77EE8 /* SAStorage_Library */,
 				B5980DE71730B05B00D77EE8 /* SAStorage_LibraryTests */,
+				B5980E441730B6A200D77EE8 /* SAStorage */,
+				B5980E5F1730BCD800D77EE8 /* Combined Library */,
 			);
 		};
 /* End PBXProject section */
@@ -255,6 +521,47 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		B5980E631730BE3300D77EE8 /* Build Simulator Library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Simulator Library";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild -target SAStorage -configuration Debug -sdk iphonesimulator\n";
+		};
+		B5980E641730BEC900D77EE8 /* Build Device Library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Device Library";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild -target SAStorage -configuration Release -sdk iphoneos";
+		};
+		B5980E651730BEDD00D77EE8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/SAStorage_Library/Scripts/BuildLibrary.sh";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -264,6 +571,20 @@
 			files = (
 				B5980DD81730B05B00D77EE8 /* main.m in Sources */,
 				B5980DDC1730B05B00D77EE8 /* SAStorageAppDelegate.m in Sources */,
+				B5980E231730B0C000D77EE8 /* SAStorage_Tools.m in Sources */,
+				B5980E251730B0C000D77EE8 /* SAStorage_Database.m in Sources */,
+				B5980E271730B0C000D77EE8 /* SAStorage_Proxy.m in Sources */,
+				B5980E291730B0C000D77EE8 /* SAStorage_Query.m in Sources */,
+				B5980E2B1730B0C000D77EE8 /* SAStorage_Record.m in Sources */,
+				B5980E2D1730B0C000D77EE8 /* SAStorage_RecordCache.m in Sources */,
+				B5980E2F1730B0C000D77EE8 /* SAStorage_ResultSet.m in Sources */,
+				B5980E311730B0C000D77EE8 /* SAStorage_JSONDatabase.m in Sources */,
+				B5980E331730B0C000D77EE8 /* SAStorage_Schema.m in Sources */,
+				B5980E351730B0C000D77EE8 /* SAStorage_SchemaField.m in Sources */,
+				B5980E371730B0C000D77EE8 /* SAStorage_SchemaTable.m in Sources */,
+				B5980E391730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */,
+				B5980E3B1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */,
+				B5980E3D1730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +593,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5980DF71730B05B00D77EE8 /* SAStorage_LibraryTests.m in Sources */,
+				B5980E241730B0C000D77EE8 /* SAStorage_Tools.m in Sources */,
+				B5980E261730B0C000D77EE8 /* SAStorage_Database.m in Sources */,
+				B5980E281730B0C000D77EE8 /* SAStorage_Proxy.m in Sources */,
+				B5980E2A1730B0C000D77EE8 /* SAStorage_Query.m in Sources */,
+				B5980E2C1730B0C000D77EE8 /* SAStorage_Record.m in Sources */,
+				B5980E2E1730B0C000D77EE8 /* SAStorage_RecordCache.m in Sources */,
+				B5980E301730B0C000D77EE8 /* SAStorage_ResultSet.m in Sources */,
+				B5980E321730B0C000D77EE8 /* SAStorage_JSONDatabase.m in Sources */,
+				B5980E341730B0C000D77EE8 /* SAStorage_Schema.m in Sources */,
+				B5980E361730B0C000D77EE8 /* SAStorage_SchemaField.m in Sources */,
+				B5980E381730B0C000D77EE8 /* SAStorage_SchemaTable.m in Sources */,
+				B5980E3A1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */,
+				B5980E3C1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */,
+				B5980E3E1730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5980E411730B6A200D77EE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5980E511730B6D100D77EE8 /* SAStorage_Tools.m in Sources */,
+				B5980E521730B6D100D77EE8 /* SAStorage_Database.m in Sources */,
+				B5980E531730B6D100D77EE8 /* SAStorage_Proxy.m in Sources */,
+				B5980E541730B6D100D77EE8 /* SAStorage_Query.m in Sources */,
+				B5980E551730B6D100D77EE8 /* SAStorage_Record.m in Sources */,
+				B5980E561730B6D100D77EE8 /* SAStorage_RecordCache.m in Sources */,
+				B5980E571730B6D100D77EE8 /* SAStorage_ResultSet.m in Sources */,
+				B5980E581730B6D100D77EE8 /* SAStorage_JSONDatabase.m in Sources */,
+				B5980E591730B6D100D77EE8 /* SAStorage_Schema.m in Sources */,
+				B5980E5A1730B6D100D77EE8 /* SAStorage_SchemaField.m in Sources */,
+				B5980E5B1730B6D100D77EE8 /* SAStorage_SchemaTable.m in Sources */,
+				B5980E5C1730B6D100D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */,
+				B5980E5D1730B6D100D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */,
+				B5980E5E1730B6D100D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +775,44 @@
 			};
 			name = Release;
 		};
+		B5980E4F1730B6A200D77EE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SAStorage.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SAStorage/SAStorage-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B5980E501730B6A200D77EE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SAStorage.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SAStorage/SAStorage-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B5980E611730BCD800D77EE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B5980E621730BCD800D77EE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -444,6 +838,22 @@
 			buildConfigurations = (
 				B5980DFE1730B05B00D77EE8 /* Debug */,
 				B5980DFF1730B05B00D77EE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B5980E4E1730B6A200D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5980E4F1730B6A200D77EE8 /* Debug */,
+				B5980E501730B6A200D77EE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B5980E601730BCD800D77EE8 /* Build configuration list for PBXAggregateTarget "Combined Library" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5980E611730BCD800D77EE8 /* Debug */,
+				B5980E621730BCD800D77EE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

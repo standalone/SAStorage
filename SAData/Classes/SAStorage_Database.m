@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Stand Alone, Inc. All rights reserved.
 //
 
-#import "SAStorage_Headers.h"
+#import "SAStorage.h"
 #import "SAStorage_SQLiteDatabase.h"
 #import "SAStorage_JSONDatabase.h"
 
