@@ -1,23 +1,14 @@
 //
-//  SA_AppDelegate.m
-//  SADataTester
+//  SAStorageAppDelegate.m
+//  SAStorage_Library
 //
-//  Created by Ben Gottlieb on 4/27/13.
+//  Created by Ben Gottlieb on 4/30/13.
 //  Copyright (c) 2013 Stand Alone, Inc. All rights reserved.
 //
 
-#import "SA_AppDelegate.h"
-#import <SAStorage/SAStorage.h>
+#import "SAStorageAppDelegate.h"
 
-@interface CT_Contact : SAStorage_Record
-
-@end
-
-@implementation CT_Contact
-
-@end
-
-@implementation SA_AppDelegate
+@implementation SAStorageAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -25,38 +16,6 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-	
-	
-	NSURL				*url = [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"];
-	
-	SAStorage_Schema	*schema = [SAStorage_Schema schemaWithContentsOfURL: url];
-	
-	schema[@"Contacts"][@"phone_number"] = [SAStorage_SchemaField fieldNamed: @"phone_number" ofType: SAStorage_SchemaField_String];
-	
-	NSLog(@"Schema: %@", schema);
-	NSLog(@"%@", [NSString stringWithUTF8String: schema.JSONRepresentation.bytes]);
-	
-	NSURL						*databaseURL = [NSURL fileURLWithPath: [@"~/Documents/Contacts.json" stringByExpandingTildeInPath]];
-	SAStorage_Database			*database = [SAStorage_Database databaseWithURL: databaseURL ofType: SAStorage_Database_JSON basedOn: schema];
-	SAStorage_Query				*query = [SAStorage_Query queryInTable: @"Contacts" withPredicate: [NSPredicate predicateWithFormat: @"first_name == 'Bill'"]];
-	__block SAStorage_Record	*foundRecord = nil;
-	
-	[database anyRecordMatchingQuery: query completion: ^(SAStorage_Record *record, NSError *error) {
-		foundRecord = record;
-	}];
-	
-	if (foundRecord == nil) {
-		[database insertNewRecordOfType: @"Contacts" completion:^(SAStorage_Record *record, NSError *error) {
-			record[@"first_name"] = @"Bill";
-			record[@"last_name"] = @"Smith";
-			record[@"phone_number"] = @"311";
-			record.recordHasChanges = YES;
-			[database saveWithCompletion: nil];
-		}];
-	}
-	
-	
-	
     return YES;
 }
 

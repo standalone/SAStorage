@@ -21,6 +21,8 @@
 	return results;
 }
 
+//=============================================================================================================================
+#pragma mark Fast Enumeration and Array accessors
 - (void) setObject: (id) obj atIndexedSubscript: (NSUInteger) idx {
 	//don't do anything by default; probably never will
 }
@@ -32,5 +34,7 @@
 
 - (NSUInteger) count { return self.internalRecords.count; }
 
-
+- (NSUInteger) countByEnumeratingWithState: (NSFastEnumerationState *) state objects: (__unsafe_unretained id []) buffer count: (NSUInteger) len {
+	return [self.internalRecords countByEnumeratingWithState: state objects: buffer count: len];
+}
 @end

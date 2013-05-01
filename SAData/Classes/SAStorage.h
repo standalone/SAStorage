@@ -1,21 +1,14 @@
-//
-//  SAStorage.h
-//  SADataTester
-//
-//  Created by Ben Gottlieb on 4/28/13.
-//  Copyright (c) 2013 Stand Alone, Inc. All rights reserved.
-//
+#import "SAStorage_Database.h"
+#import "SAStorage_Record.h"
+#import "SAStorage_RecordCache.h"
+#import "SAStorage_Query.h"
+#import "SAStorage_Proxy.h"
+#import "SAStorage_Schema.h"
+#import "SAStorage_SchemaTable.h"
+#import "SAStorage_SchemaField.h"
+#import "SAStorage_ResultSet.h"
 
-#import <Foundation/Foundation.h>
+#import "SAStorage_Errors.h"
+#import "SAStorage_Tools.h"
 
 
-#define		SAStorage_RecordIDType				NSUInteger
-
-extern const SAStorage_RecordIDType		SAStorage_RecordIDNone;
-extern const NSString					*SAStorage_RecordIDURLPrefix;
-
-@interface SAStorage : NSObject
-
-+ (NSString *) uuid;
-
-@end

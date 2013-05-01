@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SAStorage_ResultSet : NSObject
+@interface SAStorage_ResultSet : NSObject <NSFastEnumeration>
 
 @property (nonatomic, readonly) NSUInteger count;
 

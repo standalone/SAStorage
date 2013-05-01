@@ -10,7 +10,7 @@
 
 @interface SAStorage_SchemaTable : NSObject
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) Class objectClass;
+@property (nonatomic, strong) Class recordClass;
 @property (nonatomic, strong) NSMutableDictionary *fields;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 + (id) tableWithDictionary: (NSDictionary *) dict;
