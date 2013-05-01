@@ -15,7 +15,7 @@
 	
 	table.name = dict[@"name"];
 	table.fields = [NSMutableDictionary dictionary];
-	if (dict[@"class"]) table.objectClass = NSClassFromString(dict[@"class"]);
+	if (dict[@"class"]) table.recordClass = NSClassFromString(dict[@"class"]);
 	
 	for (NSDictionary *fieldDict in dict[@"columns"]) {
 		SAStorage_SchemaField			*field = [SAStorage_SchemaField fieldWithDictionary: fieldDict];
@@ -31,7 +31,7 @@
 		@"fields": [[self.fields allValues] valueForKey: @"dictionaryRepresentation"]
 	}.mutableCopy;
 	
-	if (self.objectClass) dict[@"class"] = NSStringFromClass(self.objectClass);
+	if (self.recordClass) dict[@"class"] = NSStringFromClass(self.recordClass);
 	return dict;
 }
 

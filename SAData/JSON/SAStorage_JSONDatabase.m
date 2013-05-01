@@ -39,10 +39,11 @@
 		self.tables = [NSMutableDictionary dictionary];
 		for (SAStorage_SchemaTable *table in schema.tables.allValues) {
 			NSMutableArray				*records = [NSMutableArray array];
+			Class						recordClass = table.recordClass ?: [SAStorage_Record class];
 			
 			self.tables[table.name] = records;
 			for (NSDictionary *recordDictionary in json[@"tables"][table.name]) {
-				SAStorage_Record		*record = [SAStorage_Record recordInDatabase: self andTable: table.name withRecordID: [recordDictionary[@"id"] intValue]];
+				SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: table.name withRecordID: [recordDictionary[@"id"] intValue]];
 				
 				[record populateBackingDictionaryFromDictionary: recordDictionary];
 				[records addObject: record];
@@ -185,7 +186,9 @@
 	
 	[self setMetadataValue: [NSString stringWithFormat: @"%u", lastID] forKey: metadataIDKey];
 	
-	SAStorage_Record			*record = [SAStorage_Record recordInDatabase: self andTable: recordType withRecordID: lastID];
+	Class						recordClass = [self.schema.tables[recordType] recordClass] ?: [SAStorage_Record class];
+	
+	SAStorage_Record			*record = [recordClass recordInDatabase: self andTable: recordType withRecordID: lastID];
 	
 	record.backingDictionary = [NSMutableDictionary dictionary];
 	NSMutableArray				*tableRecords = self.tables[recordType];

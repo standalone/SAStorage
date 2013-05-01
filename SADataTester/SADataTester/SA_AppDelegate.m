@@ -9,6 +9,14 @@
 #import "SA_AppDelegate.h"
 #import "SAStorage_Headers.h"
 
+@interface CT_Contact : SAStorage_Record
+
+@end
+
+@implementation CT_Contact
+
+@end
+
 @implementation SA_AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
