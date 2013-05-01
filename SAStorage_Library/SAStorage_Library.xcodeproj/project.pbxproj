@@ -97,6 +97,7 @@
 		B5980E751730C18600D77EE8 /* SAStorage_Internal_SQL_Database.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E1D1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.h */; };
 		B5980E761730C18700D77EE8 /* SAStorage_Internal_SQL_ResultSet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E1F1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.h */; };
 		B5980E771730C18A00D77EE8 /* SAStorage_SQLiteDatabase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E211730B0C000D77EE8 /* SAStorage_SQLiteDatabase.h */; };
+		B5980EBB17316CAA00D77EE8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +106,7 @@
 			containerPortal = B5980DC01730B05B00D77EE8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B5980DC71730B05B00D77EE8;
-			remoteInfo = SAStorage_Library;
+			remoteInfo = "SAStorage Harness";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -138,7 +139,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B5980DC81730B05B00D77EE8 /* SAStorage_Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SAStorage_Library.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5980DC81730B05B00D77EE8 /* SAStorage_Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = SAStorage_Library.app; path = "SAStorage Harness.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5980DCB1730B05B00D77EE8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5980DCD1730B05B00D77EE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5980DCF1730B05B00D77EE8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -151,7 +152,7 @@
 		B5980DDD1730B05B00D77EE8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		B5980DDF1730B05B00D77EE8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B5980DE11730B05B00D77EE8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		B5980DE81730B05B00D77EE8 /* SAStorage_LibraryTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SAStorage_LibraryTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5980DE81730B05B00D77EE8 /* SAStorage_Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SAStorage_Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5980DE91730B05B00D77EE8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B5980DF11730B05B00D77EE8 /* SAStorage_LibraryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SAStorage_LibraryTests-Info.plist"; sourceTree = "<group>"; };
 		B5980DF31730B05B00D77EE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -188,7 +189,7 @@
 		B5980E211730B0C000D77EE8 /* SAStorage_SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_SQLiteDatabase.h; sourceTree = "<group>"; };
 		B5980E221730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SQLiteDatabase.m; sourceTree = "<group>"; };
 		B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		B5980E451730B6A200D77EE8 /* libSAStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5980E451730B6A200D77EE8 /* libSAStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAStorage.a; path = "libSAStorage Library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5980E491730B6A200D77EE8 /* SAStorage-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAStorage-Prefix.pch"; sourceTree = "<group>"; };
 		B5980E671730BFB100D77EE8 /* BuildLibrary.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = BuildLibrary.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5980EBB17316CAA00D77EE8 /* libsqlite3.dylib in Frameworks */,
 				B5980DEA1730B05B00D77EE8 /* SenTestingKit.framework in Frameworks */,
 				B5980DEB1730B05B00D77EE8 /* UIKit.framework in Frameworks */,
 				B5980DEC1730B05B00D77EE8 /* Foundation.framework in Frameworks */,
@@ -243,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				B5980DC81730B05B00D77EE8 /* SAStorage_Library.app */,
-				B5980DE81730B05B00D77EE8 /* SAStorage_LibraryTests.octest */,
+				B5980DE81730B05B00D77EE8 /* SAStorage_Tests.octest */,
 				B5980E451730B6A200D77EE8 /* libSAStorage.a */,
 			);
 			name = Products;
@@ -402,9 +404,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B5980DC71730B05B00D77EE8 /* SAStorage Harness */ = {
+		B5980DC71730B05B00D77EE8 /* SAStorage_Harness */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5980DFA1730B05B00D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage Harness" */;
+			buildConfigurationList = B5980DFA1730B05B00D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage_Harness" */;
 			buildPhases = (
 				B5980DC41730B05B00D77EE8 /* Sources */,
 				B5980DC51730B05B00D77EE8 /* Frameworks */,
@@ -414,14 +416,14 @@
 			);
 			dependencies = (
 			);
-			name = "SAStorage Harness";
+			name = SAStorage_Harness;
 			productName = SAStorage_Library;
 			productReference = B5980DC81730B05B00D77EE8 /* SAStorage_Library.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B5980DE71730B05B00D77EE8 /* SAStorage Tests */ = {
+		B5980DE71730B05B00D77EE8 /* SAStorage_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5980DFD1730B05B00D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage Tests" */;
+			buildConfigurationList = B5980DFD1730B05B00D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage_Tests" */;
 			buildPhases = (
 				B5980DE31730B05B00D77EE8 /* Sources */,
 				B5980DE41730B05B00D77EE8 /* Frameworks */,
@@ -433,14 +435,14 @@
 			dependencies = (
 				B5980DEE1730B05B00D77EE8 /* PBXTargetDependency */,
 			);
-			name = "SAStorage Tests";
+			name = SAStorage_Tests;
 			productName = SAStorage_LibraryTests;
-			productReference = B5980DE81730B05B00D77EE8 /* SAStorage_LibraryTests.octest */;
+			productReference = B5980DE81730B05B00D77EE8 /* SAStorage_Tests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B5980E441730B6A200D77EE8 /* SAStorage Library */ = {
+		B5980E441730B6A200D77EE8 /* SAStorage_Library */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5980E4E1730B6A200D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage Library" */;
+			buildConfigurationList = B5980E4E1730B6A200D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage_Library" */;
 			buildPhases = (
 				B5980E411730B6A200D77EE8 /* Sources */,
 				B5980E421730B6A200D77EE8 /* Frameworks */,
@@ -450,7 +452,7 @@
 			);
 			dependencies = (
 			);
-			name = "SAStorage Library";
+			name = SAStorage_Library;
 			productName = SAStorage;
 			productReference = B5980E451730B6A200D77EE8 /* libSAStorage.a */;
 			productType = "com.apple.product-type.library.static";
@@ -477,9 +479,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B5980DC71730B05B00D77EE8 /* SAStorage Harness */,
-				B5980DE71730B05B00D77EE8 /* SAStorage Tests */,
-				B5980E441730B6A200D77EE8 /* SAStorage Library */,
+				B5980DC71730B05B00D77EE8 /* SAStorage_Harness */,
+				B5980DE71730B05B00D77EE8 /* SAStorage_Tests */,
+				B5980E441730B6A200D77EE8 /* SAStorage_Library */,
 				B5980E5F1730BCD800D77EE8 /* Build Framework */,
 			);
 		};
@@ -533,7 +535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -target \"SAStorage Library\" -configuration Debug -sdk iphonesimulator\n";
+			shellScript = "xcodebuild -target \"SAStorage_Library\" -configuration Debug -sdk iphonesimulator\n";
 		};
 		B5980E641730BEC900D77EE8 /* Build Device Library */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -547,7 +549,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -target \"SAStorage Library\" -configuration Release -sdk iphoneos";
+			shellScript = "xcodebuild -target \"SAStorage_Library\" -configuration Release -sdk iphoneos";
 		};
 		B5980E651730BEDD00D77EE8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -636,7 +638,7 @@
 /* Begin PBXTargetDependency section */
 		B5980DEE1730B05B00D77EE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B5980DC71730B05B00D77EE8 /* SAStorage Harness */;
+			target = B5980DC71730B05B00D77EE8 /* SAStorage_Harness */;
 			targetProxy = B5980DED1730B05B00D77EE8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -744,7 +746,7 @@
 		B5980DFE1730B05B00D77EE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SAStorage_Library.app/SAStorage_Library";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SAStorage_Harness.app/SAStorage_Harness";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -761,7 +763,7 @@
 		B5980DFF1730B05B00D77EE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SAStorage_Library.app/SAStorage_Library";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SAStorage_Harness.app/SAStorage_Harness";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -825,29 +827,32 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5980DFA1730B05B00D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage Harness" */ = {
+		B5980DFA1730B05B00D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage_Harness" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5980DFB1730B05B00D77EE8 /* Debug */,
 				B5980DFC1730B05B00D77EE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		B5980DFD1730B05B00D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage Tests" */ = {
+		B5980DFD1730B05B00D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5980DFE1730B05B00D77EE8 /* Debug */,
 				B5980DFF1730B05B00D77EE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		B5980E4E1730B6A200D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage Library" */ = {
+		B5980E4E1730B6A200D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage_Library" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5980E4F1730B6A200D77EE8 /* Debug */,
 				B5980E501730B6A200D77EE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5980E601730BCD800D77EE8 /* Build configuration list for PBXAggregateTarget "Build Framework" */ = {
 			isa = XCConfigurationList;
@@ -856,6 +861,7 @@
 				B5980E621730BCD800D77EE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
