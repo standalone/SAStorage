@@ -1,6 +1,6 @@
 LIB_DESTINATION="../SAStorage.framework"
 
-#rm -rf "${HOME}/Library/Developer/Xcode/DerivedData"
+rm -rf "${LIB_DESTINATION}"
 
 DERIVED="${HOME}/Library/Developer/Xcode/DerivedData/SAStorage-*"
 for DERIVED_FOLDER in ${DERIVED}; do
@@ -16,7 +16,7 @@ mkdir -p "${LIB_DESTINATION}/Versions/A"
 mkdir -p "${LIB_DESTINATION}/Versions/A/Headers"
 mkdir -p "${LIB_DESTINATION}/Versions/A/Resources"
 
-lipo -create "build/Release-iphoneos/libSAStorage.a" "build/Debug-iphonesimulator/libSAStorage.a" -output "${LIB_DESTINATION}/Versions/A/SAStorage"
+lipo -create "build/Release-iphoneos/libSAStorage Library.a" "build/Debug-iphonesimulator/libSAStorage Library.a" -output "${LIB_DESTINATION}/Versions/A/SAStorage"
 
 ln -s "${LIB_DESTINATION}/Versions/A/Headers/" "${LIB_DESTINATION}/Headers"
 ln -s "${LIB_DESTINATION}/Versions/A/Resources/" "${LIB_DESTINATION}/Resources"
