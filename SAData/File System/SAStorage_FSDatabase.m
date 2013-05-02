@@ -62,11 +62,11 @@
 #pragma mark Utilities
 - (NSURL *) urlForTableNamed: (NSString *) table { return [self.tablesURL URLByAppendingPathComponent: table]; }
 - (NSURL *) urlForRecordID: (SAStorage_RecordIDType) recordID inTable: (NSString *) table {
-	return [[self urlForTableNamed: table] URLByAppendingPathComponent: [NSString stringWithFormat: @"%d.json", recordID]];
+	return [[self urlForTableNamed: table] URLByAppendingPathComponent: [NSString stringWithFormat: @"%@ %d.json", table, recordID]];
 }
 
-- (void) loadRecordsInTable: (NSString *) tableName {
-	if (self.tables[tableName]) return;				//already loaded
+- (NSError *) loadRecordsInTable: (NSString *) tableName {
+	if (self.tables[tableName]) return nil;				//already loaded
 	
 	NSFileManager			*mgr = [NSFileManager defaultManager];
 	NSError					*error = nil;
@@ -74,10 +74,24 @@
 	SAStorage_SchemaTable		*table = self.schema[tableName];
 	NSMutableArray				*records = [NSMutableArray array];
 	Class						recordClass = table.recordClass ?: [SAStorage_Record class];
+	BOOL						isDirectory;
+	NSURL						*tableURL = [self urlForTableNamed: table.name];
 	
 	self.tables[table.name] = records;
 	
-	for (NSURL *fileURL in [mgr contentsOfDirectoryAtURL: [self urlForTableNamed: table.name] includingPropertiesForKeys: @[] options: 0 error: &error]) {
+	if (![mgr fileExistsAtPath: tableURL.path isDirectory: &isDirectory]) {
+		[mgr createDirectoryAtURL: tableURL withIntermediateDirectories: YES attributes: nil error: &error];
+		if (error) return error;
+	} else if (!isDirectory) {
+		NSLog(@"Tried to create a table directory, found a file at %@", tableURL.path);
+		return [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_UnexpectedFile userInfo: nil];
+	}
+	
+	for (NSURL *fileURL in [mgr contentsOfDirectoryAtURL: tableURL includingPropertiesForKeys: @[] options: 0 error: &error]) {
+		NSString				*filename = fileURL.lastPathComponent.stringByDeletingPathExtension;
+		
+		if (![filename hasPrefix: table.name]) continue;
+		
 		NSData					*recordData = [NSData dataWithContentsOfURL: fileURL];
 		NSDictionary			*recordDictionary = recordData ? [NSJSONSerialization JSONObjectWithData: recordData options: 0 error: &error] : nil;
 		
@@ -86,11 +100,12 @@
 			continue;
 		}
 		
-		SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: table.name withRecordID: [fileURL.lastPathComponent.stringByDeletingLastPathComponent intValue]];
+		SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: table.name withRecordID: [[[filename componentsSeparatedByString: @" "] lastObject] intValue]];
 		
 		[record populateBackingDictionaryFromDictionary: recordDictionary];
 		[records addObject: record];
 	}
+	return nil;
 }
 
 //=============================================================================================================================

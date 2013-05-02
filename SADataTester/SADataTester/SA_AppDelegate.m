@@ -52,10 +52,13 @@
 			record[@"last_name"] = @"Smith";
 			record[@"phone_number"] = @"311";
 			record.recordHasChanges = YES;
-			[database saveWithCompletion: nil];
 		}];
+	} else {
+		foundRecord[@"first_name"] = @"William";
+		foundRecord.recordHasChanges = YES;
 	}
 	
+	[database saveWithCompletion: nil];
 	
 	
     return YES;
