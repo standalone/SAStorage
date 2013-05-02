@@ -14,8 +14,6 @@
 @end
 
 @interface SAStorage_JSONDatabase ()
-@property (nonatomic, strong) NSMutableDictionary *metadata;
-@property (nonatomic, strong) NSMutableDictionary *tables;
 @end
 
 @implementation SAStorage_JSONDatabase

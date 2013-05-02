@@ -9,4 +9,6 @@
 #import "SAStorage_Database.h"
 
 @interface SAStorage_JSONDatabase : SAStorage_Database
+@property (nonatomic, strong) NSMutableDictionary *metadata;
+@property (nonatomic, strong) NSMutableDictionary *tables;
 @end

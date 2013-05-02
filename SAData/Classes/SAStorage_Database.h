@@ -11,7 +11,8 @@
 typedef NS_ENUM(uint8_t, SAStorage_Database_Type) {
 	SAStorage_Database_any,
 	SAStorage_Database_SQL,
-	SAStorage_Database_JSON
+	SAStorage_Database_JSON,
+	SAStorage_Database_FS
 };
 
 

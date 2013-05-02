@@ -9,6 +9,7 @@
 #import "SAStorage.h"
 #import "SAStorage_SQLiteDatabase.h"
 #import "SAStorage_JSONDatabase.h"
+#import "SAStorage_FSDatabase.h"
 
 @implementation SAStorage_Database
 
@@ -22,6 +23,10 @@
 			
 		case SAStorage_Database_SQL:
 			db = [[SAStorage_SQLiteDatabase alloc] initWithURL: url andSchema: schema];
+			break;
+			
+		case SAStorage_Database_FS:
+			db = [[SAStorage_FSDatabase alloc] initWithURL: url andSchema: schema];
 			break;
 			
 		default:
