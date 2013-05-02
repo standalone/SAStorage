@@ -98,6 +98,9 @@
 		B5980E761730C18700D77EE8 /* SAStorage_Internal_SQL_ResultSet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E1F1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.h */; };
 		B5980E771730C18A00D77EE8 /* SAStorage_SQLiteDatabase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5980E211730B0C000D77EE8 /* SAStorage_SQLiteDatabase.h */; };
 		B5980EBB17316CAA00D77EE8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */; };
+		B5980F0D1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */; };
+		B5980F0E1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */; };
+		B5980F0F1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,7 +142,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B5980DC81730B05B00D77EE8 /* SAStorage_Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = SAStorage_Library.app; path = "SAStorage Harness.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5980DC81730B05B00D77EE8 /* SAStorage_Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = SAStorage_Library.app; path = SAStorage_Harness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5980DCB1730B05B00D77EE8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5980DCD1730B05B00D77EE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5980DCF1730B05B00D77EE8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -189,9 +192,11 @@
 		B5980E211730B0C000D77EE8 /* SAStorage_SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_SQLiteDatabase.h; sourceTree = "<group>"; };
 		B5980E221730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SQLiteDatabase.m; sourceTree = "<group>"; };
 		B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		B5980E451730B6A200D77EE8 /* libSAStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAStorage.a; path = "libSAStorage Library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5980E451730B6A200D77EE8 /* libSAStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAStorage.a; path = libSAStorage_Library.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5980E491730B6A200D77EE8 /* SAStorage-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAStorage-Prefix.pch"; sourceTree = "<group>"; };
 		B5980E671730BFB100D77EE8 /* BuildLibrary.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = BuildLibrary.sh; sourceTree = "<group>"; };
+		B5980F0B1732A96C00D77EE8 /* SAStorage_FSDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_FSDatabase.h; sourceTree = "<group>"; };
+		B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_FSDatabase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +316,7 @@
 			children = (
 				B5980E011730B0C000D77EE8 /* Classes */,
 				B5980E121730B0C000D77EE8 /* JSON */,
+				B5980F0A1732A96C00D77EE8 /* File System */,
 				B5980E151730B0C000D77EE8 /* Schema */,
 				B5980E1C1730B0C000D77EE8 /* SQLite */,
 			);
@@ -399,6 +405,15 @@
 			);
 			name = Scripts;
 			path = SAStorage_Library/Scripts;
+			sourceTree = "<group>";
+		};
+		B5980F0A1732A96C00D77EE8 /* File System */ = {
+			isa = PBXGroup;
+			children = (
+				B5980F0B1732A96C00D77EE8 /* SAStorage_FSDatabase.h */,
+				B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */,
+			);
+			path = "File System";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,6 +602,7 @@
 				B5980E391730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */,
 				B5980E3B1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */,
 				B5980E3D1730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */,
+				B5980F0D1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,6 +625,7 @@
 				B5980E3A1730B0C000D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */,
 				B5980E3C1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */,
 				B5980E3E1730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */,
+				B5980F0E1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +647,7 @@
 				B5980E5C1730B6D100D77EE8 /* SAStorage_Internal_SQL_Database.m in Sources */,
 				B5980E5D1730B6D100D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */,
 				B5980E5E1730B6D100D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */,
+				B5980F0F1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
