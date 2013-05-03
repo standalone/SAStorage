@@ -7,7 +7,8 @@
 //
 
 #import "SA_AppDelegate.h"
-#import <SAStorage/SAStorage.h>
+//#import <SAStorage/SAStorage.h>
+#import "SAStorage.h"
 
 @interface CT_Contact : SAStorage_Record
 
@@ -36,8 +37,8 @@
 	NSLog(@"Schema: %@", schema);
 	NSLog(@"%@", [NSString stringWithUTF8String: schema.JSONRepresentation.bytes]);
 	
-	NSURL						*databaseURL = [NSURL fileURLWithPath: [@"~/Documents/Contacts.json" stringByExpandingTildeInPath]];
-	SAStorage_Database			*database = [SAStorage_Database databaseWithURL: databaseURL ofType: SAStorage_Database_JSON basedOn: schema];
+	NSURL						*databaseURL = [NSURL fileURLWithPath: [@"~/Documents/Contacts" stringByExpandingTildeInPath]];
+	SAStorage_Database			*database = [SAStorage_Database databaseWithURL: databaseURL ofType: SAStorage_Database_FS basedOn: schema];
 	SAStorage_Query				*query = [SAStorage_Query queryInTable: @"Contacts" withPredicate: [NSPredicate predicateWithFormat: @"first_name == 'Bill'"]];
 	__block SAStorage_Record	*foundRecord = nil;
 	
@@ -51,10 +52,13 @@
 			record[@"last_name"] = @"Smith";
 			record[@"phone_number"] = @"311";
 			record.recordHasChanges = YES;
-			[database saveWithCompletion: nil];
 		}];
+	} else {
+		foundRecord[@"first_name"] = @"William";
+		foundRecord.recordHasChanges = YES;
 	}
 	
+	[database saveWithCompletion: nil];
 	
 	
     return YES;

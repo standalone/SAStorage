@@ -1,0 +1,33 @@
+{
+	"tables" : [
+				{
+				"name" : "Contacts",
+				"class" : "CT_Contact",
+				"columns" : [
+							 {
+							 "name": "first_name",
+							 "type" : "string"
+							 },
+							 {
+							 "name": "last_name",
+							 "type" : "string",
+							 "indexed" : true
+							 },
+							 {
+							 "name": "age",
+							 "type" : "integer"
+							 },
+							 {
+							 "name": "dob",
+							 "type" : "date"
+							 },
+							 {
+							 "name": "spouse",
+							 "type" : "one-to-one",
+							 "relatedTo" : "Contacts",
+							 "relatedBy" : "spouse"
+							 }
+							 ]
+				}
+				]
+}
