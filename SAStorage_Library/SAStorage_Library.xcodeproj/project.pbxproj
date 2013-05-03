@@ -101,6 +101,9 @@
 		B5980F0D1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */; };
 		B5980F0E1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */; };
 		B5980F0F1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */; };
+		B5B8D4081733BF9C0019BCAF /* SAStorage_JSONDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D4071733BF9C0019BCAF /* SAStorage_JSONDatabaseTests.m */; };
+		B5B8D40A1733C0DF0019BCAF /* sample_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B5B8D4091733C0DF0019BCAF /* sample_schema.json */; };
+		B5B8D40B1733C9400019BCAF /* sample_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B5B8D4091733C0DF0019BCAF /* sample_schema.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +200,9 @@
 		B5980E671730BFB100D77EE8 /* BuildLibrary.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = BuildLibrary.sh; sourceTree = "<group>"; };
 		B5980F0B1732A96C00D77EE8 /* SAStorage_FSDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_FSDatabase.h; sourceTree = "<group>"; };
 		B5980F0C1732A96C00D77EE8 /* SAStorage_FSDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_FSDatabase.m; sourceTree = "<group>"; };
+		B5B8D4061733BF9C0019BCAF /* SAStorage_JSONDatabaseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_JSONDatabaseTests.h; sourceTree = "<group>"; };
+		B5B8D4071733BF9C0019BCAF /* SAStorage_JSONDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_JSONDatabaseTests.m; sourceTree = "<group>"; };
+		B5B8D4091733C0DF0019BCAF /* sample_schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_schema.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +303,8 @@
 			children = (
 				B5980DF51730B05B00D77EE8 /* SAStorage_LibraryTests.h */,
 				B5980DF61730B05B00D77EE8 /* SAStorage_LibraryTests.m */,
+				B5B8D4061733BF9C0019BCAF /* SAStorage_JSONDatabaseTests.h */,
+				B5B8D4071733BF9C0019BCAF /* SAStorage_JSONDatabaseTests.m */,
 				B5980DF01730B05B00D77EE8 /* Supporting Files */,
 			);
 			path = SAStorage_LibraryTests;
@@ -305,6 +313,7 @@
 		B5980DF01730B05B00D77EE8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5B8D4091733C0DF0019BCAF /* sample_schema.json */,
 				B5980DF11730B05B00D77EE8 /* SAStorage_LibraryTests-Info.plist */,
 				B5980DF21730B05B00D77EE8 /* InfoPlist.strings */,
 			);
@@ -511,6 +520,7 @@
 				B5980DDE1730B05B00D77EE8 /* Default.png in Resources */,
 				B5980DE01730B05B00D77EE8 /* Default@2x.png in Resources */,
 				B5980DE21730B05B00D77EE8 /* Default-568h@2x.png in Resources */,
+				B5B8D40B1733C9400019BCAF /* sample_schema.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5980DF41730B05B00D77EE8 /* InfoPlist.strings in Resources */,
+				B5B8D40A1733C0DF0019BCAF /* sample_schema.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +637,7 @@
 				B5980E3C1730B0C000D77EE8 /* SAStorage_Internal_SQL_ResultSet.m in Sources */,
 				B5980E3E1730B0C000D77EE8 /* SAStorage_SQLiteDatabase.m in Sources */,
 				B5980F0E1732A96C00D77EE8 /* SAStorage_FSDatabase.m in Sources */,
+				B5B8D4081733BF9C0019BCAF /* SAStorage_JSONDatabaseTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

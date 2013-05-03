@@ -26,7 +26,7 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in SAStorage_LibraryTests");
+//    STFail(@"Unit tests are not implemented yet in SAStorage_LibraryTests");
 }
 
 @end
