@@ -37,4 +37,8 @@
 - (NSUInteger) countByEnumeratingWithState: (NSFastEnumerationState *) state objects: (__unsafe_unretained id []) buffer count: (NSUInteger) len {
 	return [self.internalRecords countByEnumeratingWithState: state objects: buffer count: len];
 }
+
+- (NSArray *)records {
+    return [NSArray arrayWithArray:self.internalRecords];
+}
 @end
