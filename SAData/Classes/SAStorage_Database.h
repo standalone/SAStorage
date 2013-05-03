@@ -31,6 +31,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema;
 
+- (NSError *) deleteBackingStore;
 
 //Fetching data
 - (SAStorage_Query *) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;

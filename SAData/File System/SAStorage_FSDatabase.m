@@ -168,6 +168,14 @@
 	[self.deletedRecords addObject: recordOrProxy];
 }
 
+- (NSError *) deleteBackingStore {
+	NSError					*error;
+	
+	[[NSFileManager defaultManager] removeItemAtURL: self.url error: &error];
+	return error;
+}
+
+
 - (void) setMetadataValue:(NSString *)value forKey:(NSString *)key {
 	[super setMetadataValue: value forKey: key];
 	self.metadataDirty = YES;

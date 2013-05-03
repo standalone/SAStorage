@@ -108,4 +108,8 @@
 - (void) deleteRecord: (id) recordOrProxy {
 	
 }
+
+- (NSError *) deleteBackingStore {
+	return nil;
+}
 @end
