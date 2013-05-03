@@ -40,6 +40,7 @@
 	if ((self = [super init])) {
 		self.url = url;
 		self.schema = schema;
+		self.completionQueue = dispatch_get_main_queue();
 	}
 	return self;
 }
