@@ -13,6 +13,14 @@
 @end
 
 @implementation SAStorage_ResultSet
++ (id) resultSetWithError: (NSError *) error {
+	if (error == nil) return nil;
+	
+	SAStorage_ResultSet			*results = [[self alloc] init];
+	
+	results->_error = error;
+	return results;
+}
 
 + (id) resultSetWithRecords: (NSArray *) records {
 	SAStorage_ResultSet			*results = [[self alloc] init];

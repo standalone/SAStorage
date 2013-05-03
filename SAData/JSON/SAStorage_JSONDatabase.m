@@ -54,7 +54,7 @@
 
 //=============================================================================================================================
 #pragma mark Overrides
-- (void) saveWithCompletion: (SAStorage_ErrorCallback) completion {
+- (NSError *) saveWithCompletion: (SAStorage_ErrorCallback) completion {
 	NSMutableDictionary			*jsonTables = [NSMutableDictionary dictionary];
 	for (NSString *name in self.tables) {
 		jsonTables[name] = [self.tables[name] dictionaryRepresentation];
@@ -73,15 +73,16 @@
 		[self.changedRecords removeAllObjects];
 	}
 	if (completion) completion(error);
+	return error;
 }
 
-- (void) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
+- (SAStorage_ResultSet *) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
 	NSArray					*records = self.tables[query.tableName];
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
-		completion(nil, error);
-		return;
+		if (completion) completion([SAStorage_ResultSet resultSetWithError: error]);
+		return completion ? nil : [SAStorage_ResultSet resultSetWithError: error];
 	}
 	
 	NSMutableArray			*results = nil;
@@ -98,16 +99,17 @@
 	} else
 		results = query.sortedBy ? [records sortedArrayUsingDescriptors: query.sortedBy] : records.copy;
 	
-	completion([SAStorage_ResultSet resultSetWithRecords: results], nil);
+	if (completion) completion([SAStorage_ResultSet resultSetWithRecords: results]);
+	return completion ? nil : [SAStorage_ResultSet resultSetWithRecords: results];
 }
 
-- (void) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
+- (SAStorage_Record *) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
 	NSArray					*records = self.tables[query.tableName];
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
 		completion(nil, error);
-		return;
+		return nil;
 	}
 	
 	if (query.predicate) {
@@ -115,22 +117,24 @@
 		
 		for (SAStorage_Record *record in records) {
 			if ([record matchesPredicate: query.predicate]) {
-				completion(record, nil);
-				return;
+				if (record) completion(record, nil);
+				return record;
 			}
 		}
 	} else {
 		completion(records.count ? records[0] : nil, nil);
 	}
+	
+	return (completion || records.count == 0) ? nil : records[0];
 }
 
-- (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
+- (SAStorage_ResultSet *) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
 	NSArray					*records = self.tables[query.tableName];
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
-		completion(nil, error);
-		return;
+		if (completion) completion([SAStorage_ResultSet resultSetWithError: error]);
+		return completion ? nil : [SAStorage_ResultSet resultSetWithError: error];
 	}
 
 	NSArray						*availableFields = [[self.schema[query.tableName] fields] valueForKey: @"name"];
@@ -138,8 +142,8 @@
 	for (NSString *field in fields) {
 		if (![availableFields containsObject: field]) {
 			error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchField userInfo: @{ @"tableName": query.tableName, @"field": field}];
-			completion(nil, error);
-			return;
+			if (completion) completion([SAStorage_ResultSet resultSetWithError: error]);
+			return completion ? nil : [SAStorage_ResultSet resultSetWithError: error];
 		}
 	}
 		
@@ -153,16 +157,17 @@
 	for (SAStorage_Record *record in records) {
 		if ([record matchesPredicate: query.predicate]) [results addObject: [record dictionaryWithFields: fields]];
 	}
-	completion([SAStorage_ResultSet resultSetWithRecords: results], nil);
+	if (completion) completion([SAStorage_ResultSet resultSetWithRecords: results]);
+	return completion ? nil : [SAStorage_ResultSet resultSetWithRecords: results];
 }
 
-- (void) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion {
+- (NSUInteger) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion {
 	NSArray					*records = self.tables[query.tableName];
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
 		completion(0, error);
-		return;
+		return 0;
 	}
 	
 	NSUInteger					count = 0;
@@ -174,10 +179,11 @@
 			if ([record matchesPredicate: query.predicate]) count++;
 		}
 	}
-	completion(count, nil);
+	if (completion) completion(count, nil);
+	return completion ? 0 : count;
 }
 
-- (void) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion {
+- (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion {
 	NSString					*metadataIDKey = [NSString stringWithFormat: @"currentID_%@", recordType];
 	NSUInteger					lastID = [[self metadataValueForKey: metadataIDKey] integerValue] + 1;
 	
@@ -194,7 +200,8 @@
 	}
 	[tableRecords addObject: record];
 	
-	completion(record, nil);
+	if (completion) completion(record, nil);
+	return completion ? nil : record;
 }
 
 - (NSString *) metadataValueForKey: (NSString *) key {

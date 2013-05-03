@@ -69,32 +69,32 @@
 
 //=============================================================================================================================
 #pragma mark Overrides
-- (void) saveWithCompletion: (SAStorage_ErrorCallback) completion {
-	
+- (NSError *) saveWithCompletion: (SAStorage_ErrorCallback) completion {
+	return nil;
 }
 
-- (void) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
-	
+- (SAStorage_Query *) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
+	return nil;
 }
 
-- (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
-	
+- (SAStorage_Query *) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
+	return nil;
 }
 
-- (void) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
-	
+- (SAStorage_Record *) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
+	return nil;
 }
 
-- (void) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion {
-	
+- (NSUInteger) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion {
+	return 0;
 }
 
 - (SAStorage_Record *) resolveProxy: (SAStorage_Proxy *) proxy {
 	return nil;
 }
 
-- (void) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion {
-	
+- (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion {
+	return nil;
 }
 
 - (NSString *) metadataValueForKey: (NSString *) key {
