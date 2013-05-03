@@ -18,7 +18,7 @@ typedef NS_ENUM(uint8_t, SAStorage_Database_Type) {
 
 @class SAStorage_Query, SAStorage_Schema, SAStorage_Record, SAStorage_Proxy, SAStorage_ResultSet;
 
-typedef void (^SAStorage_QueryCallback)(SAStorage_ResultSet *results, NSError *error);
+typedef void (^SAStorage_QueryCallback)(SAStorage_ResultSet *results);
 typedef void (^SAStorage_QueryCountCallback)(NSUInteger count, NSError *error);
 typedef void (^SAStorage_RecordCallback)(SAStorage_Record *record, NSError *error);
 typedef void (^SAStorage_ErrorCallback)(NSError *error);
@@ -33,15 +33,15 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 
 //Fetching data
-- (void) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
-- (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
-- (void) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion;
+- (SAStorage_Query *) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
+- (SAStorage_Query *) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
+- (SAStorage_Record *) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion;
 
-- (void) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion;
-- (void) saveWithCompletion: (SAStorage_ErrorCallback) completion;
+- (NSUInteger) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion;
+- (NSError *) saveWithCompletion: (SAStorage_ErrorCallback) completion;
 
 //Inserting data
-- (void) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion;
+- (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion;
 
 //Modifying Records
 - (void) markRecord: (SAStorage_Record *) record changed: (BOOL) changed;

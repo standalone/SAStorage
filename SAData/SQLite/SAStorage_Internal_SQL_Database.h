@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const kSADataSQLiteErrorDomain;
+extern NSString * const kSADataSQLiteMetadataTableName;
 
 @class SAStorage_Internal_SQL_ResultSet;
 

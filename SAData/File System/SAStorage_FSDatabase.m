@@ -110,7 +110,7 @@
 
 //=============================================================================================================================
 #pragma mark Overrides
-- (void) saveWithCompletion: (SAStorage_ErrorCallback) completion {
+- (NSError *) saveWithCompletion: (SAStorage_ErrorCallback) completion {
 	NSData				*data;
 	NSError				*error;
 	
@@ -136,25 +136,26 @@
 			[self.changedRecords removeObject: dirtyRecord];
 		}
 	}
+	return error;
 }
 
-- (void) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
+- (SAStorage_Query *) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
 	[self loadRecordsInTable: query.tableName];
-	[super recordsMatchingQuery: query completion: completion];
+	return [super recordsMatchingQuery: query completion: completion];
 }
-- (void) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
+- (SAStorage_Record *) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
 	[self loadRecordsInTable: query.tableName];
-	[super anyRecordMatchingQuery: query completion: completion];
-}
-
-- (void) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
-	[self loadRecordsInTable: query.tableName];
-	[super fields: fields fromRecordsMatchingQuery: query completion: completion];
+	return [super anyRecordMatchingQuery: query completion: completion];
 }
 
-- (void) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion {
+- (SAStorage_Query *) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
 	[self loadRecordsInTable: query.tableName];
-	[super numberOfRecordsMatchingQuery: query completion: completion];
+	return [super fields: fields fromRecordsMatchingQuery: query completion: completion];
+}
+
+- (NSUInteger) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion {
+	[self loadRecordsInTable: query.tableName];
+	return [super numberOfRecordsMatchingQuery: query completion: completion];
 }
 
 

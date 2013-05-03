@@ -11,6 +11,7 @@
 #import <sqlite3.h>
 
 NSString * const kSADataSQLiteErrorDomain = @"kSADataSQLiteErrorDomain";
+NSString * const kSADataSQLiteMetadataTableName = @"__SASTORAGE_METADATA";
 
 static dispatch_queue_t s_queue;
 
@@ -43,13 +44,14 @@ static dispatch_queue_t s_queue;
     self = [super init];
     if (self) {
         self.lock = [[NSLock alloc] init];
+        [self.lock setName:@"SAStorageSQLiteLock"];
         if ([url isFileURL]) {
             self.fileURL = url;
             if (!s_queue) {
                 s_queue = dispatch_queue_create("com.standalone.sastorage.sqlite", DISPATCH_QUEUE_SERIAL);
             }
         } else {
-            NSLog(@"Does not yet support http URLs.");
+            NSLog(@"[SQLite] Does not yet support http URLs.");
             return nil;
         }
     }
@@ -58,6 +60,8 @@ static dispatch_queue_t s_queue;
 }
 
 #pragma mark Database methods
+
+
 
 - (BOOL)openWithError:(NSError **)error {
     
@@ -71,6 +75,15 @@ static dispatch_queue_t s_queue;
     }
     
     self.databaseOpen = YES;
+    
+    
+    [self executeQueryWithSQL:[NSString stringWithFormat:@"create table if not exists %@ (id INTEGER PRIMARY KEY, key TEXT, data TEXT); create unique index if not exists idx on %@(key, data)",
+                               kSADataSQLiteMetadataTableName, kSADataSQLiteMetadataTableName] parameters:nil completionBlock:^(NSError *error, SAStorage_Internal_SQL_ResultSet *resultSet) {
+        if (error) {
+            NSLog(@"[SQLite] Error creating metadata table.");
+        } 
+    }];
+    
     return YES;
     
 }
@@ -102,6 +115,7 @@ static dispatch_queue_t s_queue;
         if (!weakSelf.databaseOpen) {
             [weakSelf.lock unlock];
             dispatch_async(dispatch_get_main_queue(), ^{completionBlock([NSError errorWithDomain:kSADataSQLiteErrorDomain code:9999 userInfo:@{NSLocalizedDescriptionKey:@"Database not opened yet."}], nil);});
+            return;
         }
         
         int err = 0;
@@ -112,13 +126,14 @@ static dispatch_queue_t s_queue;
         if (err != SQLITE_OK) {
             [weakSelf.lock unlock];
             dispatch_async(dispatch_get_main_queue(), ^{completionBlock([NSError errorWithDomain:kSADataSQLiteErrorDomain code:err userInfo:nil], nil);});
+            return;
         }
         
         if (![weakSelf bindStatement:stmt toParameters:params]) {
             sqlite3_finalize(stmt);
             [weakSelf.lock unlock];
             dispatch_async(dispatch_get_main_queue(), ^{completionBlock([NSError errorWithDomain:kSADataSQLiteErrorDomain code:8888 userInfo:@{NSLocalizedDescriptionKey:@"Array parameter count does not match SQL string parameter count."}], nil);});
-
+            return;
         }
         
         SAStorage_Internal_SQL_ResultSet *resultSet = [SAStorage_Internal_SQL_ResultSet resultSetWithBoundStatement:stmt];

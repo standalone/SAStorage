@@ -7,7 +7,7 @@
 //
 
 #import "SAStorageAppDelegate.h"
-
+#import "SAStorage_SQLiteDatabase.h"
 @implementation SAStorageAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,6 +16,10 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
+    SAStorage_SQLiteDatabase *db = [SAStorage_SQLiteDatabase databaseWithURL:[NSURL fileURLWithPath:[@"~/Documents/test.sqlite" stringByExpandingTildeInPath]] ofType:SAStorage_Database_SQL basedOn:nil];
+    [db setMetadataValue:@"two" forKey:@"testststst"];
     return YES;
 }
 

@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "SAStorage_ResultSet.h"
 
-@interface SAStorage_Internal_SQL_ResultSet : NSObject<NSFastEnumeration>
+@interface SAStorage_Internal_SQL_ResultSet : SAStorage_ResultSet
 
-@property (nonatomic, readonly) NSUInteger count;
-@property (nonatomic, readonly) NSArray *rows;
 @property (nonatomic, strong) NSMutableArray *columnTypes;
 @property (nonatomic, strong) NSMutableArray *columnNames;
+@property (nonatomic, strong) NSError *error;
 
 + (SAStorage_Internal_SQL_ResultSet *)resultSetWithBoundStatement:(sqlite3_stmt *)stmt;
 

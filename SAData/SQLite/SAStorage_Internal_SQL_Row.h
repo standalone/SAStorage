@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAStorage_Record.h"
 
 @class SAStorage_Internal_SQL_ResultSet;
 
-@interface SAStorage_Internal_SQL_Row : NSObject
+@interface SAStorage_Internal_SQL_Row : SAStorage_Record
 
 - (int)intForColumn:(NSString *)columnName;
 - (int)intForColumnIndex:(int)columnIdx;

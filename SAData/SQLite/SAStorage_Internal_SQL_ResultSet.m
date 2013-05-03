@@ -81,7 +81,7 @@
 
 }
 
-- (NSArray *)rows {
+- (NSArray *)records {
     
     return [NSArray arrayWithArray:self.internalRows];
     

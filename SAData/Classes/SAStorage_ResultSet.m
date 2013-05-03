@@ -10,9 +10,18 @@
 
 @interface SAStorage_ResultSet ()
 @property (nonatomic, strong) NSArray *internalRecords;
+@property (nonatomic, strong) NSError *error;
 @end
 
 @implementation SAStorage_ResultSet
++ (id) resultSetWithError: (NSError *) error {
+	if (error == nil) return nil;
+	
+	SAStorage_ResultSet			*results = [[self alloc] init];
+	
+	results.error = error;
+	return results;
+}
 
 + (id) resultSetWithRecords: (NSArray *) records {
 	SAStorage_ResultSet			*results = [[self alloc] init];
@@ -41,4 +50,6 @@
 - (NSArray *)records {
     return [NSArray arrayWithArray:self.internalRecords];
 }
+
+
 @end
