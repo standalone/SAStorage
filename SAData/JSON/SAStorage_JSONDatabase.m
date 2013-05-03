@@ -223,6 +223,12 @@
 	[records removeObject: record];
 }
 
+- (NSError *) deleteBackingStore {
+	NSError					*error;
+	
+	[[NSFileManager defaultManager] removeItemAtURL: self.url error: &error];
+	return error;
+}
 @end
 
 

@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface SAStorage_JSONDatabaseTests : SenTestCase
+@interface SAStorage_DatabaseTests : SenTestCase
 
 - (void) testDatabaseCreation;
 - (void) testRecordCreation;

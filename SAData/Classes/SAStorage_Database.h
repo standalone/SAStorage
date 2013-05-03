@@ -28,9 +28,11 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 @property (nonatomic, readonly) NSString *uuid;
 @property (nonatomic) BOOL dirty;
 @property (nonatomic) BOOL validateSchemaFields;			//may be set by the database automatically, can be forced for others
+@property (nonatomic) dispatch_queue_t completionQueue;
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema;
 
+- (NSError *) deleteBackingStore;
 
 //Fetching data
 - (SAStorage_Query *) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion;
