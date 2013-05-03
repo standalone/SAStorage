@@ -11,10 +11,12 @@
 @interface SAStorage_ResultSet : NSObject <NSFastEnumeration>
 
 @property (nonatomic, readonly) NSUInteger count;
+@property (nonatomic, readonly) NSArray *records;
 
 + (id) resultSetWithRecords: (NSArray *) records;
 
 - (void) setObject: (id) obj atIndexedSubscript: (NSUInteger) idx;
 - (id) objectAtIndexedSubscript: (NSUInteger) idx;
+
 
 @end
