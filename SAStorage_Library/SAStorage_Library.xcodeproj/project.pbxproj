@@ -316,7 +316,6 @@
 				B5980F191734A77900D77EE8 /* Classes */,
 				B5980F2A1734A77900D77EE8 /* File System */,
 				B5980F2D1734A77900D77EE8 /* JSON */,
-				B5980F301734A77900D77EE8 /* Schema */,
 				B5980F371734A77900D77EE8 /* SQLite */,
 			);
 			name = SAStorage;
@@ -363,6 +362,7 @@
 			children = (
 				B5980F2E1734A77900D77EE8 /* SAStorage_JSONDatabase.h */,
 				B5980F2F1734A77900D77EE8 /* SAStorage_JSONDatabase.m */,
+				B5980F301734A77900D77EE8 /* Schema */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -377,7 +377,8 @@
 				B5980F351734A77900D77EE8 /* SAStorage_SchemaTable.h */,
 				B5980F361734A77900D77EE8 /* SAStorage_SchemaTable.m */,
 			);
-			path = Schema;
+			name = Schema;
+			path = ../Schema;
 			sourceTree = "<group>";
 		};
 		B5980F371734A77900D77EE8 /* SQLite */ = {

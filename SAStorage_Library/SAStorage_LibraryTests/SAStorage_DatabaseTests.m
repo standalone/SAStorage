@@ -27,7 +27,9 @@
 }
 
 - (SAStorage_Schema *) testSchema {
-	return [SAStorage_Schema schemaWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"]];
+	SAStorage_Schema		*schema = [SAStorage_Schema schemaWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"]];
+	STAssertNotNil(schema, @"Failed to construct schema from sample JSON");
+	return schema;
 }
 
 - (SAStorage_Database *) db {
@@ -52,14 +54,24 @@
 - (void) testRecordCreation {
 	SAStorage_Database		*db = self.db;
 
-	SAStorage_Record		* record = [db insertNewRecordOfType: @"Contacts" completion: nil];
+	SAStorage_Record		*record = [db insertNewRecordOfType: @"Contacts" completion: nil];
 	STAssertNotNil(record, @"Failed to create record in database: %@");
-
-	record[@"first_name"] = @"Isaac";
-	record[@"last_name"] = @"Newton";
-	record[@"last_name"] = @(44);
-	record.recordHasChanges = YES;
 	
+	record[@"first_name"] = @"Barack";
+	record[@"last_name"] = @"Obama";
+	record[@"age"] = @(52);
+	record.recordHasChanges = YES;
+
+	SAStorage_Record		*secondRecord = [db insertNewRecordOfType: @"Contacts" completion: nil];
+	STAssertNotNil(record, @"Failed to create record in database: %@");
+	
+	secondRecord[@"first_name"] = @"Michelle";
+	secondRecord[@"last_name"] = @"Obama";
+	secondRecord[@"age"] = @(44);
+	secondRecord[@"spouse"] = record;
+	
+	secondRecord.recordHasChanges = YES;
+
 	NSError					*error = [db saveWithCompletion: nil];
 	STAssertNil(error, @"There was an error saving the database: %@", error);
 	[db deleteBackingStore];
@@ -68,7 +80,7 @@
 - (void) testRecordFetching {
 	SAStorage_Database		*db = self.db;
 	
-	[db insertNewRecordOfType: @"Contact" completion:^(SAStorage_Record *record, NSError *error) {
+	[db insertNewRecordOfType: @"Contacts" completion:^(SAStorage_Record *record, NSError *error) {
 		STAssertNotNil(record, @"Failed to create record in database: %@");
 		
 		

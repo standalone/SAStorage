@@ -85,9 +85,9 @@
 	return [self.backingDictionary valueForKey: key];
 }
 - (void) setValue: (id) value forKey: (NSString *) key {
+	SAStorage_SchemaField				*field = self.db.schema[self.tableName][key];
+
 	if (self.db.validateSchemaFields) {
-		SAStorage_SchemaField				*field = self.db.schema[self.tableName][key];
-		
 		if (field == nil) {
 			[self.db.errors handleFatal: NO error: SAStorage_Error_FieldNotPresentInTable onObject: self userInfo: @{ @"field": key }];
 			return;
@@ -97,10 +97,25 @@
 			[self.db.errors handleFatal: NO error: SAStorage_Error_IncorrectDataType onObject: self userInfo: @{ @"field": key, @"value": value } ];
 			return;
 		}
+
+		if (field.isRelationship) {
+			if ((field.type == SAStorage_SchemaField_RelationshipOneToOne || field.type == SAStorage_SchemaField_RelationshipOneToOne) && (![value isKindOfClass: [SAStorage_Record class]] || ![field.relatedTo isEqual: [value tableName]])) {
+				[self.db.errors handleFatal: NO error: SAStorage_Error_IncorrectDataType onObject: self userInfo: @{ @"field": key, @"value": value } ];
+				return;
+			}
+			
+			if ((field.type == SAStorage_SchemaField_RelationshipOneToMany || field.type == SAStorage_SchemaField_RelationshipManyToMany) && ![value isKindOfClass: [NSSet class]]) {
+				[self.db.errors handleFatal: NO error: SAStorage_Error_IncorrectDataType onObject: self userInfo: @{ @"field": key, @"value": value } ];
+				return;
+			}
+		}
 	}
-	if (value)
+	if (value) {
+		if (field.isRelationship) {
+			value[field.relatedBy] = self;
+		}
 		[self.backingDictionary setValue: value forKey: key];
-	else
+	} else
 		[self.backingDictionary removeObjectForKey: key];
 }
 

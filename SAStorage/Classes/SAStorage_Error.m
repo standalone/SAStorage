@@ -9,7 +9,7 @@
 #import "SAStorage_Error.h"
 
 NSString *		ConvertErrorToString(SAStorage_ErrorType error) {
-	return @[ @"]SAStorage_Error_NoSuchTable", @"SAStorage_Error_NoSuchField", @"SAStorage_Error_UnexpectedFile", @"SAStorage_Error_TableNotPresent", @"SAStorage_Error_FieldNotPresentInTable", @"SAStorage_Error_IncorrectDataType"][error];
+	return @[ @"]SAStorage_Error_NoSuchTable", @"SAStorage_Error_NoSuchField", @"SAStorage_Error_UnexpectedFile", @"SAStorage_Error_TableNotPresent", @"SAStorage_Error_FieldNotPresentInTable", @"SAStorage_Error_IncorrectDataType", @"SAStorage_Error_IncorrectDataTypeForRelationship"][error];
 
 }
 

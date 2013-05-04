@@ -88,6 +88,11 @@
 	return hash;
 }
 
+- (NSUInteger) countByEnumeratingWithState: (NSFastEnumerationState *) state objects: (__unsafe_unretained id []) buffer count: (NSUInteger) len {
+	return [self.tables.allValues countByEnumeratingWithState: state objects: buffer count: len];
+}
+
+
 @end
 
 

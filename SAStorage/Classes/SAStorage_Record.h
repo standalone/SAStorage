@@ -11,6 +11,9 @@
 
 @class SAStorage_Database;
 
+
+#define RECORD_ID_FIELD_NAME			@"id"
+
 @interface SAStorage_Record : NSObject
 
 @property (nonatomic, readonly) SAStorage_RecordIDType recordID;

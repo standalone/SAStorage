@@ -61,4 +61,9 @@
 	for (SAStorage_SchemaField *field in self.fields) { hash += field.hash; }
 	return hash;
 }
+
+- (NSUInteger) countByEnumeratingWithState: (NSFastEnumerationState *) state objects: (__unsafe_unretained id []) buffer count: (NSUInteger) len {
+	return [self.fields.allValues countByEnumeratingWithState: state objects: buffer count: len];
+}
+
 @end

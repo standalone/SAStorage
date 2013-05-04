@@ -10,10 +10,14 @@
 #import "SAStorage.h"
 
 @interface NSMutableArray (SAStorage_JSONDatabase)
-- (id) dictionaryRepresentation;
+- (id) JSONDictionaryRepresentation;
 @end
 
 @interface SAStorage_JSONDatabase ()
+@end
+
+@interface SAStorage_Record (JSONDictionaryRepresentation)
+- (NSDictionary *) JSONDictionaryRepresentation;
 @end
 
 @implementation SAStorage_JSONDatabase
@@ -40,7 +44,7 @@
 			
 			self.tables[table.name] = records;
 			for (NSDictionary *recordDictionary in json[@"tables"][table.name]) {
-				SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: table.name withRecordID: [recordDictionary[@"id"] intValue]];
+				SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: table.name withRecordID: [recordDictionary[RECORD_ID_FIELD_NAME] intValue]];
 				
 				[record populateBackingDictionaryFromDictionary: recordDictionary];
 				[records addObject: record];
@@ -57,7 +61,7 @@
 - (NSError *) saveWithCompletion: (SAStorage_ErrorCallback) completion {
 	NSMutableDictionary			*jsonTables = [NSMutableDictionary dictionary];
 	for (NSString *name in self.tables) {
-		jsonTables[name] = [self.tables[name] dictionaryRepresentation];
+		jsonTables[name] = [self.tables[name] JSONDictionaryRepresentation];
 	}
 	
 	NSDictionary			*dictionary = @{ @"metadata": self.metadata, @"tables": jsonTables };
@@ -241,12 +245,31 @@
 
 
 @implementation NSMutableArray (SAStorage_JSONDatabase)
-- (id) dictionaryRepresentation {
+- (id) JSONDictionaryRepresentation {
 	NSMutableArray				*array = [NSMutableArray arrayWithCapacity: self.count];
 	
 	for (SAStorage_Record *record in self) {
-		[array addObject: record.dictionaryRepresentation];
+		[array addObject: record.JSONDictionaryRepresentation];
 	}
 	return array;
+}
+@end
+
+@implementation SAStorage_Record (JSONDictionaryRepresentation)
+- (NSDictionary *) JSONDictionaryRepresentation {
+	NSMutableDictionary			*dict = [NSMutableDictionary dictionary];
+	
+	for (SAStorage_SchemaField *field in self.db.schema[self.tableName]) {
+		id			value = self.backingDictionary[field.name];
+
+		if (value == nil) continue;
+		if (field.isRelationship) {
+			dict[field.name] = @([value recordID]);
+		} else {
+			dict[field.name] = value;
+		}
+	}
+	dict[RECORD_ID_FIELD_NAME] = @(self.recordID);
+	return dict;
 }
 @end
