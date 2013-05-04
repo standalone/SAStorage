@@ -12,6 +12,11 @@
 #import "SAStorage_FSDatabase.h"
 
 @implementation SAStorage_Database
+- (void) dealloc {
+	#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+		if (_completionQueue) dispatch_release(_completionQueue);
+	#endif
+}
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema {
 	SAStorage_Database				*db = nil;
@@ -51,6 +56,16 @@
 		_uuid = [SAStorage uuid];
 		[self setMetadataValue: _uuid forKey: @"uuid"];
 	}
+}
+
+//=============================================================================================================================
+#pragma mark Properties
+- (void) setCompletionQueue: (dispatch_queue_t) completionQueue {
+	#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+		if (completionQueue) dispatch_retain(completionQueue);
+		if (_completionQueue) dispatch_release(_completionQueue);
+	#endif
+	_completionQueue = completionQueue;
 }
 
 //=============================================================================================================================
