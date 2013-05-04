@@ -22,8 +22,9 @@ typedef NS_ENUM(uint8_t, SAStorage_ErrorType) {
 	
 };
 
+NSString *		ConvertErrorToString(SAStorage_ErrorType error);
+
 @interface SAStorage_Error : NSError
 
-+ (void) handleNonFatalError: (SAStorage_ErrorType) error object: (id) object userInfo: (NSDictionary *) info description: (NSString *) description;
 
 @end

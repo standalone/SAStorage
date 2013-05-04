@@ -12,6 +12,9 @@
 
 #define DATABASE_URL			[NSURL fileURLWithPath: [@"~/Documents/Database.json" stringByExpandingTildeInPath]]
 
+@interface SAStorage_ErrorManagerTesting : SenTestCase
+@end
+
 @interface SAStorage_DatabaseTests ()
 @end
 
@@ -30,6 +33,7 @@
 	SAStorage_Database		*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: SAStorage_Database_JSON basedOn: self.testSchema];
 	
 	db.validateSchemaFields = YES;
+	db.errors = (id) [[SAStorage_ErrorManagerTesting alloc] init];
 	return db;
 }
 
@@ -68,6 +72,20 @@
 		
 	}];
 	[db deleteBackingStore];
+}
+
+@end
+
+
+@implementation SAStorage_ErrorManagerTesting
+- (void) handleFatal: (BOOL) fatal error: (SAStorage_ErrorType) error onObject: (id) object userInfo: (NSDictionary *) info {
+	[self handleFatal: fatal error: error onObject: object userInfo: info description: nil];
+}
+
+- (void) handleFatal: (BOOL) fatal error: (SAStorage_ErrorType) error onObject: (id) object userInfo: (NSDictionary *) info description: (NSString *) description {
+	NSString		*message = [NSString stringWithFormat: @"%@: %@ (%@)\n%@", ConvertErrorToString(error), object, info, description ?: @""];
+	NSLog(@"Message: %@", message);
+	STAssertFalse(YES, message);
 }
 
 @end

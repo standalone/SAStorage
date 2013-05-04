@@ -187,7 +187,8 @@
 	SAStorage_SchemaTable		*table = self.schema[recordType];
 	
 	if (self.validateSchemaFields && table == nil) {
-		[SAStorage_Error handleNonFatalError: SAStorage_Error_TableNotPresent object: self userInfo: @{ @"table": recordType } description: @""];
+		[self.errors handleFatal: NO error: SAStorage_Error_TableNotPresent onObject: self userInfo: @{ @"table": recordType } ];
+
 		return nil;
 	}
 	

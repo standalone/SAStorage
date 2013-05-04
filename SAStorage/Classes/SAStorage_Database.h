@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAStorage_ErrorManager.h"
 
 typedef NS_ENUM(uint8_t, SAStorage_Database_Type) {
 	SAStorage_Database_any,
@@ -29,6 +30,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 @property (nonatomic) BOOL dirty;
 @property (nonatomic) BOOL validateSchemaFields;			//may be set by the database automatically, can be forced for others
 @property (nonatomic) dispatch_queue_t completionQueue;
+@property (nonatomic, strong) SAStorage_ErrorManager *errors;
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema;
 

@@ -15,8 +15,4 @@ NSString *		ConvertErrorToString(SAStorage_ErrorType error) {
 
 @implementation SAStorage_Error
 
-+ (void) handleNonFatalError: (SAStorage_ErrorType) error object: (id) object userInfo: (NSDictionary *) info description: (NSString *) description {
-	NSLog(@"Non-fatal error: %@, %@", ConvertErrorToString(error), info ?: @"");
-}
-
 @end

@@ -89,12 +89,12 @@
 		SAStorage_SchemaField				*field = self.db.schema[self.tableName][key];
 		
 		if (field == nil) {
-			[SAStorage_Error handleNonFatalError: SAStorage_Error_FieldNotPresentInTable object: self userInfo: @{ @"field": key } description: nil];
+			[self.db.errors handleFatal: NO error: SAStorage_Error_FieldNotPresentInTable onObject: self userInfo: @{ @"field": key }];
 			return;
 		}
-		
+
 		if (![field valueIsProperType: value]) {
-			[SAStorage_Error handleNonFatalError: SAStorage_Error_IncorrectDataType object: self userInfo: @{ @"field": key, @"value": value } description: nil];
+			[self.db.errors handleFatal: NO error: SAStorage_Error_IncorrectDataType onObject: self userInfo: @{ @"field": key, @"value": value } ];
 			return;
 		}
 	}
