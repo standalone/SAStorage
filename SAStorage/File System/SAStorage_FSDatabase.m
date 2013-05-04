@@ -114,6 +114,11 @@
 	NSData				*data;
 	NSError				*error;
 	
+	if (self.readOnly) {
+		if (completion) completion([SAStorage_Error error: SAStorage_Error_TryingToSaveReadnlyDatabase info: nil]);
+		return [SAStorage_Error error: SAStorage_Error_TryingToSaveReadnlyDatabase info: nil];
+	}
+	
 	if (self.metadataDirty) {
 		data = [NSJSONSerialization dataWithJSONObject: self.metadata options: NSJSONWritingPrettyPrinted error: &error];
 		if (error == nil) [data writeToURL: self.metadataURL options: NSDataWritingAtomic error: &error];

@@ -16,6 +16,10 @@ typedef NS_ENUM(uint8_t, SAStorage_Database_Type) {
 	SAStorage_Database_FS
 };
 
+typedef NS_ENUM(uint8_t, SAStorage_Database_Flags) {
+	SAStorage_Database_readOnly,
+};
+
 
 @class SAStorage_Query, SAStorage_Schema, SAStorage_Record, SAStorage_Proxy, SAStorage_ResultSet;
 
@@ -29,10 +33,12 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 @property (nonatomic, readonly) NSString *uuid;
 @property (nonatomic) BOOL dirty;
 @property (nonatomic) BOOL validateSchemaFields;			//may be set by the database automatically, can be forced for others
+@property (nonatomic) BOOL readOnly;						//prevent saves
 @property (nonatomic) dispatch_queue_t completionQueue;
 @property (nonatomic, strong) SAStorage_ErrorManager *errors;
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema;
++ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema flags: (SAStorage_Database_Flags) flags;
 
 - (NSError *) deleteBackingStore;
 

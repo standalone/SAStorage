@@ -59,6 +59,11 @@
 //=============================================================================================================================
 #pragma mark Overrides
 - (NSError *) saveWithCompletion: (SAStorage_ErrorCallback) completion {
+	if (self.readOnly) {
+		if (completion) completion([SAStorage_Error error: SAStorage_Error_TryingToSaveReadnlyDatabase info: nil]);
+		return [SAStorage_Error error: SAStorage_Error_TryingToSaveReadnlyDatabase info: nil];
+	}
+
 	NSMutableDictionary			*jsonTables = [NSMutableDictionary dictionary];
 	for (NSString *name in self.tables) {
 		jsonTables[name] = [self.tables[name] JSONDictionaryRepresentation];

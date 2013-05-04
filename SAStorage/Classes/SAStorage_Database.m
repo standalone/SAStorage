@@ -19,6 +19,10 @@
 }
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema {
+	return [self databaseWithURL: url ofType: type basedOn: schema flags: 0];
+}
+
++ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema flags: (SAStorage_Database_Flags) flags {
 	SAStorage_Database				*db = nil;
 	
 	switch (type) {
@@ -38,6 +42,7 @@
 			break;
 	}
 	
+	if (flags & SAStorage_Database_readOnly) db.readOnly = YES;
 	return db;
 }
 
