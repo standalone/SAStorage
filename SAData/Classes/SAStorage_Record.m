@@ -10,6 +10,9 @@
 #import "SAStorage_Database.h"
 
 @interface SAStorage_Record ()
+@property (nonatomic, assign) SAStorage_RecordIDType recordID;
+@property (nonatomic, weak) SAStorage_Database *db;
+@property (nonatomic, strong) NSString *tableName;
 @end
 
 @implementation SAStorage_Record
@@ -17,9 +20,9 @@
 + (id) recordInDatabase: (SAStorage_Database *) db andTable: (NSString *) tableName withRecordID: (SAStorage_RecordIDType) recordID {
 	SAStorage_Record			*record = [[self alloc] init];
 	
-	record->_db = db;
-	record->_tableName = tableName;
-	record->_recordID = recordID;
+	record.db = db;
+	record.tableName = tableName;
+	record.recordID = recordID;
 
 	return record;
 }
