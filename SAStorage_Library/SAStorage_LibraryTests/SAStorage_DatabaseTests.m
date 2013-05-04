@@ -12,7 +12,8 @@
 
 #define DATABASE_URL			[NSURL fileURLWithPath: [@"~/Documents/Database.json" stringByExpandingTildeInPath]]
 
-@interface SAStorage_ErrorManagerTesting : SenTestCase
+@interface SAStorage_ErrorManagerTesting : SAStorage_ErrorManager
+@property (nonatomic, weak) SenTestCase *target;
 @end
 
 @interface SAStorage_DatabaseTests ()
@@ -30,10 +31,13 @@
 }
 
 - (SAStorage_Database *) db {
-	SAStorage_Database		*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: SAStorage_Database_JSON basedOn: self.testSchema];
+	SAStorage_Database				*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: SAStorage_Database_JSON basedOn: self.testSchema];
+	SAStorage_ErrorManagerTesting	*mgr = [[SAStorage_ErrorManagerTesting alloc] init];
 	
 	db.validateSchemaFields = YES;
-	db.errors = (id) [[SAStorage_ErrorManagerTesting alloc] init];
+	db.errors = mgr;
+	mgr.target = self;
+	
 	return db;
 }
 
@@ -78,14 +82,11 @@
 
 
 @implementation SAStorage_ErrorManagerTesting
-- (void) handleFatal: (BOOL) fatal error: (SAStorage_ErrorType) error onObject: (id) object userInfo: (NSDictionary *) info {
-	[self handleFatal: fatal error: error onObject: object userInfo: info description: nil];
-}
-
 - (void) handleFatal: (BOOL) fatal error: (SAStorage_ErrorType) error onObject: (id) object userInfo: (NSDictionary *) info description: (NSString *) description {
 	NSString		*message = [NSString stringWithFormat: @"%@: %@ (%@)\n%@", ConvertErrorToString(error), object, info, description ?: @""];
 	NSLog(@"Message: %@", message);
-	STAssertFalse(YES, message);
+	
+	[self.target failWithException: [NSException exceptionWithName: @"Error Manager" reason: message userInfo: nil]];
 }
 
 @end
