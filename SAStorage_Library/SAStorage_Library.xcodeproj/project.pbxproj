@@ -95,6 +95,7 @@
 		B5B8D40B1733C9400019BCAF /* sample_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B5B8D4091733C0DF0019BCAF /* sample_schema.json */; };
 		B5EAC9711734BD2500737B27 /* SAStorage_ErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5EAC9701734BD2500737B27 /* SAStorage_ErrorManager.m */; };
 		B5EAC9721734BD2500737B27 /* SAStorage_ErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5EAC9701734BD2500737B27 /* SAStorage_ErrorManager.m */; };
+		B5EAC97417352D0F00737B27 /* sample_database.json in Resources */ = {isa = PBXBuildFile; fileRef = B5EAC97317352D0F00737B27 /* sample_database.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +184,7 @@
 		B5EAC96E1734B86A00737B27 /* SAStorage_Library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAStorage_Library-Prefix.pch"; sourceTree = "<group>"; };
 		B5EAC96F1734BD2500737B27 /* SAStorage_ErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_ErrorManager.h; sourceTree = "<group>"; };
 		B5EAC9701734BD2500737B27 /* SAStorage_ErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_ErrorManager.m; sourceTree = "<group>"; };
+		B5EAC97317352D0F00737B27 /* sample_database.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_database.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B8D4091733C0DF0019BCAF /* sample_schema.json */,
+				B5EAC97317352D0F00737B27 /* sample_database.json */,
 				B5980DF11730B05B00D77EE8 /* SAStorage_LibraryTests-Info.plist */,
 				B5980DF21730B05B00D77EE8 /* InfoPlist.strings */,
 			);
@@ -501,6 +504,7 @@
 			files = (
 				B5980DF41730B05B00D77EE8 /* InfoPlist.strings in Resources */,
 				B5B8D40A1733C0DF0019BCAF /* sample_schema.json in Resources */,
+				B5EAC97417352D0F00737B27 /* sample_database.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

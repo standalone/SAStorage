@@ -86,7 +86,11 @@
 }
 - (void) setValue: (id) value forKey: (NSString *) key {
 	SAStorage_SchemaField				*field = self.db.schema[self.tableName][key];
+	id									existing = self[key];
 
+	if (value == nil && existing == nil) return;
+	if ([value isEqual: existing]) return;
+	
 	if (self.db.validateSchemaFields) {
 		if (field == nil) {
 			[self.db.errors handleFatal: NO error: SAStorage_Error_FieldNotPresentInTable onObject: self userInfo: @{ @"field": key }];
@@ -111,12 +115,15 @@
 		}
 	}
 	if (value) {
-		if (field.isRelationship) {
-			value[field.relatedBy] = self;
-		}
 		[self.backingDictionary setValue: value forKey: key];
-	} else
+		if (field.isRelationship) {
+			existing[field.relatedBy] = nil;		//clear the existing relationship's other side
+			value[field.relatedBy] = self;			//set the new relationship's other side
+		}
+	} else {
 		[self.backingDictionary removeObjectForKey: key];
+		if (field.isRelationship) existing[field.relatedBy] = nil;		//clear the existing relationship's other side
+	}
 }
 
 - (id) objectForKeyedSubscript: (id) key {
