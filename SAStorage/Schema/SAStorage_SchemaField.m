@@ -7,6 +7,7 @@
 //
 
 #import "SAStorage_SchemaField.h"
+#import "SAStorage_Record.h"
 
 @implementation SAStorage_SchemaField
 + (id) fieldWithDictionary: (NSDictionary *) dict {
@@ -54,6 +55,27 @@
 }
 
 - (BOOL) isRelationship { return self.type >= SAStorage_SchemaField_RelationshipOneToOne; }
+
+- (BOOL) valueIsProperType: (id) value {
+	if (value == nil) return YES;
+	
+	switch (self.type) {
+		case SAStorage_SchemaField_None:			return NO;
+		case SAStorage_SchemaField_Integer:			return [value isKindOfClass: [NSNumber class]];
+		case SAStorage_SchemaField_Float:			return [value isKindOfClass: [NSNumber class]];
+		case SAStorage_SchemaField_Double:			return [value isKindOfClass: [NSNumber class]];
+		case SAStorage_SchemaField_Boolean:			return [value isKindOfClass: [NSNumber class]];
+		case SAStorage_SchemaField_String:			return [value isKindOfClass: [NSString class]];
+		case SAStorage_SchemaField_Date:			return [value isKindOfClass: [NSDate class]];
+		case SAStorage_SchemaField_Blob:			return [value isKindOfClass: [NSData class]];
+		case SAStorage_SchemaField_RelationshipOneToOne: 			return [value isKindOfClass: [SAStorage_Record class]];
+		case SAStorage_SchemaField_RelationshipOneToMany: 			return [value isKindOfClass: [NSSet class]];
+		case SAStorage_SchemaField_RelationshipManyToOne: 			return [value isKindOfClass: [SAStorage_Record class]];
+		case SAStorage_SchemaField_RelationshipManyToMany: 			return [value isKindOfClass: [NSSet class]];
+			break;
+	}
+	return NO;
+}
 
 + (SAStorage_SchemaField_Type) stringToFieldType: (NSString *) string {
 	if ([string isEqual: @"integer"]) return SAStorage_SchemaField_Integer;

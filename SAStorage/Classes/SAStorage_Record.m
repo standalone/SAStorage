@@ -8,6 +8,11 @@
 
 #import "SAStorage_Record.h"
 #import "SAStorage_Database.h"
+#import "SAStorage_Schema.h"
+#import "SAStorage_SchemaTable.h"
+#import "SAStorage_SchemaField.h"
+#import "SAStorage_Error.h"
+
 
 @interface SAStorage_Record ()
 @property (nonatomic, assign) SAStorage_RecordIDType recordID;
@@ -79,17 +84,32 @@
 - (id) valueForKey: (NSString *) key {
 	return [self.backingDictionary valueForKey: key];
 }
-- (void) setValue: (id) value forKey: (NSString *) key { [self.backingDictionary setValue: value forKey: key]; }
+- (void) setValue: (id) value forKey: (NSString *) key {
+	if (self.db.validateSchemaFields) {
+		SAStorage_SchemaField				*field = self.db.schema[self.tableName][key];
+		
+		if (field == nil) {
+			[SAStorage_Error handleNonFatalError: SAStorage_Error_FieldNotPresentInTable object: self userInfo: @{ @"field": key } description: nil];
+			return;
+		}
+		
+		if (![field valueIsProperType: value]) {
+			[SAStorage_Error handleNonFatalError: SAStorage_Error_IncorrectDataType object: self userInfo: @{ @"field": key, @"value": value } description: nil];
+			return;
+		}
+	}
+	if (value)
+		[self.backingDictionary setValue: value forKey: key];
+	else
+		[self.backingDictionary removeObjectForKey: key];
+}
 
 - (id) objectForKeyedSubscript: (id) key {
 	return self.backingDictionary[key];
 }
 
 - (void) setObject: (id) obj forKeyedSubscript: (id) key {
-	if (obj)
-		self.backingDictionary[key] = obj;
-	else
-		[self.backingDictionary removeObjectForKey: key];
+	[self setValue: obj forKey: key];
 }
 
 

@@ -26,8 +26,15 @@
 	return [SAStorage_Schema schemaWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"]];
 }
 
-- (void) testDatabaseCreation {
+- (SAStorage_Database *) db {
 	SAStorage_Database		*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: SAStorage_Database_JSON basedOn: self.testSchema];
+	
+	db.validateSchemaFields = YES;
+	return db;
+}
+
+- (void) testDatabaseCreation {
+	SAStorage_Database		*db = self.db;
 	NSError					*error = [db saveWithCompletion: nil];
 	
 	STAssertNil(error, @"There was an error saving the database: %@", error);
@@ -35,13 +42,14 @@
 }
 
 - (void) testRecordCreation {
-	SAStorage_Database		*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: SAStorage_Database_JSON basedOn: self.testSchema];
+	SAStorage_Database		*db = self.db;
 
-	SAStorage_Record		* record = [db insertNewRecordOfType: @"Contact" completion: nil];
+	SAStorage_Record		* record = [db insertNewRecordOfType: @"Contacts" completion: nil];
 	STAssertNotNil(record, @"Failed to create record in database: %@");
 
 	record[@"first_name"] = @"Isaac";
 	record[@"last_name"] = @"Newton";
+	record[@"last_name"] = @(44);
 	record.recordHasChanges = YES;
 	
 	NSError					*error = [db saveWithCompletion: nil];
@@ -50,7 +58,7 @@
 }
 
 - (void) testRecordFetching {
-	SAStorage_Database		*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: SAStorage_Database_JSON basedOn: self.testSchema];
+	SAStorage_Database		*db = self.db;
 	
 	[db insertNewRecordOfType: @"Contact" completion:^(SAStorage_Record *record, NSError *error) {
 		STAssertNotNil(record, @"Failed to create record in database: %@");

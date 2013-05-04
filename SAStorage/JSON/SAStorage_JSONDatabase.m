@@ -184,6 +184,13 @@
 }
 
 - (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion {
+	SAStorage_SchemaTable		*table = self.schema[recordType];
+	
+	if (self.validateSchemaFields && table == nil) {
+		[SAStorage_Error handleNonFatalError: SAStorage_Error_TableNotPresent object: self userInfo: @{ @"table": recordType } description: @""];
+		return nil;
+	}
+	
 	NSString					*metadataIDKey = [NSString stringWithFormat: @"currentID_%@", recordType];
 	NSUInteger					lastID = [[self metadataValueForKey: metadataIDKey] integerValue] + 1;
 	

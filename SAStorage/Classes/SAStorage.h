@@ -8,7 +8,7 @@
 #import "SAStorage_SchemaField.h"
 #import "SAStorage_ResultSet.h"
 
-#import "SAStorage_Errors.h"
+#import "SAStorage_Error.h"
 #import "SAStorage_Tools.h"
 
 
