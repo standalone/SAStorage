@@ -139,7 +139,6 @@
 		B5980DF61730B05B00D77EE8 /* SAStorage_LibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAStorage_LibraryTests.m; sourceTree = "<group>"; };
 		B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B5980E451730B6A200D77EE8 /* libSAStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAStorage.a; path = libSAStorage_Library.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5980E491730B6A200D77EE8 /* SAStorage-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAStorage-Prefix.pch"; sourceTree = "<group>"; };
 		B5980E671730BFB100D77EE8 /* BuildLibrary.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = BuildLibrary.sh; sourceTree = "<group>"; };
 		B5980F1A1734A77900D77EE8 /* SAStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage.h; sourceTree = "<group>"; };
 		B5980F1B1734A77900D77EE8 /* SAStorage_Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_Database.h; sourceTree = "<group>"; };
@@ -179,6 +178,7 @@
 		B5B8D4061733BF9C0019BCAF /* SAStorage_DatabaseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAStorage_DatabaseTests.h; sourceTree = "<group>"; };
 		B5B8D4071733BF9C0019BCAF /* SAStorage_DatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_DatabaseTests.m; sourceTree = "<group>"; };
 		B5B8D4091733C0DF0019BCAF /* sample_schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_schema.json; sourceTree = "<group>"; };
+		B5EAC96E1734B86A00737B27 /* SAStorage_Library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAStorage_Library-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +221,6 @@
 				B5980E661730BFB100D77EE8 /* Scripts */,
 				B5980DD11730B05B00D77EE8 /* SAStorage_Library */,
 				B5980DEF1730B05B00D77EE8 /* Tests */,
-				B5980E471730B6A200D77EE8 /* SAStorage */,
 				B5980DCA1730B05B00D77EE8 /* Frameworks */,
 				B5980DC91730B05B00D77EE8 /* Products */,
 				B5980F181734A77900D77EE8 /* SAStorage */,
@@ -253,6 +252,7 @@
 		B5980DD11730B05B00D77EE8 /* SAStorage_Library */ = {
 			isa = PBXGroup;
 			children = (
+				B5EAC96E1734B86A00737B27 /* SAStorage_Library-Prefix.pch */,
 				B5980DDA1730B05B00D77EE8 /* SAStorageAppDelegate.h */,
 				B5980DDB1730B05B00D77EE8 /* SAStorageAppDelegate.m */,
 				B5980DD21730B05B00D77EE8 /* Supporting Files */,
@@ -293,22 +293,6 @@
 				B5B8D4091733C0DF0019BCAF /* sample_schema.json */,
 				B5980DF11730B05B00D77EE8 /* SAStorage_LibraryTests-Info.plist */,
 				B5980DF21730B05B00D77EE8 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B5980E471730B6A200D77EE8 /* SAStorage */ = {
-			isa = PBXGroup;
-			children = (
-				B5980E481730B6A200D77EE8 /* Supporting Files */,
-			);
-			path = SAStorage;
-			sourceTree = "<group>";
-		};
-		B5980E481730B6A200D77EE8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B5980E491730B6A200D77EE8 /* SAStorage-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
