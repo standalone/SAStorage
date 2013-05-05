@@ -70,8 +70,15 @@
 	for (NSString *key in self.backingDictionary) {
 		id			value = self.backingDictionary[key];
 		
-		if ([value isKindOfClass: [SAStorage_Record class]]) {
-			[string appendFormat: @"%@:  <%@/%d>\n", key, [value tableName], [value recordID]];
+		if ([value isKindOfClass: [NSSet class]]) {
+			id		contents = [value count] ? [value anyObject] : nil;
+			
+			if (contents)
+				[string appendFormat: @"%@:  <%d %@ records>\n", key, [value count], [contents tableName]];
+			else
+				[string appendFormat: @"%@:  <empty>\n", key];
+		} else if ([value isKindOfClass: [SAStorage_Record class]]) {
+			[string appendFormat: @"%@:  {%@ (%d)}\n", key, [value tableName], [value recordID]];
 		} else
 			[string appendFormat: @"%@:  %@\n", key, value];
 	}
