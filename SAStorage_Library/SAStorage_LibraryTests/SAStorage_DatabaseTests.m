@@ -65,7 +65,7 @@
 
 - (void) testRecordCreation {
 	SAStorage_Database		*db = self.emptyDB;
-
+	
 	SAStorage_Record		*record = [db insertNewRecordOfType: @"Contact" completion: nil];
 	STAssertNotNil(record, @"Failed to create record in database: %@");
 	
@@ -73,28 +73,34 @@
 	record[@"last_name"] = @"Obama";
 	record[@"age"] = @(52);
 	record.recordHasChanges = YES;
+	
+	NSError					*error = [db saveWithCompletion: nil];
+	STAssertNil(error, @"There was an error saving the database: %@", error);
+	[db deleteBackingStore];
+}
 
-	SAStorage_Record		*secondRecord = [db insertNewRecordOfType: @"Contact" completion: nil];
-	STAssertNotNil(record, @"Failed to create record in database: %@");
+- (void) testRecordRelationships {
+	SAStorage_Database		*db = self.emptyDB;
 	
-	secondRecord[@"first_name"] = @"Michelle";
-	secondRecord[@"last_name"] = @"Obama";
-	secondRecord[@"age"] = @(44);
-	secondRecord[@"spouse"] = record;
+	NSMutableArray			*contacts = [NSMutableArray array];
+	NSArray					*fields = @[
+	   @{@"first_name": @"Barack", @"last_name": @"Obama", @"age": @(52)},
+	   @{@"first_name": @"Michelle", @"last_name": @"Obama", @"age": @(48)},
+	   @{@"first_name": @"Sasha", @"last_name": @"Obama", @"age": @(6)},
+	   @{@"first_name": @"Malia", @"last_name": @"Obama", @"age": @(8)},
+	];
 	
-	secondRecord.recordHasChanges = YES;
+	for (NSDictionary *fieldSet in fields) {
+		SAStorage_Record		*record = [db insertNewRecordOfType: @"Contact" withFields: fieldSet completion: nil];
+		STAssertNotNil(record, @"Failed to create record in database: %@");
+		[contacts addObject: record];
+	}
 	
-	SAStorage_Record		*car = [db insertNewRecordOfType: @"Car" completion: nil];
-	car[@"owner"] = record;
-	car[@"make"] = @"Lincoln";
-	car[@"model"] = @"Limo";
+	contacts[0][@"spouse"] = contacts[1];
+	contacts[0][@"kids"] = @[ contacts[2], contacts[3] ];
+	contacts[2][@"parents"] = @[ contacts[0], contacts[1] ];
+	contacts[3][@"parents"] = @[ contacts[0], contacts[1] ];
 
-	SAStorage_Record		*car2 = [db insertNewRecordOfType: @"Car" completion: nil];
-//	car2[@"owner"] = record;
-	car2[@"make"] = @"Tesla";
-	car2[@"model"] = @"S";
-	record[@"cars"] = [NSSet setWithObject: car2];
-	
 	NSError					*error = [db saveWithCompletion: nil];
 	STAssertNil(error, @"There was an error saving the database: %@", error);
 	[db deleteBackingStore];

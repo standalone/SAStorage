@@ -83,6 +83,8 @@
 - (NSDictionary *) dictionaryRepresentation { return self.backingDictionary; }
 
 - (void) setRecordHasChanges: (BOOL) recordHasChanges {
+	if (_recordHasChanges == recordHasChanges) return;
+	
 	_recordHasChanges = recordHasChanges;
 	[self.db markRecord: self changed: recordHasChanges];
 }
@@ -176,6 +178,8 @@
 		[self.backingDictionary removeObjectForKey: key];
 		if (field.isRelationship) [self removeRelatedRecord: existing forField: key];		//clear the existing relationship's other side
 	}
+	
+	self.recordHasChanges = YES;
 }
 
 - (void) removeRelatedRecord: (id) otherSide forField: (NSString *) fieldName {

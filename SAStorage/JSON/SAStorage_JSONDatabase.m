@@ -216,6 +216,17 @@
 	return completion ? nil : record;
 }
 
+- (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType withFields: (NSDictionary *) fields completion: (SAStorage_RecordCallback) completion {
+	SAStorage_Record			*record = [self insertNewRecordOfType: recordType completion: nil];
+	
+	for (NSString *key in fields) {
+		record[key] = fields[key];
+	}
+	
+	if (completion) completion(record, nil);
+	return completion ? nil : record;
+}
+
 - (NSString *) metadataValueForKey: (NSString *) key {
 	return self.metadata[key];
 }

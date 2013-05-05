@@ -118,6 +118,10 @@
 	return nil;
 }
 
+- (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType withFields: (NSDictionary *) fields completion: (SAStorage_RecordCallback) completion {
+	return nil;
+}
+
 - (NSString *) metadataValueForKey: (NSString *) key {
 	return nil;
 }

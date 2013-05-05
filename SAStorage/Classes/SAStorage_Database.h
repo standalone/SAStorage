@@ -56,6 +56,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 //Inserting data
 - (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion;
+- (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType withFields: (NSDictionary *) fields completion: (SAStorage_RecordCallback) completion;
 
 //Modifying Records
 - (void) markRecord: (SAStorage_Record *) record changed: (BOOL) changed;
