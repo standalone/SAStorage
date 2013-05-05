@@ -2,41 +2,91 @@
 	"tables" : {
 		"Contact" : [
 					 {
-					 "cars" : [
-							   2
+					 "kids" : [
+							   3,
+							   4
 							   ],
+					 "first_name" : "Barack",
 					 "age" : 52,
 					 "spouse" : 2,
-					 "first_name" : "Barack",
 					 "id" : 1,
-					 "last_name" : "Obama"
+					 "last_name" : "Obama",
+					 "vehicles" : [
+								   3,
+								   1,
+								   2
+								   ]
 					 },
 					 {
-					 "age" : 44,
+					 "age" : 48,
 					 "spouse" : 1,
 					 "id" : 2,
 					 "first_name" : "Michelle",
+					 "kids" : [
+							   3,
+							   4
+							   ],
+					 "last_name" : "Obama"
+					 },
+					 {
+					 "age" : 6,
+					 "parents" : [
+								  2,
+								  1
+								  ],
+					 "id" : 3,
+					 "first_name" : "Sasha",
+					 "last_name" : "Obama",
+					 "vehicles" : [
+								   4
+								   ]
+					 },
+					 {
+					 "age" : 8,
+					 "parents" : [
+								  2,
+								  1
+								  ],
+					 "id" : 4,
+					 "first_name" : "Malia",
 					 "last_name" : "Obama"
 					 }
 					 ],
-		"Car" : [
-				 {
-				 "id" : 1,
-				 "make" : "Lincoln",
-				 "model" : "Limo"
-				 },
-				 {
-				 "make" : "Tesla",
-				 "id" : 2,
-				 "model" : "S",
-				 "owner" : 1
-				 }
-				 ]
+		"Vehicle" : [
+					 {
+					 "name" : "Marine One",
+					 "make" : "Sikorsky",
+					 "id" : 1,
+					 "model" : "VH-60N",
+					 "owner" : 1
+					 },
+					 {
+					 "name" : "Air Force One",
+					 "make" : "Boeing",
+					 "id" : 2,
+					 "model" : "747",
+					 "owner" : 1
+					 },
+					 {
+					 "name" : "Limo",
+					 "make" : "GM",
+					 "id" : 3,
+					 "model" : "Stretch Limo",
+					 "owner" : 1
+					 },
+					 {
+					 "name" : "Bike",
+					 "make" : "Schwinn",
+					 "id" : 4,
+					 "model" : "Roadmaster",
+					 "owner" : 3
+					 }
+					 ]
 	},
 	"metadata" : {
-		"currentID_Car" : "2",
-		"uuid" : "7C5EB50E-C9EF-4646-8A85-B0659D7CE6F5",
-		"currentID_Contact" : "2",
-		"schema_hash" : 4118318388
+		"uuid" : "755DDF8B-EF11-4DB3-BF33-8C44566ABAC4",
+		"currentID_Vehicle" : "4",
+		"currentID_Contact" : "4",
+		"schema_hash" : 1611150490
 	}
 }

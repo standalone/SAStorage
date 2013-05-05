@@ -40,17 +40,21 @@
 						   "relatedBy": "kids"
 						   },
 						   {
-						   "name": "cars",
+						   "name": "vehicles",
 						   "type": "one-to-many",
-						   "relatedTo": "Car",
+						   "relatedTo": "Vehicle",
 						   "relatedBy": "owner"
 						   }
 						   ]
 			   },
 			   {
-			   "name": "Car",
-			   "class": "CT_Car",
+			   "name": "Vehicle",
+			   "class": "CT_Vehicle",
 			   "columns": [
+						   {
+						   "name": "name",
+						   "type": "string"
+						   },
 						   {
 						   "name": "make",
 						   "type": "string"
@@ -63,7 +67,7 @@
 						   "name": "owner",
 						   "type": "many-to-one",
 						   "relatedTo": "Contact",
-						   "relatedBy": "cars"
+						   "relatedBy": "vehicles"
 						   }
 						   ]
 			   }
