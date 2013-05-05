@@ -7,8 +7,11 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "SAStorage.h"
 
 @interface SAStorage_DatabaseTests : SenTestCase
+
+@property (nonatomic) SAStorage_Database_Type databaseType;
 
 - (void) testDatabaseCreation;
 - (void) testRecordCreation;

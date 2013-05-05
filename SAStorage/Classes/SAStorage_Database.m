@@ -133,4 +133,12 @@
 - (NSError *) deleteBackingStore {
 	return nil;
 }
+
+- (id) objectForKeyedSubscript: (id) key {
+	return nil;
+}
+
+- (void) setObject: (id) obj forKeyedSubscript: (id) key {
+	
+}
 @end

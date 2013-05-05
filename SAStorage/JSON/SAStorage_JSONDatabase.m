@@ -8,16 +8,9 @@
 
 #import "SAStorage_JSONDatabase.h"
 #import "SAStorage.h"
-
-@interface NSMutableArray (SAStorage_JSONDatabase)
-- (id) JSONDictionaryRepresentation;
-@end
+#import "SAStorage_JSONTable.h"
 
 @interface SAStorage_JSONDatabase ()
-@end
-
-@interface SAStorage_Record (JSONDictionaryRepresentation)
-- (NSDictionary *) JSONDictionaryRepresentation;
 @end
 
 @implementation SAStorage_JSONDatabase
@@ -38,22 +31,26 @@
 		}
 				
 		self.tables = [NSMutableDictionary dictionary];
-		for (SAStorage_SchemaTable *table in schema.tables.allValues) {
-			NSMutableArray				*records = [NSMutableArray array];
-			Class						recordClass = table.recordClass ?: [SAStorage_Record class];
+		for (SAStorage_SchemaTable *tableSchema in schema.tables.allValues) {
+			SAStorage_JSONTable			*table = [SAStorage_JSONTable tableInDatabase: self];
+			Class						recordClass = tableSchema.recordClass ?: [SAStorage_Record class];
 			
-			self.tables[table.name] = records;
-			for (NSDictionary *recordDictionary in json[@"tables"][table.name]) {
-				SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: table.name withRecordID: [recordDictionary[RECORD_ID_FIELD_NAME] intValue]];
+			self.tables[tableSchema.name] = table;
+			for (NSDictionary *recordDictionary in json[@"tables"][tableSchema.name]) {
+				SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: tableSchema.name withRecordID: [recordDictionary[RECORD_ID_FIELD_NAME] intValue]];
 				
 				[record populateBackingDictionaryFromDictionary: recordDictionary];
-				[records addObject: record];
+				[table addRecord: record];
 			}
 		}
 
 		[self postInitSetup];
 	}
 	return self;
+}
+
+- (id) objectForKeyedSubscript: (id) key {
+	return self.tables[key];
 }
 
 //=============================================================================================================================
@@ -86,7 +83,7 @@
 }
 
 - (SAStorage_ResultSet *) recordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
-	NSArray					*records = self.tables[query.tableName];
+	NSArray					*records = [self[query.tableName] records];
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
@@ -113,7 +110,7 @@
 }
 
 - (SAStorage_Record *) anyRecordMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_RecordCallback) completion {
-	NSArray					*records = self.tables[query.tableName];
+	NSArray					*records = [self[query.tableName] records];
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
@@ -126,7 +123,7 @@
 		
 		for (SAStorage_Record *record in records) {
 			if ([record matchesPredicate: query.predicate]) {
-				if (record) completion(record, nil);
+				if (completion) completion(record, nil);
 				return record;
 			}
 		}
@@ -138,7 +135,7 @@
 }
 
 - (SAStorage_ResultSet *) fields: (NSSet *) fields fromRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCallback) completion {
-	NSArray					*records = self.tables[query.tableName];
+	NSArray					*records = [self[query.tableName] records];
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
@@ -171,7 +168,7 @@
 }
 
 - (NSUInteger) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion {
-	NSArray					*records = self.tables[query.tableName];
+	NSArray					*records = [self[query.tableName] records];
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
@@ -193,9 +190,9 @@
 }
 
 - (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion {
-	SAStorage_SchemaTable		*table = self.schema[recordType];
+	SAStorage_SchemaTable		*tableSchema = self.schema[recordType];
 	
-	if (self.validateSchemaFields && table == nil) {
+	if (self.validateSchemaFields && tableSchema == nil) {
 		[self.errors handleFatal: NO error: SAStorage_Error_TableNotPresent onObject: self userInfo: @{ @"table": recordType } ];
 
 		return nil;
@@ -206,16 +203,14 @@
 	
 	[self setMetadataValue: [NSString stringWithFormat: @"%u", lastID] forKey: metadataIDKey];
 	
-	Class						recordClass = [self.schema.tables[recordType] recordClass] ?: [SAStorage_Record class];
+	Class						recordClass = [tableSchema[recordType] recordClass] ?: [SAStorage_Record class];
 	
 	SAStorage_Record			*record = [recordClass recordInDatabase: self andTable: recordType withRecordID: lastID];
 	
 	record.backingDictionary = [NSMutableDictionary dictionary];
-	NSMutableArray				*tableRecords = self.tables[recordType];
-	if (tableRecords == nil) {
-		
-	}
-	[tableRecords addObject: record];
+	SAStorage_JSONTable				*table = self[recordType];
+
+	[table addRecord: record];
 	
 	if (completion) completion(record, nil);
 	return completion ? nil : record;
@@ -245,36 +240,5 @@
 	
 	[[NSFileManager defaultManager] removeItemAtURL: self.url error: &error];
 	return error;
-}
-@end
-
-
-@implementation NSMutableArray (SAStorage_JSONDatabase)
-- (id) JSONDictionaryRepresentation {
-	NSMutableArray				*array = [NSMutableArray arrayWithCapacity: self.count];
-	
-	for (SAStorage_Record *record in self) {
-		[array addObject: record.JSONDictionaryRepresentation];
-	}
-	return array;
-}
-@end
-
-@implementation SAStorage_Record (JSONDictionaryRepresentation)
-- (NSDictionary *) JSONDictionaryRepresentation {
-	NSMutableDictionary			*dict = [NSMutableDictionary dictionary];
-	
-	for (SAStorage_SchemaField *field in self.db.schema[self.tableName]) {
-		id			value = self.backingDictionary[field.name];
-
-		if (value == nil) continue;
-		if (field.isRelationship) {
-			dict[field.name] = @([value recordID]);
-		} else {
-			dict[field.name] = value;
-		}
-	}
-	dict[RECORD_ID_FIELD_NAME] = @(self.recordID);
-	return dict;
 }
 @end

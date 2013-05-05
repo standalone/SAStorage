@@ -23,6 +23,7 @@
 
 - (void) setUp {
     [super setUp];
+	self.databaseType = SAStorage_Database_JSON;
 	[[NSFileManager defaultManager] removeItemAtURL: DATABASE_URL error: nil];
 }
 
@@ -32,8 +33,19 @@
 	return schema;
 }
 
-- (SAStorage_Database *) db {
-	SAStorage_Database				*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: SAStorage_Database_JSON basedOn: self.testSchema];
+- (SAStorage_Database *) emptyDB {
+	SAStorage_Database				*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: self.databaseType basedOn: self.testSchema];
+	SAStorage_ErrorManagerTesting	*mgr = [[SAStorage_ErrorManagerTesting alloc] init];
+	
+	db.validateSchemaFields = YES;
+	db.errors = mgr;
+	mgr.target = self;
+	
+	return db;
+}
+
+- (SAStorage_Database *) filledDB {
+	SAStorage_Database				*db = [SAStorage_Database databaseWithURL: [[NSBundle mainBundle] URLForResource: @"sample_database" withExtension: @"json"] ofType: self.databaseType basedOn: self.testSchema];
 	SAStorage_ErrorManagerTesting	*mgr = [[SAStorage_ErrorManagerTesting alloc] init];
 	
 	db.validateSchemaFields = YES;
@@ -44,7 +56,7 @@
 }
 
 - (void) testDatabaseCreation {
-	SAStorage_Database		*db = self.db;
+	SAStorage_Database		*db = self.emptyDB;
 	NSError					*error = [db saveWithCompletion: nil];
 	
 	STAssertNil(error, @"There was an error saving the database: %@", error);
@@ -52,7 +64,7 @@
 }
 
 - (void) testRecordCreation {
-	SAStorage_Database		*db = self.db;
+	SAStorage_Database		*db = self.emptyDB;
 
 	SAStorage_Record		*record = [db insertNewRecordOfType: @"Contacts" completion: nil];
 	STAssertNotNil(record, @"Failed to create record in database: %@");
@@ -78,15 +90,12 @@
 }
 
 - (void) testRecordFetching {
-	SAStorage_Database		*db = self.db;
+	SAStorage_Database		*db = self.filledDB;
+	SAStorage_Query			*query = [SAStorage_Query queryInTable: @"Contacts" withPredicate: [NSPredicate predicateWithFormat: @"first_name == %@", @"Barack"]];
+	SAStorage_Record		*record = [db anyRecordMatchingQuery: query completion: nil];
 	
-	[db insertNewRecordOfType: @"Contacts" completion:^(SAStorage_Record *record, NSError *error) {
-		STAssertNotNil(record, @"Failed to create record in database: %@");
-		
-		
-		
-	}];
-	[db deleteBackingStore];
+	NSLog(@"Record: %@", record);
+	STAssertNotNil(record, @"Record Fetch Failed");
 }
 
 @end

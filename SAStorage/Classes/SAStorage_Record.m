@@ -40,9 +40,36 @@
 
 - (void) populateBackingDictionaryFromDictionary: (NSDictionary *) dict {
 	if (self.backingDictionary == nil) self.backingDictionary = [NSMutableDictionary dictionary];
+	
+	SAStorage_SchemaTable				*table = self.db.schema[self.tableName];
+	
 	for (NSString *key in dict) {
-		self.backingDictionary[key] = dict[key];
+		SAStorage_SchemaField				*field = table[key];
+		
+		if (field.isRelationship) {
+			id			otherSide = nil;
+			
+			if (field.type == SAStorage_SchemaField_RelationshipOneToOne) {
+				otherSide = self.db[field.relatedTo][dict[key]];
+				if (otherSide) self[key] = otherSide;
+			}
+		} else
+			self.backingDictionary[key] = dict[key];
 	}
+}
+
+- (NSString *) description {
+	NSMutableString				*string = [NSMutableString stringWithFormat: @"<%@: 0x%X, %@, %@>\n", NSStringFromClass([self class]), (int) self, self.tableName, self.db];
+	
+	for (NSString *key in self.backingDictionary) {
+		id			value = self.backingDictionary[key];
+		
+		if ([value isKindOfClass: [SAStorage_Record class]]) {
+			[string appendFormat: @"%@:  <%@/%d>\n", key, [value tableName], [value recordID]];
+		} else
+			[string appendFormat: @"%@:  %@\n", key, value];
+	}
+	return string;
 }
 
 //=============================================================================================================================
@@ -84,6 +111,7 @@
 - (id) valueForKey: (NSString *) key {
 	return [self.backingDictionary valueForKey: key];
 }
+
 - (void) setValue: (id) value forKey: (NSString *) key {
 	SAStorage_SchemaField				*field = self.db.schema[self.tableName][key];
 	id									existing = self[key];

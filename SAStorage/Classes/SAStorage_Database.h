@@ -50,6 +50,10 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 - (NSUInteger) numberOfRecordsMatchingQuery: (SAStorage_Query *) query completion: (SAStorage_QueryCountCallback) completion;
 - (NSError *) saveWithCompletion: (SAStorage_ErrorCallback) completion;
 
+- (id) objectForKeyedSubscript: (id) key;					//returns a table with a given name
+- (void) setObject: (id) obj forKeyedSubscript: (id) key;		//
+
+
 //Inserting data
 - (SAStorage_Record *) insertNewRecordOfType: (NSString *) recordType completion: (SAStorage_RecordCallback) completion;
 
