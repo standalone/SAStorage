@@ -1,0 +1,11 @@
+{
+  "age" : 48,
+  "spouse" : 1,
+  "id" : 2,
+  "first_name" : "Michelle",
+  "kids" : [
+    3,
+    4
+  ],
+  "last_name" : "Obama"
+}

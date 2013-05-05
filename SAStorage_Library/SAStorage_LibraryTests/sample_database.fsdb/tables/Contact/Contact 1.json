@@ -1,0 +1,16 @@
+{
+  "kids" : [
+    3,
+    4
+  ],
+  "first_name" : "Barack",
+  "age" : 52,
+  "spouse" : 2,
+  "id" : 1,
+  "last_name" : "Obama",
+  "vehicles" : [
+    1,
+    3,
+    2
+  ]
+}
