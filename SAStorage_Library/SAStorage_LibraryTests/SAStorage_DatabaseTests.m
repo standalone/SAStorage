@@ -24,8 +24,11 @@
 - (void) setUp {
     [super setUp];
 	self.databaseType = SAStorage_Database_JSON;
-	[[NSFileManager defaultManager] removeItemAtURL: DATABASE_URL error: nil];
+	[[NSFileManager defaultManager] removeItemAtURL: self.databaseURL error: nil];
 }
+
+- (NSURL *) databaseURL { return DATABASE_URL; }
+- (NSString *) databaseExtension { return @"json"; }
 
 - (SAStorage_Schema *) testSchema {
 	SAStorage_Schema		*schema = [SAStorage_Schema schemaWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"]];
@@ -34,7 +37,7 @@
 }
 
 - (SAStorage_Database *) emptyDB {
-	SAStorage_Database				*db = [SAStorage_Database databaseWithURL: DATABASE_URL ofType: self.databaseType basedOn: self.testSchema];
+	SAStorage_Database				*db = [SAStorage_Database databaseWithURL: self.databaseURL ofType: self.databaseType basedOn: self.testSchema];
 	SAStorage_ErrorManagerTesting	*mgr = [[SAStorage_ErrorManagerTesting alloc] init];
 	
 	db.validateSchemaFields = YES;
@@ -45,7 +48,7 @@
 }
 
 - (SAStorage_Database *) filledDB {
-	SAStorage_Database				*db = [SAStorage_Database databaseWithURL: [[NSBundle mainBundle] URLForResource: @"sample_database" withExtension: @"json"] ofType: self.databaseType basedOn: self.testSchema];
+	SAStorage_Database				*db = [SAStorage_Database databaseWithURL: [[NSBundle mainBundle] URLForResource: @"sample_database" withExtension: self.databaseExtension] ofType: self.databaseType basedOn: self.testSchema];
 	SAStorage_ErrorManagerTesting	*mgr = [[SAStorage_ErrorManagerTesting alloc] init];
 	
 	db.validateSchemaFields = YES;
@@ -137,8 +140,11 @@
 	SAStorage_Query			*query = [SAStorage_Query queryInTable: @"Contact" withPredicate: [NSPredicate predicateWithFormat: @"first_name == %@", @"Barack"]];
 	SAStorage_Record		*record = [db anyRecordMatchingQuery: query completion: nil];
 	
-	NSLog(@"Record: %@", record);
-//	STAssertNotNil(record, @"Record Fetch Failed");
+	STAssertNotNil(record, @"Record Fetch Failed");
+	STAssertNotNil(record[@"spouse"], @"1-1 Relationship Fetch Failed");
+	STAssertTrue([record[@"vehicles"] count] > 0, @"1-Many Relationship Fetch Failed");
+	STAssertTrue([record[@"kids"] count] > 0, @"Many-to-Many Relationship Fetch Failed");
+	
 }
 
 @end
