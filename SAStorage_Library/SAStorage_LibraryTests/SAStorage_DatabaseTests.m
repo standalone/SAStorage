@@ -89,11 +89,12 @@
 	car[@"make"] = @"Lincoln";
 	car[@"model"] = @"Limo";
 
-//	SAStorage_Record		*car2 = [db insertNewRecordOfType: @"Car" completion: nil];
+	SAStorage_Record		*car2 = [db insertNewRecordOfType: @"Car" completion: nil];
 //	car2[@"owner"] = record;
-//	car2[@"make"] = @"Tesla";
-//	car2[@"model"] = @"S";
-
+	car2[@"make"] = @"Tesla";
+	car2[@"model"] = @"S";
+	record[@"cars"] = [NSSet setWithObject: car2];
+	
 	NSError					*error = [db saveWithCompletion: nil];
 	STAssertNil(error, @"There was an error saving the database: %@", error);
 	[db deleteBackingStore];
@@ -104,7 +105,7 @@
 	SAStorage_Query			*query = [SAStorage_Query queryInTable: @"Contact" withPredicate: [NSPredicate predicateWithFormat: @"first_name == %@", @"Barack"]];
 	SAStorage_Record		*record = [db anyRecordMatchingQuery: query completion: nil];
 	
-//	NSLog(@"Record: %@", record);
+	NSLog(@"Record: %@", record);
 //	STAssertNotNil(record, @"Record Fetch Failed");
 }
 

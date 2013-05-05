@@ -1,25 +1,42 @@
 {
-  "tables" : {
-    "Contacts" : [
-      {
-        "age" : 52,
-        "spouse" : 2,
-        "id" : 1,
-        "first_name" : "Barack",
-        "last_name" : "Obama"
-      },
-      {
-        "age" : 44,
-        "spouse" : 1,
-        "id" : 2,
-        "first_name" : "Michelle",
-        "last_name" : "Obama"
-      }
-    ]
-  },
-  "metadata" : {
-    "uuid" : "464EEBD1-42D0-42A4-A0A5-7C45DAFA094F",
-    "currentID_Contacts" : "2",
-    "schema_hash" : 2625260615
-  }
+	"tables" : {
+		"Contact" : [
+					 {
+					 "cars" : [
+							   2
+							   ],
+					 "age" : 52,
+					 "spouse" : 2,
+					 "first_name" : "Barack",
+					 "id" : 1,
+					 "last_name" : "Obama"
+					 },
+					 {
+					 "age" : 44,
+					 "spouse" : 1,
+					 "id" : 2,
+					 "first_name" : "Michelle",
+					 "last_name" : "Obama"
+					 }
+					 ],
+		"Car" : [
+				 {
+				 "id" : 1,
+				 "make" : "Lincoln",
+				 "model" : "Limo"
+				 },
+				 {
+				 "make" : "Tesla",
+				 "id" : 2,
+				 "model" : "S",
+				 "owner" : 1
+				 }
+				 ]
+	},
+	"metadata" : {
+		"currentID_Car" : "2",
+		"uuid" : "7C5EB50E-C9EF-4646-8A85-B0659D7CE6F5",
+		"currentID_Contact" : "2",
+		"schema_hash" : 4118318388
+	}
 }

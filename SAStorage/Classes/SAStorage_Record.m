@@ -49,9 +49,15 @@
 		if (field.isRelationship) {
 			id			otherSide = nil;
 			
-			if (field.type == SAStorage_SchemaField_RelationshipOneToOne) {
+			if (field.type == SAStorage_SchemaField_RelationshipOneToOne || field.type == SAStorage_SchemaField_RelationshipManyToOne) {
 				otherSide = self.db[field.relatedTo][dict[key]];
 				if (otherSide) self[key] = otherSide;
+			} else if (field.type == SAStorage_SchemaField_RelationshipOneToMany) {
+				for (NSNumber *recordID in dict[key]) {
+					otherSide = self.db[field.relatedTo][recordID];
+					[otherSide addRelatedRecord: self forField: field.relatedBy];
+					if (otherSide) [self addRelatedRecord: otherSide forField: field.name];
+				}
 			}
 		} else
 			self.backingDictionary[key] = dict[key];
@@ -117,6 +123,8 @@
 	SAStorage_SchemaField				*field = self.db.schema[self.tableName][key];
 	id									existing = self[key];
 
+	if ([value isKindOfClass: [NSArray class]]) value = [NSSet setWithArray: value];
+	
 	if (value == nil && existing == nil) return;
 	if ([value isEqual: existing]) return;
 	
@@ -143,24 +151,73 @@
 			}
 		}
 	}
+	
+	if (field.isRelationship) {
+		if ([existing isKindOfClass: [NSSet class]]) {
+			[existing enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
+				[obj removeRelatedRecord: self forField: field.relatedBy];			//clear the existing relationship's other side
+			}];
+		} else
+			[existing removeRelatedRecord: self forField: field.relatedBy];			//clear the existing relationship's other side
+	}
+
 	if (value) {
 		[self.backingDictionary setValue: value forKey: key];
+
 		if (field.isRelationship) {
-			[existing removeRelationship: self forField: field.relatedBy];			//clear the existing relationship's other side
-			[value addRelationship: self forField: field.relatedBy];
+			if ([value isKindOfClass: [NSSet class]]) {
+				[value enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
+					[obj addRelatedRecord: self forField: field.relatedBy];
+				}];
+			} else
+				[value addRelatedRecord: self forField: field.relatedBy];
 		}
 	} else {
 		[self.backingDictionary removeObjectForKey: key];
-		if (field.isRelationship) existing[field.relatedBy] = nil;		//clear the existing relationship's other side
+		if (field.isRelationship) [self removeRelatedRecord: existing forField: key];		//clear the existing relationship's other side
 	}
 }
 
-- (void) removeRelationship: (id) otherSide forField: (NSString *) fieldName {
+- (void) removeRelatedRecord: (id) otherSide forField: (NSString *) fieldName {
+	SAStorage_SchemaField				*field = self.db.schema[self.tableName][fieldName];
 	
+	if (field.type == SAStorage_SchemaField_RelationshipOneToOne || field.type == SAStorage_SchemaField_RelationshipManyToOne) {
+		[self.backingDictionary removeObjectForKey: fieldName];
+	} else if (field.type == SAStorage_SchemaField_RelationshipOneToMany || field.type == SAStorage_SchemaField_RelationshipManyToMany) {
+		NSMutableSet				*existing = self.backingDictionary[fieldName];
+		
+		if (existing == nil) {
+			return;
+		} else if (![existing respondsToSelector: @selector(addObject:)]) {
+			existing = [existing mutableCopy];
+			self.backingDictionary[fieldName] = existing;
+		}
+		
+		[existing removeObject: otherSide];
+	}
 }
 
-- (void) addRelationship: (id) otherSide forField: (NSString *) fieldName {
+- (void) addRelatedRecord: (id) otherSide forField: (NSString *) fieldName {
+	SAStorage_SchemaField				*field = self.db.schema[self.tableName][fieldName];
 	
+	if (field.type == SAStorage_SchemaField_RelationshipOneToOne || field.type == SAStorage_SchemaField_RelationshipManyToOne) {
+		if (otherSide)
+			self.backingDictionary[fieldName] = otherSide;
+		else
+			[self.backingDictionary removeObjectForKey: fieldName];
+	} else if (field.type == SAStorage_SchemaField_RelationshipOneToMany || field.type == SAStorage_SchemaField_RelationshipManyToMany) {
+		NSMutableSet				*existing = self.backingDictionary[fieldName];
+		
+		if (existing == nil) {
+			existing = [NSMutableSet set];
+			self.backingDictionary[fieldName] = existing;
+		} else if (![existing respondsToSelector: @selector(addObject:)]) {
+			existing = [existing mutableCopy];
+			self.backingDictionary[fieldName] = existing;
+		}
+		
+		[existing addObject: otherSide];
+	}
 }
 
 - (id) objectForKeyedSubscript: (id) key {
