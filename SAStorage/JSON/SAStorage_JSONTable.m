@@ -12,11 +12,6 @@
 @interface SAStorage_JSONTable ()
 @end
 
-@interface SAStorage_Record (JSONDictionaryRepresentation)
-- (NSDictionary *) JSONDictionaryRepresentation;
-@end
-
-
 @implementation SAStorage_JSONTable
 
 

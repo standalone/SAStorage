@@ -52,7 +52,7 @@
 			if (field.type == SAStorage_SchemaField_RelationshipOneToOne || field.type == SAStorage_SchemaField_RelationshipManyToOne) {
 				otherSide = self.db[field.relatedTo][dict[key]];
 				if (otherSide) self[key] = otherSide;
-			} else if (field.type == SAStorage_SchemaField_RelationshipOneToMany) {
+			} else if (field.type == SAStorage_SchemaField_RelationshipOneToMany || field.type == SAStorage_SchemaField_RelationshipManyToMany) {
 				for (NSNumber *recordID in dict[key]) {
 					otherSide = self.db[field.relatedTo][recordID];
 					[otherSide addRelatedRecord: self forField: field.relatedBy];

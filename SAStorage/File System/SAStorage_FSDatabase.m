@@ -8,6 +8,7 @@
 
 #import "SAStorage_FSDatabase.h"
 #import "SAStorage.h"
+#import "SAStorage_JSONTable.h"
 
 @interface SAStorage_FSDatabase ()
 @property (nonatomic, strong) NSURL *metadataURL, *tablesURL;
@@ -71,13 +72,13 @@
 	NSFileManager			*mgr = [NSFileManager defaultManager];
 	NSError					*error = nil;
 	
-	SAStorage_SchemaTable		*table = self.schema[tableName];
-	NSMutableArray				*records = [NSMutableArray array];
-	Class						recordClass = table.recordClass ?: [SAStorage_Record class];
+	SAStorage_SchemaTable		*tableSchema = self.schema[tableName];
+	SAStorage_JSONTable			*table = [SAStorage_JSONTable tableInDatabase: self];
+	Class						recordClass = tableSchema.recordClass ?: [SAStorage_Record class];
 	BOOL						isDirectory;
-	NSURL						*tableURL = [self urlForTableNamed: table.name];
+	NSURL						*tableURL = [self urlForTableNamed: tableSchema.name];
 	
-	self.tables[table.name] = records;
+	self.tables[tableSchema.name] = table;
 	
 	if (![mgr fileExistsAtPath: tableURL.path isDirectory: &isDirectory]) {
 		[mgr createDirectoryAtURL: tableURL withIntermediateDirectories: YES attributes: nil error: &error];
@@ -90,22 +91,27 @@
 	for (NSURL *fileURL in [mgr contentsOfDirectoryAtURL: tableURL includingPropertiesForKeys: @[] options: 0 error: &error]) {
 		NSString				*filename = fileURL.lastPathComponent.stringByDeletingPathExtension;
 		
-		if (![filename hasPrefix: table.name]) continue;
+		if (![filename hasPrefix: tableSchema.name]) continue;
 		
 		NSData					*recordData = [NSData dataWithContentsOfURL: fileURL];
 		NSDictionary			*recordDictionary = recordData ? [NSJSONSerialization JSONObjectWithData: recordData options: 0 error: &error] : nil;
 		
 		if (recordDictionary == nil || error) {
-			NSLog(@"Failed to load a %@ record from %@: %@", table.name, fileURL, error);
+			NSLog(@"Failed to load a %@ record from %@: %@", tableSchema.name, fileURL, error);
 			continue;
 		}
 		
-		SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: table.name withRecordID: [[[filename componentsSeparatedByString: @" "] lastObject] intValue]];
+		SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: tableSchema.name withRecordID: [[[filename componentsSeparatedByString: @" "] lastObject] intValue]];
 		
 		[record populateBackingDictionaryFromDictionary: recordDictionary];
-		[records addObject: record];
+		[table addRecord: record];
 	}
 	return nil;
+}
+
+- (id) objectForKeyedSubscript: (id) key {
+	[self loadRecordsInTable: key];
+	return self.tables[key];
 }
 
 //=============================================================================================================================
@@ -131,8 +137,10 @@
 	
 	for (SAStorage_Record *dirtyRecord in self.changedRecords.copy) {
 		NSURL			*url = [self urlForRecordID: dirtyRecord.recordID inTable: dirtyRecord.tableName];
+		NSURL			*dirURL = [url URLByDeletingLastPathComponent];
 		
-		data = [NSJSONSerialization dataWithJSONObject: dirtyRecord.dictionaryRepresentation options: NSJSONWritingPrettyPrinted error: &error];
+		[[NSFileManager defaultManager] createDirectoryAtURL: dirURL withIntermediateDirectories: YES attributes: nil error: &error];
+		if (error == nil) data = [NSJSONSerialization dataWithJSONObject: dirtyRecord.JSONDictionaryRepresentation options: NSJSONWritingPrettyPrinted error: &error];
 		if (error == nil) [data writeToURL: url options: NSDataWritingAtomic error: &error];
 		if (error) {
 			NSLog(@"Error while writing out record %d: %@", dirtyRecord.recordID, error);

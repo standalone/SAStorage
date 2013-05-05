@@ -14,3 +14,9 @@
 - (id) JSONDictionaryRepresentation;
 
 @end
+
+@interface SAStorage_Record (JSONDictionaryRepresentation)
+- (NSDictionary *) JSONDictionaryRepresentation;
+@end
+
+
