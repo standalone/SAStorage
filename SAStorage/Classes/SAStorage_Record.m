@@ -109,6 +109,7 @@
 //=============================================================================================================================
 #pragma mark Maintenance
 - (id) valueForKey: (NSString *) key {
+	if ([key isEqual: @"recordID"]) return @(self.recordID);
 	return [self.backingDictionary valueForKey: key];
 }
 
@@ -145,13 +146,21 @@
 	if (value) {
 		[self.backingDictionary setValue: value forKey: key];
 		if (field.isRelationship) {
-			existing[field.relatedBy] = nil;		//clear the existing relationship's other side
-			value[field.relatedBy] = self;			//set the new relationship's other side
+			[existing removeRelationship: self forField: field.relatedBy];			//clear the existing relationship's other side
+			[value addRelationship: self forField: field.relatedBy];
 		}
 	} else {
 		[self.backingDictionary removeObjectForKey: key];
 		if (field.isRelationship) existing[field.relatedBy] = nil;		//clear the existing relationship's other side
 	}
+}
+
+- (void) removeRelationship: (id) otherSide forField: (NSString *) fieldName {
+	
+}
+
+- (void) addRelationship: (id) otherSide forField: (NSString *) fieldName {
+	
 }
 
 - (id) objectForKeyedSubscript: (id) key {

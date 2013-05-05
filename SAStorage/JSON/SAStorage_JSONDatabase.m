@@ -114,7 +114,7 @@
 	NSError					*error = nil;
 	if (records == nil) {
 		error = [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_NoSuchTable userInfo: @{ @"tableName": query.tableName}];
-		completion(nil, error);
+		if (completion) completion(nil, error);
 		return nil;
 	}
 	

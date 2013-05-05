@@ -58,7 +58,10 @@
 		
 		if (value == nil) continue;
 		if (field.isRelationship) {
-			dict[field.name] = @([value recordID]);
+			if ([value isKindOfClass: [NSSet class]]) {
+				dict[field.name] = [[value allObjects] valueForKey: @"recordID"];
+			} else
+				dict[field.name] = @([value recordID]);
 		} else {
 			dict[field.name] = value;
 		}

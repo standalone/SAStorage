@@ -1,33 +1,71 @@
 {
-	"tables" : [
-				{
-				"name" : "Contacts",
-				"class" : "CT_Contact",
-				"columns" : [
-							 {
-							 "name": "first_name",
-							 "type" : "string"
-							 },
-							 {
-							 "name": "last_name",
-							 "type" : "string",
-							 "indexed" : true
-							 },
-							 {
-							 "name": "age",
-							 "type" : "integer"
-							 },
-							 {
-							 "name": "dob",
-							 "type" : "date"
-							 },
-							 {
-							 "name": "spouse",
-							 "type" : "one-to-one",
-							 "relatedTo" : "Contacts",
-							 "relatedBy" : "spouse"
-							 }
-							 ]
-				}
-				]
+    "tables": [
+			   {
+			   "name": "Contact",
+			   "class": "CT_Contact",
+			   "columns": [
+						   {
+						   "name": "first_name",
+						   "type": "string"
+						   },
+						   {
+						   "name": "last_name",
+						   "type": "string",
+						   "indexed": true
+						   },
+						   {
+						   "name": "age",
+						   "type": "integer"
+						   },
+						   {
+						   "name": "dob",
+						   "type": "date"
+						   },
+						   {
+						   "name": "spouse",
+						   "type": "one-to-one",
+						   "relatedTo": "Contact",
+						   "relatedBy": "spouse"
+						   },
+						   {
+						   "name": "kids",
+						   "type": "many-to-many",
+						   "relatedTo": "Contact",
+						   "relatedBy": "parents"
+						   },
+						   {
+						   "name": "parents",
+						   "type": "many-to-many",
+						   "relatedTo": "Contact",
+						   "relatedBy": "kids"
+						   },
+						   {
+						   "name": "cars",
+						   "type": "one-to-many",
+						   "relatedTo": "Car",
+						   "relatedBy": "owner"
+						   }
+						   ]
+			   },
+			   {
+			   "name": "Car",
+			   "class": "CT_Car",
+			   "columns": [
+						   {
+						   "name": "make",
+						   "type": "string"
+						   },
+						   {
+						   "name": "model",
+						   "type": "string"
+						   },
+						   {
+						   "name": "owner",
+						   "type": "many-to-one",
+						   "relatedTo": "Contact",
+						   "relatedBy": "cars"
+						   }
+						   ]
+			   }
+			   ]
 }
