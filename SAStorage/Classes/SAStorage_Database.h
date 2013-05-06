@@ -21,7 +21,7 @@ typedef NS_ENUM(uint8_t, SAStorage_Database_Flags) {
 };
 
 
-@class SAStorage_Query, SAStorage_Schema, SAStorage_Record, SAStorage_Proxy, SAStorage_ResultSet;
+@class SAStorage_Query, SAStorage_SchemaBundle, SAStorage_Record, SAStorage_Proxy, SAStorage_ResultSet, SAStorage_Schema;
 
 typedef void (^SAStorage_QueryCallback)(SAStorage_ResultSet *results);
 typedef void (^SAStorage_QueryCountCallback)(NSUInteger count, NSError *error);
@@ -37,8 +37,8 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 @property (nonatomic) dispatch_queue_t completionQueue;
 @property (nonatomic, strong) SAStorage_ErrorManager *errors;
 
-+ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema;
-+ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema flags: (SAStorage_Database_Flags) flags;
++ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schema;
++ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schema flags: (SAStorage_Database_Flags) flags;
 
 - (NSError *) deleteBackingStore;
 
@@ -75,7 +75,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 @property (nonatomic, strong) SAStorage_Schema *schema;
 @property (nonatomic, strong) NSMutableSet *changedRecords;
 
-- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_Schema *) schema;
+- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema;
 - (SAStorage_Record *) resolveProxy: (SAStorage_Proxy *) proxy;
 
 

@@ -10,6 +10,7 @@
 #import "SAStorage_SQLiteDatabase.h"
 #import "SAStorage_JSONDatabase.h"
 #import "SAStorage_FSDatabase.h"
+#import "SAStorage_SchemaBundle.h"
 
 @implementation SAStorage_Database
 - (void) dealloc {
@@ -18,11 +19,11 @@
 	#endif
 }
 
-+ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema {
++ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schema {
 	return [self databaseWithURL: url ofType: type basedOn: schema flags: 0];
 }
 
-+ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_Schema *) schema flags: (SAStorage_Database_Flags) flags {
++ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schema flags: (SAStorage_Database_Flags) flags {
 	SAStorage_Database				*db = nil;
 	
 	switch (type) {
@@ -46,10 +47,10 @@
 	return db;
 }
 
-- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_Schema *) schema {
+- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema {
 	if ((self = [super init])) {
 		self.url = url;
-		self.schema = schema;
+		self.schema = schema.currentSchema;
 		self.completionQueue = dispatch_get_main_queue();
 	}
 	return self;

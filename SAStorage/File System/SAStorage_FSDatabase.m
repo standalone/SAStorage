@@ -19,7 +19,7 @@
 
 @implementation SAStorage_FSDatabase
 
-- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_Schema *) schema {
+- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema {
 	if ((self = [super initWithURL: url andSchema: schema])) {
 		NSFileManager			*mgr = [NSFileManager defaultManager];
 		NSError					*error = nil;
@@ -49,7 +49,7 @@
 		
 		if (self.metadata == nil) {
 			self.metadata = [NSMutableDictionary dictionary];
-			self.metadata[@"schema_hash"] = @(schema.hash);
+			self.metadata[@"schema_hash"] = @(self.schema.hash);
 		}
 		
 		self.tables = [NSMutableDictionary dictionary];

@@ -9,6 +9,7 @@
 #import "SAStorage_DatabaseTests.h"
 #import "SAStorage_Database.h"
 #import "SAStorage.h"
+#import "SAStorage_SchemaBundle.h"
 
 #define DATABASE_URL			[NSURL fileURLWithPath: [@"~/Documents/Database.json" stringByExpandingTildeInPath]]
 
@@ -30,8 +31,8 @@
 - (NSURL *) databaseURL { return DATABASE_URL; }
 - (NSString *) databaseExtension { return @"json"; }
 
-- (SAStorage_Schema *) testSchema {
-	SAStorage_Schema		*schema = [SAStorage_Schema schemaWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"]];
+- (SAStorage_SchemaBundle *) testSchema {
+	SAStorage_SchemaBundle		*schema = [SAStorage_SchemaBundle schemaBundleWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"]];
 	STAssertNotNil(schema, @"Failed to construct schema from sample JSON");
 	return schema;
 }

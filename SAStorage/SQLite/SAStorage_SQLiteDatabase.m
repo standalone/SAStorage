@@ -19,7 +19,7 @@
 
 @implementation SAStorage_SQLiteDatabase
 
-- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_Schema *) schema {
+- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema {
 	if ((self = [super initWithURL: url andSchema: schema])) {
 		self.sqlDB = [SAStorage_Internal_SQL_Database databaseWithURL: url];
 		[self postInitSetup];
