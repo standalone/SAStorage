@@ -102,6 +102,36 @@
 	}
 	return YES;
 }
+
+- (NSArray *) tablesAddedComparedTo: (SAStorage_Schema *) oldSchema {
+	NSMutableArray				*addedTables = [NSMutableArray array];
+	
+	for (NSString *tableName in self.tables) {
+		if (oldSchema.tables[tableName] == nil) [addedTables addObject: self.tables[tableName]];
+	}
+	return addedTables;
+}
+
+- (NSArray *) tablesRemovedComparedTo: (SAStorage_Schema *) oldSchema {
+	NSMutableArray				*removedTables = [NSMutableArray array];
+	
+	for (NSString *tableName in oldSchema.tables) {
+		if (self.tables[tableName] == nil) [removedTables addObject: oldSchema.tables[tableName]];
+	}
+	return removedTables;
+}
+
+- (NSArray *) tablesChangedComparedTo: (SAStorage_Schema *) oldSchema {
+	NSMutableArray				*changedTables = [NSMutableArray array];
+	
+	for (NSString *tableName in oldSchema.tables) {
+		if (oldSchema.tables[tableName] && [self.tables[tableName] hash] != [oldSchema.tables[tableName] hash]) {
+			[changedTables addObject: @{ @"old": oldSchema.tables[tableName], @"new": self.tables[tableName] }];
+		}
+	}
+	return changedTables;
+}
+
 @end
 
 

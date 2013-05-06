@@ -20,6 +20,11 @@
 - (void) setObject: (id) obj forKeyedSubscript: (id) key;
 
 - (BOOL) canUpgradeFrom: (SAStorage_Schema *) schema;
+
+- (NSArray *) tablesAddedComparedTo: (SAStorage_Schema *) oldSchema;			//returns an array of SAStorage_SchemaTable objects
+- (NSArray *) tablesRemovedComparedTo: (SAStorage_Schema *) oldSchema;			//same as above
+- (NSArray *) tablesChangedComparedTo: (SAStorage_Schema *) oldSchema;			//returns an array of dictionaries, each with an old and new SAStorage_SchemaTable
+
 @end
 
 
