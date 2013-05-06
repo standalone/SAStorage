@@ -84,7 +84,9 @@
 - (NSUInteger) hash {
 	NSUInteger				hash = 0L;
 	
-	for (SAStorage_SchemaTable *table in self.tables) { hash += table.hash; }
+	for (SAStorage_SchemaTable *tableName in self.tables) {
+		hash += [self.tables[tableName] hash];
+	}
 	return hash;
 }
 

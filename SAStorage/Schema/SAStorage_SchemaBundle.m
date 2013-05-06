@@ -55,6 +55,7 @@ NSString		*s_schemaMetadata_currentFilename = @"current_schema_filename";
 	if (![mgr fileExistsAtPath: self.url.path isDirectory: &isDirectory] || !isDirectory) return nil;
 		
 	for (NSURL *url in [mgr contentsOfDirectoryAtURL: self.url includingPropertiesForKeys: nil options: 0 error: &error]) {
+		if ([url.path.lastPathComponent isEqual: s_schemaMetadataFilename]) continue;
 		SAStorage_Schema				*testSchema = [SAStorage_Schema schemaWithContentsOfURL: url];
 		
 		if (testSchema.hash == hash) return testSchema;
