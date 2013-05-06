@@ -61,7 +61,7 @@ const NSString *UUID_KEY = @"uuid";
 }
 
 - (void) postInitSetup {
-	NSInteger				schemaHash = self.schema.hash, oldHash = [[self metadataValueForKey: SCHEMA_HASH_KEY] integerValue];
+	NSUInteger				schemaHash = self.schema.hash, oldHash = [[self metadataValueForKey: SCHEMA_HASH_KEY] integerValue];
 	
 	_uuid = [self metadataValueForKey: UUID_KEY];
 	if (self.uuid == nil) {
@@ -70,7 +70,7 @@ const NSString *UUID_KEY = @"uuid";
 	}
 	
 	if (schemaHash != oldHash) {
-		[self upgradeFromSchema: [self.schemaBundle schemaWithHash: schemaHash]];
+		[self upgradeFromSchema: [self.schemaBundle schemaWithHash: oldHash]];
 	}
 }
 
