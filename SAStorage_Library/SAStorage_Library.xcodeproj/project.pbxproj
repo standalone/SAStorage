@@ -111,6 +111,8 @@
 		B5E88212173745DD00EF038D /* SAStorage_SchemaBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E88210173745DD00EF038D /* SAStorage_SchemaBundle.m */; };
 		B5E88213173745DD00EF038D /* SAStorage_SchemaBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E88210173745DD00EF038D /* SAStorage_SchemaBundle.m */; };
 		B5EAC97417352D0F00737B27 /* sample_database.json in Resources */ = {isa = PBXBuildFile; fileRef = B5EAC97317352D0F00737B27 /* sample_database.json */; };
+		B5EAC9761737561D00737B27 /* sample_schema_bundle.schemabundle in Resources */ = {isa = PBXBuildFile; fileRef = B5EAC9751737561D00737B27 /* sample_schema_bundle.schemabundle */; };
+		B5EAC9771737565E00737B27 /* sample_schema_bundle.schemabundle in Resources */ = {isa = PBXBuildFile; fileRef = B5EAC9751737561D00737B27 /* sample_schema_bundle.schemabundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +211,7 @@
 		B5E88210173745DD00EF038D /* SAStorage_SchemaBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAStorage_SchemaBundle.m; sourceTree = "<group>"; };
 		B5EAC96E1734B86A00737B27 /* SAStorage_Library-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAStorage_Library-Prefix.pch"; sourceTree = "<group>"; };
 		B5EAC97317352D0F00737B27 /* sample_database.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_database.json; sourceTree = "<group>"; };
+		B5EAC9751737561D00737B27 /* sample_schema_bundle.schemabundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sample_schema_bundle.schemabundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +325,7 @@
 		B5980DF01730B05B00D77EE8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5EAC9751737561D00737B27 /* sample_schema_bundle.schemabundle */,
 				B5B8D4091733C0DF0019BCAF /* sample_schema.json */,
 				B5EAC97317352D0F00737B27 /* sample_database.json */,
 				B5E8819E1736CA3F00EF038D /* sample_database.fsdb */,
@@ -529,6 +533,7 @@
 				B5B8D40B1733C9400019BCAF /* sample_schema.json in Resources */,
 				B5980FAC1735C2FC00D77EE8 /* sample_database.json in Resources */,
 				B5E8819F1736CA3F00EF038D /* sample_database.fsdb in Resources */,
+				B5EAC9761737561D00737B27 /* sample_schema_bundle.schemabundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +545,7 @@
 				B5B8D40A1733C0DF0019BCAF /* sample_schema.json in Resources */,
 				B5EAC97417352D0F00737B27 /* sample_database.json in Resources */,
 				B5E881A01736CA3F00EF038D /* sample_database.fsdb in Resources */,
+				B5EAC9771737565E00737B27 /* sample_schema_bundle.schemabundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

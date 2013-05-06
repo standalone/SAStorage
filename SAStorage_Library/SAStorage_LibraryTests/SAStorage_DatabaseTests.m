@@ -32,7 +32,7 @@
 - (NSString *) databaseExtension { return @"json"; }
 
 - (SAStorage_SchemaBundle *) testSchema {
-	SAStorage_SchemaBundle		*schema = [SAStorage_SchemaBundle schemaBundleWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"]];
+	SAStorage_SchemaBundle		*schema = [SAStorage_SchemaBundle schemaBundleWithContentsOfURL: [[NSBundle mainBundle] URLForResource: @"sample_schema_bundle" withExtension: @"schemabundle"]];
 	STAssertNotNil(schema, @"Failed to construct schema from sample JSON");
 	return schema;
 }

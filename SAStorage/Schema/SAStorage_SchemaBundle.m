@@ -21,7 +21,7 @@ NSString		*s_schemaMetadata_currentFilename = @"current_schema_filename";
 + (id) schemaBundleWithContentsOfURL: (NSURL *) url {
 	BOOL							isDirectory;
 
-	if ([[NSFileManager defaultManager] fileExistsAtPath: url.path isDirectory: &isDirectory]) return nil;
+	if (![[NSFileManager defaultManager] fileExistsAtPath: url.path isDirectory: &isDirectory]) return nil;
 	
 	SAStorage_SchemaBundle			*bundle = [[self alloc] init];
 	bundle.url = url;

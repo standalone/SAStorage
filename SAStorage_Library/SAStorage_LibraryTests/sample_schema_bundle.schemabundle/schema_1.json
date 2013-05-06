@@ -1,0 +1,75 @@
+{
+    "tables": [
+			   {
+			   "name": "Contact",
+			   "class": "CT_Contact",
+			   "columns": [
+						   {
+						   "name": "first_name",
+						   "type": "string"
+						   },
+						   {
+						   "name": "last_name",
+						   "type": "string",
+						   "indexed": true
+						   },
+						   {
+						   "name": "age",
+						   "type": "integer"
+						   },
+						   {
+						   "name": "dob",
+						   "type": "date"
+						   },
+						   {
+						   "name": "spouse",
+						   "type": "one-to-one",
+						   "relatedTo": "Contact",
+						   "relatedBy": "spouse"
+						   },
+						   {
+						   "name": "kids",
+						   "type": "many-to-many",
+						   "relatedTo": "Contact",
+						   "relatedBy": "parents"
+						   },
+						   {
+						   "name": "parents",
+						   "type": "many-to-many",
+						   "relatedTo": "Contact",
+						   "relatedBy": "kids"
+						   },
+						   {
+						   "name": "vehicles",
+						   "type": "one-to-many",
+						   "relatedTo": "Vehicle",
+						   "relatedBy": "owner"
+						   }
+						   ]
+			   },
+			   {
+			   "name": "Vehicle",
+			   "class": "CT_Vehicle",
+			   "columns": [
+						   {
+						   "name": "name",
+						   "type": "string"
+						   },
+						   {
+						   "name": "make",
+						   "type": "string"
+						   },
+						   {
+						   "name": "model",
+						   "type": "string"
+						   },
+						   {
+						   "name": "owner",
+						   "type": "many-to-one",
+						   "relatedTo": "Contact",
+						   "relatedBy": "vehicles"
+						   }
+						   ]
+			   }
+			   ]
+}
