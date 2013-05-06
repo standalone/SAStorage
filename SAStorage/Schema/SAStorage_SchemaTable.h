@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class SAStorage_Schema;
+
 @interface SAStorage_SchemaTable : NSObject
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) Class recordClass;
@@ -24,5 +26,9 @@
 - (NSArray *) fieldsAddedComparedTo: (SAStorage_SchemaTable *) oldTable;			//returns an array of SAStorage_SchemaField objects
 - (NSArray *) fieldsRemovedComparedTo: (SAStorage_SchemaTable *) oldTable;			//same as above
 - (NSArray *) fieldsChangedComparedTo: (SAStorage_SchemaTable *) oldTable;			//returns an array of dictionaries, each with an old and new SAStorage_SchemaField
+
+- (NSArray *) fieldsAddedComparedToSchema: (SAStorage_Schema *) oldSchema;			//returns an array of SAStorage_SchemaField objects
+- (NSArray *) fieldsRemovedComparedToSchema: (SAStorage_Schema *) oldSchema;			//same as above
+- (NSArray *) fieldsChangedComparedToSchema: (SAStorage_Schema *) oldSchema;			//returns an array of dictionaries, each with an old and new SAStorage_SchemaField
 
 @end

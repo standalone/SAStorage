@@ -8,6 +8,7 @@
 
 #import "SAStorage_SchemaTable.h"
 #import "SAStorage_SchemaField.h"
+#import "SAStorage_Schema.h"
 
 @implementation SAStorage_SchemaTable
 + (id) tableWithDictionary: (NSDictionary *) dict {
@@ -106,4 +107,8 @@
 	}
 	return changedFields;
 }
+
+- (NSArray *) fieldsAddedComparedToSchema: (SAStorage_Schema *) oldSchema { return [self fieldsAddedComparedTo: oldSchema[self.name]]; }
+- (NSArray *) fieldsRemovedComparedToSchema: (SAStorage_Schema *) oldSchema { return [self fieldsRemovedComparedTo: oldSchema[self.name]]; }
+- (NSArray *) fieldsChangedComparedToSchema: (SAStorage_Schema *) oldSchema { return [self fieldsChangedComparedTo: oldSchema[self.name]]; }
 @end

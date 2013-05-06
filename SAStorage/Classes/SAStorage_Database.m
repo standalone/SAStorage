@@ -70,7 +70,9 @@ const NSString *UUID_KEY = @"uuid";
 	}
 	
 	if (schemaHash != oldHash) {
-		[self upgradeFromSchema: [self.schemaBundle schemaWithHash: oldHash]];
+		SAStorage_Schema				*oldSchema = [self.schemaBundle schemaWithHash: oldHash];
+		
+		[self upgradeFromSchema: oldSchema];
 	}
 }
 
