@@ -20,6 +20,7 @@ typedef NS_ENUM(uint8_t, SAStorage_Database_Flags) {
 	SAStorage_Database_readOnly,
 };
 
+extern NSString *SCHEMA_HASH_KEY, *UUID_KEY;
 
 @class SAStorage_Query, SAStorage_SchemaBundle, SAStorage_Record, SAStorage_Proxy, SAStorage_ResultSet, SAStorage_Schema;
 
@@ -63,16 +64,18 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 - (void) deleteRecord: (id) recordOrProxy;						//can pass either a record or a proxy
 
 //metadata
-- (NSString *) metadataValueForKey: (NSString *) key;
-- (void) setMetadataValue: (NSString *) value forKey: (NSString *) key;
+- (NSString *) metadataValueForKey: (const NSString *) key;
+- (void) setMetadataValue: (NSString *) value forKey: (const NSString *) key;
 
 //Maintenance
 - (void) postInitSetup;
+- (NSError *) upgradeFromSchema: (SAStorage_Schema *) oldSchema;
 
 //inheritable instance methods & properties
 
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) SAStorage_Schema *schema;
+@property (nonatomic, strong) SAStorage_SchemaBundle *schemaBundle;
 @property (nonatomic, strong) NSMutableSet *changedRecords;
 
 - (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema;

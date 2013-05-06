@@ -18,10 +18,6 @@
 						   "type": "integer"
 						   },
 						   {
-						   "name": "dob",
-						   "type": "date"
-						   },
-						   {
 						   "name": "spouse",
 						   "type": "one-to-one",
 						   "relatedTo": "Contact",
@@ -61,6 +57,10 @@
 						   },
 						   {
 						   "name": "model",
+						   "type": "string"
+						   },
+						   {
+						   "name": "color",
 						   "type": "string"
 						   },
 						   {

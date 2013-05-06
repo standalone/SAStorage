@@ -66,4 +66,44 @@
 	return [self.fields.allValues countByEnumeratingWithState: state objects: buffer count: len];
 }
 
+//=============================================================================================================================
+#pragma mark Upgrading
+- (BOOL) canUpgradeFrom: (SAStorage_SchemaTable *) oldTable {
+	for (SAStorage_SchemaField *oldField in oldTable.fields) {
+		SAStorage_SchemaField		*newField = self.fields[oldField.name];
+		
+		if (newField == nil) continue;			//deleted a field
+		if (newField.type != oldField.type) return NO;		//can't change the type of a field
+	}
+	return YES;
+}
+
+- (NSArray *) fieldsAddedComparedTo: (SAStorage_SchemaTable *) oldTable {
+	NSMutableArray				*addedFields = [NSMutableArray array];
+	
+	for (NSString *fieldName in self.fields) {
+		if (oldTable.fields[fieldName] == nil) [addedFields addObject: self.fields[fieldName]];
+	}
+	return addedFields;
+}
+
+- (NSArray *) fieldsRemovedComparedTo: (SAStorage_SchemaTable *) oldTable {
+	NSMutableArray				*removedFields = [NSMutableArray array];
+	
+	for (NSString *fieldName in oldTable.fields) {
+		if (self.fields[fieldName] == nil) [removedFields addObject: oldTable.fields[fieldName]];
+	}
+	return removedFields;
+}
+
+- (NSArray *) fieldsChangedComparedTo: (SAStorage_SchemaTable *) oldTable {
+	NSMutableArray				*changedFields = [NSMutableArray array];
+	
+	for (NSString *fieldName in oldTable.fields) {
+		if (oldTable.fields[fieldName] && [self.fields[fieldName] hash] != [oldTable.fields[fieldName] hash]) {
+			[changedFields addObject: @{ @"old": oldTable.fields[fieldName], @"new": self.fields[fieldName] }];
+		}
+	}
+	return changedFields;
+}
 @end

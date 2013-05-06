@@ -19,4 +19,10 @@
 - (id) objectForKeyedSubscript: (id) key;
 - (void) setObject: (id) obj forKeyedSubscript: (id) key;
 
+
+- (BOOL) canUpgradeFrom: (SAStorage_SchemaTable *) oldTable;
+- (NSArray *) fieldsAddedComparedTo: (SAStorage_SchemaTable *) oldTable;			//returns an array of SAStorage_SchemaField objects
+- (NSArray *) fieldsRemovedComparedTo: (SAStorage_SchemaTable *) oldTable;			//same as above
+- (NSArray *) fieldsChangedComparedTo: (SAStorage_SchemaTable *) oldTable;			//returns an array of dictionaries, each with an old and new SAStorage_SchemaField
+
 @end

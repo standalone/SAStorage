@@ -27,7 +27,7 @@
 			self.metadata = [json[@"metadata"] mutableCopy];
 		} else {
 			self.metadata = [NSMutableDictionary dictionary];
-			self.metadata[@"schema_hash"] = @(self.schema.hash);
+			self.metadata[SCHEMA_HASH_KEY] = @(self.schema.hash);
 		}
 				
 		self.tables = [NSMutableDictionary dictionary];

@@ -47,5 +47,18 @@ NSString		*s_schemaMetadata_currentFilename = @"current_schema_filename";
 	
 }
 
-
+- (SAStorage_Schema *) schemaWithHash: (NSUInteger) hash {
+	BOOL				isDirectory;
+	NSFileManager		*mgr = [NSFileManager defaultManager];
+	NSError				*error = nil;
+	
+	if (![mgr fileExistsAtPath: self.url.path isDirectory: &isDirectory] || !isDirectory) return nil;
+		
+	for (NSURL *url in [mgr contentsOfDirectoryAtURL: self.url includingPropertiesForKeys: nil options: 0 error: &error]) {
+		SAStorage_Schema				*testSchema = [SAStorage_Schema schemaWithContentsOfURL: url];
+		
+		if (testSchema.hash == hash) return testSchema;
+	}
+	return nil;
+}
 @end

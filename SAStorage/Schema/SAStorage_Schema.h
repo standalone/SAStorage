@@ -19,6 +19,7 @@
 - (id) objectForKeyedSubscript: (id) key;
 - (void) setObject: (id) obj forKeyedSubscript: (id) key;
 
+- (BOOL) canUpgradeFrom: (SAStorage_Schema *) schema;
 @end
 
 

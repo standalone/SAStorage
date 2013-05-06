@@ -12,6 +12,9 @@
 #import "SAStorage_FSDatabase.h"
 #import "SAStorage_SchemaBundle.h"
 
+const NSString *SCHEMA_HASH_KEY = @"schema_hash";
+const NSString *UUID_KEY = @"uuid";
+
 @implementation SAStorage_Database
 - (void) dealloc {
 	#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
@@ -19,24 +22,24 @@
 	#endif
 }
 
-+ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schema {
-	return [self databaseWithURL: url ofType: type basedOn: schema flags: 0];
++ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schemaBundle {
+	return [self databaseWithURL: url ofType: type basedOn: schemaBundle flags: 0];
 }
 
-+ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schema flags: (SAStorage_Database_Flags) flags {
++ (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schemaBundle flags: (SAStorage_Database_Flags) flags {
 	SAStorage_Database				*db = nil;
 	
 	switch (type) {
 		case SAStorage_Database_JSON:
-			db = [[SAStorage_JSONDatabase alloc] initWithURL: url andSchema: schema];
+			db = [[SAStorage_JSONDatabase alloc] initWithURL: url andSchema: schemaBundle];
 			break;
 			
 		case SAStorage_Database_SQL:
-			db = [[SAStorage_SQLiteDatabase alloc] initWithURL: url andSchema: schema];
+			db = [[SAStorage_SQLiteDatabase alloc] initWithURL: url andSchema: schemaBundle];
 			break;
 			
 		case SAStorage_Database_FS:
-			db = [[SAStorage_FSDatabase alloc] initWithURL: url andSchema: schema];
+			db = [[SAStorage_FSDatabase alloc] initWithURL: url andSchema: schemaBundle];
 			break;
 			
 		default:
@@ -47,20 +50,27 @@
 	return db;
 }
 
-- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema {
+- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schemaBundle {
 	if ((self = [super init])) {
 		self.url = url;
-		self.schema = schema.currentSchema;
+		self.schemaBundle = schemaBundle;
+		self.schema = schemaBundle.currentSchema;
 		self.completionQueue = dispatch_get_main_queue();
 	}
 	return self;
 }
 
 - (void) postInitSetup {
-	_uuid = [self metadataValueForKey: @"uuid"];
+	NSInteger				schemaHash = self.schema.hash, oldHash = [[self metadataValueForKey: SCHEMA_HASH_KEY] integerValue];
+	
+	_uuid = [self metadataValueForKey: UUID_KEY];
 	if (self.uuid == nil) {
 		_uuid = [SAStorage uuid];
-		[self setMetadataValue: _uuid forKey: @"uuid"];
+		[self setMetadataValue: _uuid forKey: UUID_KEY];
+	}
+	
+	if (schemaHash != oldHash) {
+		[self upgradeFromSchema: [self.schemaBundle schemaWithHash: schemaHash]];
 	}
 }
 
@@ -145,5 +155,9 @@
 
 - (void) setObject: (id) obj forKeyedSubscript: (id) key {
 	
+}
+
+- (NSError *) upgradeFromSchema: (SAStorage_Schema *) oldSchema {
+	return nil;
 }
 @end

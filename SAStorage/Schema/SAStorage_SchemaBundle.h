@@ -15,5 +15,6 @@
 
 + (id) schemaBundleWithContentsOfURL: (NSURL *) url;
 
+- (SAStorage_Schema *) schemaWithHash: (NSUInteger) hash;
 
 @end

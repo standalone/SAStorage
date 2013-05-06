@@ -92,7 +92,16 @@
 	return [self.tables.allValues countByEnumeratingWithState: state objects: buffer count: len];
 }
 
-
+//=============================================================================================================================
+#pragma mark Upgrading
+- (BOOL) canUpgradeFrom: (SAStorage_Schema *) oldSchema {
+	for (SAStorage_SchemaTable *oldTable in oldSchema.tables) {
+		SAStorage_SchemaTable		*newTable = self.tables[oldTable.name];
+		
+		if ([newTable canUpgradeFrom: oldTable]) return NO;
+	}
+	return YES;
+}
 @end
 
 
