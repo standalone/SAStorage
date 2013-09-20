@@ -36,7 +36,9 @@
 	if (self.isRelationship) {
 		return [NSString stringWithFormat: @"%@: %@ to %@.%@", self.name, [SAStorage_SchemaField fieldTypeToString: self.type], self.relatedTo, self.relatedBy];
 	}
-	return [NSString stringWithFormat: @"%@: %@", self.name, [SAStorage_SchemaField fieldTypeToString: self.type]];
+	NSString		*desc = [NSString stringWithFormat: @"%@: %@", self.name, [SAStorage_SchemaField fieldTypeToString: self.type]];
+	if (self.isMultiple) desc = [desc stringByAppendingString: @", mulitple"];
+	return desc;
 }
 
 - (NSDictionary *) dictionaryRepresentation {

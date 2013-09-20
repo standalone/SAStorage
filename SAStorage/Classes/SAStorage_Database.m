@@ -11,6 +11,7 @@
 #import "SAStorage_JSONDatabase.h"
 #import "SAStorage_FSDatabase.h"
 #import "SAStorage_SchemaBundle.h"
+#import "SAStorage_CSVDatabase.h"
 
 const NSString *SCHEMA_HASH_KEY = @"schema_hash";
 const NSString *UUID_KEY = @"uuid";
@@ -40,6 +41,10 @@ const NSString *UUID_KEY = @"uuid";
 			
 		case SAStorage_Database_FS:
 			db = [[SAStorage_FSDatabase alloc] initWithURL: url andSchema: schemaBundle];
+			break;
+			
+		case SAStorage_Database_CSV:
+			db = [[SAStorage_CSVDatabase alloc] initWithURL: url andSchema: schemaBundle];
 			break;
 			
 		default:

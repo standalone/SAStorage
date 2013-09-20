@@ -16,11 +16,14 @@ typedef NS_ENUM(uint8_t, SAStorage_ErrorType) {
 	SAStorage_Error_NoSuchTable,
 	SAStorage_Error_NoSuchField,
 	SAStorage_Error_UnexpectedFile,
+	SAStorage_Error_UnexpectedDirectory,
 	SAStorage_Error_TableNotPresent,
 	SAStorage_Error_FieldNotPresentInTable,
 	SAStorage_Error_IncorrectDataType,
 	SAStorage_Error_IncorrectDataTypeForRelationship,
 	SAStorage_Error_TryingToSaveReadnlyDatabase,
+	SAStorage_Error_MissingData,
+	SAStorage_Error_FieldLabelMismatch,
 	
 };
 

@@ -31,6 +31,7 @@ typedef NS_ENUM(uint8_t, SAStorage_SchemaField_Type) {
 @property (nonatomic, strong) NSString *relatedBy;				//…and what field in that table
 @property (nonatomic) BOOL sortedOn;
 @property (nonatomic, readonly) BOOL isRelationship;
+@property (nonatomic) BOOL isMultiple;							//used for CSV fields with multiple iterations contained within
 
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 + (id) fieldWithDictionary: (NSDictionary *) dict;
