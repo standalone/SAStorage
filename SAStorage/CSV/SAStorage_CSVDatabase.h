@@ -11,6 +11,7 @@
 @interface SAStorage_CSVDatabase : SAStorage_JSONDatabase
 
 @property (nonatomic) BOOL writeOutQuotationMarks;
-@property (nonatomic) wchar_t iterationSeparator, fieldSeparator, recordSeparator;
+@property (nonatomic) char iterationSeparator, fieldSeparator, recordSeparator;
 
++ (NSString *) tableName;
 @end

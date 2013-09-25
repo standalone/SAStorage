@@ -8,9 +8,11 @@
 
 #import "SAStorage_CSVParser.h"
 #import "SAStorage.h"
+#import "SAStorage_CSVDatabase.h"
 
 @interface SAStorage_CSVParser ()
 @property (nonatomic, strong) NSData *data;
+@property (nonatomic, strong) NSMutableData *output;
 @property (nonatomic) char *raw;
 
 @property (nonatomic) NSUInteger position;
@@ -27,6 +29,95 @@
 	return parser;
 }
 
++ (id) parserWithSchemaTable: (SAStorage_SchemaTable *) schema {
+	SAStorage_CSVParser				*parser = [[self alloc] init];
+	
+	parser.schemaTable = schema;
+	return parser;
+}
+
+//=============================================================================================================================
+#pragma mark Writing
+- (NSError *) beginWriting {
+	char			quote = '"';
+	self.output = [[NSMutableData alloc] init];
+		
+	if (self.schemaFields.count) {
+		for (SAStorage_SchemaField *field in self.schemaFields) {
+			[self.output appendBytes: &quote length: 1];
+			[self.output appendBytes: field.name.UTF8String length: strlen(field.name.UTF8String)];
+			if (field.type == SAStorage_SchemaField_Date) [self.output appendBytes: "/d" length: 2];
+			if (field.type == SAStorage_SchemaField_Integer) [self.output appendBytes: "/i" length: 2];
+			if (field.type == SAStorage_SchemaField_Float) [self.output appendBytes: "/f" length: 2];
+			if (field.type == SAStorage_SchemaField_Boolean) [self.output appendBytes: "/b" length: 2];
+			if (field.isMultiple) [self.output appendBytes: "/m" length: 2];
+			
+			[self.output appendBytes: &quote length: 1];
+			[self.output appendBytes: &_fieldSeparator length: 1];
+		}
+		[self.output appendBytes: &_recordSeparator length: 1];
+	}
+	
+	return nil;
+}
+
+- (NSError *) writeRecord: (SAStorage_Record *) record {
+	char			quote = '"';
+	
+	for (SAStorage_SchemaField *field in self.schemaFields) {
+		id					data = record[field.name];
+		
+		[self.output appendBytes: &quote length: 1];
+		if (data == nil) {
+			[self.output appendBytes: &quote length: 1];
+			[self.output appendBytes: &_fieldSeparator length: 1];
+			continue;
+		}
+		NSArray				*reps = [data isKindOfClass: [NSArray class]] ? data : @[ data ];
+		NSString			*result;
+		
+		
+		for (id subField in reps) {
+			if (![subField isEqual: [NSNull null]]) switch (field.type) {
+				case SAStorage_SchemaField_Date:
+					result = [subField description];
+					[self.output appendBytes: result.UTF8String length: strlen(result.UTF8String)];
+					break;
+					
+				case SAStorage_SchemaField_Integer:
+					result = [subField stringValue];
+					[self.output appendBytes: result.UTF8String length: strlen(result.UTF8String)];
+					break;
+					
+				case SAStorage_SchemaField_Float:
+					result = [subField stringValue];
+					[self.output appendBytes: result.UTF8String length: strlen(result.UTF8String)];
+					break;
+					
+				case SAStorage_SchemaField_Boolean:
+					[self.output appendBytes: [subField boolValue] ? "Y" : "N" length: 1];
+					break;
+					
+				default:
+					result = subField;
+					[self.output appendBytes: result.UTF8String length: strlen(result.UTF8String)];
+					break;
+			}
+			if (field.isMultiple) [self.output appendBytes: &_iterationSeparator length: 1];
+		}
+		[self.output appendBytes: &quote length: 1];
+		[self.output appendBytes: &_fieldSeparator length: 1];
+	}
+	[self.output appendBytes: &_recordSeparator length: 1];
+	return nil;
+}
+
+- (NSData *) finishWriting {
+	return self.output;
+}
+
+//=============================================================================================================================
+#pragma mark Parsing
 - (NSError *) beginParsing {
 	self.raw = (char *) self.data.bytes;
 	if (self.raw == nil) return [NSError errorWithDomain: SAStorage_ErrorDomain code: SAStorage_Error_MissingData userInfo: nil];
@@ -171,6 +262,24 @@
 	}
 	self.position = position;
 	return fields;
+}
+
+//=============================================================================================================================
+#pragma mark Properties
+- (void) setSchemaTable: (SAStorage_SchemaTable *) schema {
+	self.schemaFields = schema.fields.allValues;
+}
+
+- (SAStorage_SchemaTable *) schemaTable {
+	NSMutableDictionary					*fields = [NSMutableDictionary dictionary];
+	
+	for (SAStorage_SchemaField *field in self.schemaFields) { fields[field.name] = field; }
+	
+	SAStorage_SchemaTable				*table = [SAStorage_SchemaTable tableWithDictionary: @{}];
+	table.name = [SAStorage_CSVDatabase tableName];
+	table.recordClass = [SAStorage_Record class];
+	table.fields = fields;
+	return table;
 }
 
 @end

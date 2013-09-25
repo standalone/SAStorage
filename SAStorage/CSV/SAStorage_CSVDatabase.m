@@ -11,6 +11,9 @@
 #import "SAStorage_JSONTable.h"
 #import "SAStorage_CSVParser.h"
 
+@interface SAStorage_CSVTable : SAStorage_JSONTable
+@end
+
 @interface SAStorage_CSVDatabase ()
 @property (nonatomic, strong) NSURL *metadataURL, *dataURL;
 @property (nonatomic) BOOL metadataDirty;
@@ -19,6 +22,8 @@
 
 
 @implementation SAStorage_CSVDatabase
+
++ (NSString *) tableName { return @"data"; }
 
 - (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema {
 	if ((self = [super initWithURL: url andSchema: schema])) {
@@ -68,7 +73,7 @@
 #pragma mark Utilities
 
 - (NSError *) loadRecords {
-	const NSString			*tableName = @"data";
+	NSString			*tableName = [SAStorage_CSVDatabase tableName];
 	
 	if (self.tables[tableName]) return nil;				//already loaded
 	
@@ -76,10 +81,9 @@
 	NSError					*error = nil;
 	
 	NSURL						*dataURL = self.dataURL;
-	SAStorage_SchemaTable		*tableSchema = self.schema[tableName];
-	SAStorage_JSONTable			*table = [SAStorage_JSONTable tableInDatabase: self];
-	Class						recordClass = tableSchema.recordClass ?: [SAStorage_Record class];
+	SAStorage_CSVTable			*table = [SAStorage_CSVTable tableInDatabase: self];
 	BOOL						isDirectory;
+	Class						recordClass = [SAStorage_Record class];
 	
 	self.tables[tableName] = table;
 	
@@ -104,11 +108,15 @@
 	NSDictionary			*fields;
 	
 	while ((fields = [parser nextRecordWithError: &error])) {
-		SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: tableSchema.name withRecordID: [fields[@"id"] integerValue]];
+		SAStorage_Record		*record = [recordClass recordInDatabase: self andTable: tableName withRecordID: [fields[@"id"] integerValue]];
 		
 		[record populateBackingDictionaryFromDictionary: fields];
 		[table addRecord: record];
 	}
+	
+	self.schema = [[SAStorage_Schema alloc] init];
+	self.schema.tables = @{ tableName: parser.schemaTable }.mutableCopy;
+	self.tables = @{ tableName: table }.mutableCopy;
 	if (error) return error;
 	return nil;
 }
@@ -121,38 +129,29 @@
 //=============================================================================================================================
 #pragma mark Overrides
 - (NSError *) saveWithCompletion: (SAStorage_ErrorCallback) completion {
-	NSData				*data;
 	NSError				*error;
 	
 	if (self.readOnly) {
 		if (completion) completion([SAStorage_Error error: SAStorage_Error_TryingToSaveReadnlyDatabase info: nil]);
 		return [SAStorage_Error error: SAStorage_Error_TryingToSaveReadnlyDatabase info: nil];
 	}
+		
+	SAStorage_CSVParser				*parser = [SAStorage_CSVParser parserWithSchemaTable: self.schema[[SAStorage_CSVDatabase tableName]]];
+	SAStorage_CSVTable				*table = self.tables[[SAStorage_CSVDatabase tableName]];
 	
-	if (self.metadataDirty) {
-		data = [NSJSONSerialization dataWithJSONObject: self.metadata options: NSJSONWritingPrettyPrinted error: &error];
-		if (error == nil) [data writeToURL: self.metadataURL options: NSDataWritingAtomic error: &error];
-		if (error) {
-			NSLog(@"Error while writing out metadata: %@", error);
-			if (completion) completion(error);
-		} else
-			self.metadataDirty = NO;
+	parser.iterationSeparator = self.iterationSeparator;
+	parser.fieldSeparator = self.fieldSeparator;
+	parser.recordSeparator = self.recordSeparator;
+
+	[parser beginWriting];
+	for (SAStorage_Record *record in table.records) {
+		[parser writeRecord: record];
 	}
 	
-	for (SAStorage_Record *dirtyRecord in self.changedRecords.copy) {
-//		NSURL			*url = [self urlForRecordID: dirtyRecord.recordID inTable: dirtyRecord.tableName];
-//		NSURL			*dirURL = [url URLByDeletingLastPathComponent];
-//		
-//		[[NSFileManager defaultManager] createDirectoryAtURL: dirURL withIntermediateDirectories: YES attributes: nil error: &error];
-//		if (error == nil) data = [NSJSONSerialization dataWithJSONObject: dirtyRecord.JSONDictionaryRepresentation options: NSJSONWritingPrettyPrinted error: &error];
-//		if (error == nil) [data writeToURL: url options: NSDataWritingAtomic error: &error];
-//		if (error) {
-//			NSLog(@"Error while writing out record %d: %@", dirtyRecord.recordID, error);
-//			if (completion) completion(error);
-//		} else {
-//			[self.changedRecords removeObject: dirtyRecord];
-//		}
-	}
+	NSData							*data = [parser finishWriting];
+	
+	[data writeToURL: self.url atomically: YES];
+	
 	return error;
 }
 
@@ -197,4 +196,8 @@
 	[super setMetadataValue: value forKey: key];
 	self.metadataDirty = YES;
 }
+@end
+
+
+@implementation SAStorage_CSVTable
 @end
