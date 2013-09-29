@@ -201,7 +201,7 @@
 	NSString					*metadataIDKey = [NSString stringWithFormat: @"currentID_%@", recordType];
 	NSUInteger					lastID = [[self metadataValueForKey: metadataIDKey] integerValue] + 1;
 	
-	[self setMetadataValue: [NSString stringWithFormat: @"%u", lastID] forKey: metadataIDKey];
+	[self setMetadataValue: [NSString stringWithFormat: @"%lu", (unsigned long)lastID] forKey: metadataIDKey];
 	
 	Class						recordClass = [tableSchema[recordType] recordClass] ?: [SAStorage_Record class];
 	

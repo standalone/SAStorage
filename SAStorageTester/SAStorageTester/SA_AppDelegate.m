@@ -27,10 +27,25 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 	
+	[self loadHours];
 	
+    return YES;
+}
+
+- (void) loadHours {
+	NSURL						*databaseURL = [NSURL fileURLWithPath: [@"~/Documents/Hours" stringByExpandingTildeInPath]];
+	SAStorage_Database			*database = [SAStorage_Database databaseWithURL: databaseURL ofType: SAStorage_Database_CSV basedOn: nil];
+	
+	NSLog(@"Database: %@", database[@"data"]);
+	database.url = [NSURL fileURLWithPath: [@"~/Documents/HoursSaved" stringByExpandingTildeInPath]];
+	[database saveWithCompletion: nil];
+}
+
+- (void) loadContacts {
 	NSURL				*url = [[NSBundle mainBundle] URLForResource: @"sample_schema" withExtension: @"json"];
 	
-	SAStorage_Schema	*schema = [SAStorage_Schema schemaWithContentsOfURL: url];
+	SAStorage_SchemaBundle	*schemaBundle = [SAStorage_SchemaBundle schemaBundleWithContentsOfURL: url];
+	SAStorage_Schema		*schema = schemaBundle.currentSchema;
 	
 	schema[@"Contacts"][@"phone_number"] = [SAStorage_SchemaField fieldNamed: @"phone_number" ofType: SAStorage_SchemaField_String];
 	
@@ -38,7 +53,7 @@
 	NSLog(@"%@", [NSString stringWithUTF8String: schema.JSONRepresentation.bytes]);
 	
 	NSURL						*databaseURL = [NSURL fileURLWithPath: [@"~/Documents/Contacts" stringByExpandingTildeInPath]];
-	SAStorage_Database			*database = [SAStorage_Database databaseWithURL: databaseURL ofType: SAStorage_Database_FS basedOn: schema];
+	SAStorage_Database			*database = [SAStorage_Database databaseWithURL: databaseURL ofType: SAStorage_Database_FS basedOn: schemaBundle];
 	SAStorage_Query				*query = [SAStorage_Query queryInTable: @"Contacts" withPredicate: [NSPredicate predicateWithFormat: @"first_name == 'Bill'"]];
 	__block SAStorage_Record	*foundRecord = nil;
 	
@@ -59,9 +74,6 @@
 	}
 	
 	[database saveWithCompletion: nil];
-	
-	
-    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

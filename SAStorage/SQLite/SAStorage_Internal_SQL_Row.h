@@ -13,26 +13,26 @@
 
 @interface SAStorage_Internal_SQL_Row : SAStorage_Record
 
-- (int)intForColumn:(NSString *)columnName;
-- (int)intForColumnIndex:(int)columnIdx;
+- (NSInteger)intForColumn:(NSString *)columnName;
+- (NSInteger)intForColumnIndex:(NSInteger)columnIdx;
 
 - (long)longForColumn:(NSString *)columnName;
-- (long)longForColumnIndex:(int)columnIdx;
+- (long)longForColumnIndex:(NSInteger)columnIdx;
 
 - (BOOL)boolForColumn:(NSString *)columnName;
-- (BOOL)boolForColumnIndex:(int)columnIdx;
+- (BOOL)boolForColumnIndex:(NSInteger)columnIdx;
 
 - (double)doubleForColumn:(NSString *)columnName;
-- (double)doubleForColumnIndex:(int)columnIdx;
+- (double)doubleForColumnIndex:(NSInteger)columnIdx;
 
 - (NSString*)stringForColumn:(NSString *)columnName;
-- (NSString*)stringForColumnIndex:(int)columnIdx;
+- (NSString*)stringForColumnIndex:(NSInteger)columnIdx;
 
 - (NSData *)dataForColumn:(NSString *)columnName;
-- (NSData *)dataForColumnIndex:(int)columnIndex;
+- (NSData *)dataForColumnIndex:(NSInteger)columnIndex;
 
 - (NSDate *)dateForColumn:(NSString *)columnName;
-- (NSDate *)dateForColumnIndex:(int)columnIdx;
+- (NSDate *)dateForColumnIndex:(NSInteger)columnIdx;
 
 @property (nonatomic, weak) SAStorage_Internal_SQL_ResultSet *resultSet;
 @property (nonatomic, readonly) NSMutableArray *columnData;

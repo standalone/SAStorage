@@ -63,7 +63,7 @@
 #pragma mark Utilities
 - (NSURL *) urlForTableNamed: (NSString *) table { return [self.tablesURL URLByAppendingPathComponent: table]; }
 - (NSURL *) urlForRecordID: (SAStorage_RecordIDType) recordID inTable: (NSString *) table {
-	return [[self urlForTableNamed: table] URLByAppendingPathComponent: [NSString stringWithFormat: @"%@ %d.json", table, recordID]];
+	return [[self urlForTableNamed: table] URLByAppendingPathComponent: [NSString stringWithFormat: @"%@ %lu.json", table, (unsigned long) recordID]];
 }
 
 - (NSError *) loadRecordsInTable: (NSString *) tableName {
@@ -143,7 +143,7 @@
 		if (error == nil) data = [NSJSONSerialization dataWithJSONObject: dirtyRecord.JSONDictionaryRepresentation options: NSJSONWritingPrettyPrinted error: &error];
 		if (error == nil) [data writeToURL: url options: NSDataWritingAtomic error: &error];
 		if (error) {
-			NSLog(@"Error while writing out record %d: %@", dirtyRecord.recordID, error);
+			NSLog(@"Error while writing out record %lu: %@", (unsigned long)dirtyRecord.recordID, error);
 			if (completion) completion(error);
 		} else {
 			[self.changedRecords removeObject: dirtyRecord];

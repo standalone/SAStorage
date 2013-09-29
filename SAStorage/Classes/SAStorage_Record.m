@@ -74,11 +74,11 @@
 			id		contents = [value count] ? [value anyObject] : nil;
 			
 			if (contents)
-				[string appendFormat: @"%@:  <%d %@ records>\n", key, [value count], [contents tableName]];
+				[string appendFormat: @"%@:  <%lu %@ records>\n", key, (unsigned long)[value count], [contents tableName]];
 			else
 				[string appendFormat: @"%@:  <empty>\n", key];
 		} else if ([value isKindOfClass: [SAStorage_Record class]]) {
-			[string appendFormat: @"%@:  {%@ (%d)}\n", key, [value tableName], [value recordID]];
+			[string appendFormat: @"%@:  {%@ (%lu)}\n", key, [value tableName], (unsigned long)[value recordID]];
 		} else
 			[string appendFormat: @"%@:  %@\n", key, value];
 	}
@@ -102,7 +102,7 @@
 	}
 		
 	
-	return [NSString stringWithFormat: @"%@://%@/%@/%u", SAStorage_RecordIDURLPrefix, self.db, self.tableName, self.recordID];
+	return [NSString stringWithFormat: @"%@://%@/%@/%lu", SAStorage_RecordIDURLPrefix, self.db, self.tableName, (unsigned long)self.recordID];
 }
 
 
