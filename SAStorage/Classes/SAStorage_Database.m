@@ -15,6 +15,7 @@
 
 const NSString *SCHEMA_HASH_KEY = @"schema_hash";
 const NSString *UUID_KEY = @"uuid";
+const NSString *FILE_FORMAT_KEY = @"file_type";
 
 @implementation SAStorage_Database
 - (void) dealloc {
@@ -29,6 +30,10 @@ const NSString *UUID_KEY = @"uuid";
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schemaBundle flags: (SAStorage_Database_Flags) flags {
 	SAStorage_Database				*db = nil;
+	
+	if (type == SAStorage_Database_any) {
+		
+	}
 	
 	switch (type) {
 		case SAStorage_Database_JSON:
@@ -55,8 +60,9 @@ const NSString *UUID_KEY = @"uuid";
 	return db;
 }
 
-- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schemaBundle {
+- (id) initWithType: (SAStorage_Database_Type) type URL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schemaBundle {
 	if ((self = [super init])) {
+		self.type = type;
 		self.url = url;
 		self.schemaBundle = schemaBundle;
 		self.schema = schemaBundle.currentSchema;
@@ -79,6 +85,31 @@ const NSString *UUID_KEY = @"uuid";
 		
 		[self upgradeFromSchema: oldSchema];
 	}
+}
+
+- (NSMutableDictionary *) createBaseMetadata {
+	NSMutableDictionary			*metadata = [NSMutableDictionary dictionary];
+	
+	if (self.schema) metadata[SCHEMA_HASH_KEY] = @(self.schema.hash);
+	metadata[FILE_FORMAT_KEY] = [SAStorage_Database databaseTypToString: self.type];
+	
+	return metadata;
+}
+
++ (NSString *) databaseTypToString: (SAStorage_Database_Type) type {
+	NSArray		*types = @[ @"", @"SQL", @"JSON,", @"FS,", @"CSV"];
+	
+	if (type < types.count) return types[type];
+	return @"";
+}
+
++ (SAStorage_Database_Type) stringToDatabaseType: (NSString *) type {
+	if (type.length == 0) return SAStorage_Database_any;
+	
+	NSArray		*types = @[ @"", @"SQL", @"JSON,", @"FS,", @"CSV"];
+	NSUInteger	index = [types indexOfObject: type];
+	
+	return (index == NSNotFound) ? SAStorage_Database_any : (SAStorage_Database_Type) index;
 }
 
 //=============================================================================================================================

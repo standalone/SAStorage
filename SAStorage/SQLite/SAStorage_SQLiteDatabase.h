@@ -10,4 +10,6 @@
 
 @interface SAStorage_SQLiteDatabase : SAStorage_Database
 
+- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema;
+
 @end

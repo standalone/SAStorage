@@ -16,7 +16,7 @@
 @implementation SAStorage_JSONDatabase
 
 - (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema {
-	if ((self = [super initWithURL: url andSchema: schema])) {
+	if ((self = [super initWithType: SAStorage_Database_JSON URL: url andSchema: schema])) {
 		NSData					*data = [NSData dataWithContentsOfURL: url];
 		NSError					*error = nil;
 		NSDictionary			*json = data ? [NSJSONSerialization JSONObjectWithData: data options: 0 error: &error] : nil;
@@ -26,8 +26,7 @@
 		if (json[@"metadata"]) {
 			self.metadata = [json[@"metadata"] mutableCopy];
 		} else {
-			self.metadata = [NSMutableDictionary dictionary];
-			self.metadata[SCHEMA_HASH_KEY] = @(self.schema.hash);
+			self.metadata = [self createBaseMetadata];
 		}
 				
 		self.tables = [NSMutableDictionary dictionary];

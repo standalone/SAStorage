@@ -9,6 +9,9 @@
 #import "SAStorage_Database.h"
 
 @interface SAStorage_JSONDatabase : SAStorage_Database
+
+- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema;
+
 @property (nonatomic, strong) NSMutableDictionary *metadata;
 @property (nonatomic, strong) NSMutableDictionary *tables;
 @end

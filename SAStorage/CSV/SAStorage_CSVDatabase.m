@@ -26,7 +26,7 @@
 + (NSString *) tableName { return @"data"; }
 
 - (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema {
-	if ((self = [super initWithURL: url andSchema: schema])) {
+	if ((self = [super initWithType: SAStorage_Database_CSV URL: url andSchema: schema])) {
 		NSFileManager			*mgr = [NSFileManager defaultManager];
 		NSError					*error = nil;
 		BOOL					isDirectory;
@@ -57,10 +57,7 @@
 		
 		if (error) NSLog(@"Error loading metadata from %@: %@", self.metadataURL, error);
 		
-		if (self.metadata == nil) {
-			self.metadata = [NSMutableDictionary dictionary];
-			self.metadata[SCHEMA_HASH_KEY] = @(self.schema.hash);
-		}
+		if (self.metadata == nil) self.metadata = [self createBaseMetadata];
 		
 		self.tables = [NSMutableDictionary dictionary];
 		

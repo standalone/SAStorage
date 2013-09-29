@@ -38,6 +38,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 @property (nonatomic) BOOL readOnly;						//prevent saves
 @property (nonatomic) dispatch_queue_t completionQueue;
 @property (nonatomic, strong) SAStorage_ErrorManager *errors;
+@property (nonatomic) SAStorage_Database_Type type;
 
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schema;
 + (id) databaseWithURL: (NSURL *) url ofType: (SAStorage_Database_Type) type basedOn: (SAStorage_SchemaBundle *) schema flags: (SAStorage_Database_Flags) flags;
@@ -79,8 +80,8 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 @property (nonatomic, strong) SAStorage_SchemaBundle *schemaBundle;
 @property (nonatomic, strong) NSMutableSet *changedRecords;
 
-- (id) initWithURL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema;
+- (id) initWithType: (SAStorage_Database_Type) type URL: (NSURL *) url andSchema: (SAStorage_SchemaBundle *) schema;
 - (SAStorage_Record *) resolveProxy: (SAStorage_Proxy *) proxy;
 
-
+- (NSMutableDictionary *) createBaseMetadata;
 @end
