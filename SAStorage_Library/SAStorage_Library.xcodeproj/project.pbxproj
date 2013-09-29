@@ -41,6 +41,30 @@
 		B5980E461730B6A200D77EE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980DCD1730B05B00D77EE8 /* Foundation.framework */; };
 		B5980EBB17316CAA00D77EE8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5980E3F1730B13700D77EE8 /* libsqlite3.dylib */; };
 		B5980FAC1735C2FC00D77EE8 /* sample_database.json in Resources */ = {isa = PBXBuildFile; fileRef = B5EAC97317352D0F00737B27 /* sample_database.json */; };
+		B5A8908F17F83F8200A5D284 /* SAStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DCC17F83903003612CD /* SAStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909017F83F8200A5D284 /* SAStorage_Database.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DCD17F83903003612CD /* SAStorage_Database.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909117F83F8200A5D284 /* SAStorage_Error.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DCF17F83903003612CD /* SAStorage_Error.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909217F83F8200A5D284 /* SAStorage_ErrorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DD117F83903003612CD /* SAStorage_ErrorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909317F83F8200A5D284 /* SAStorage_Proxy.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DD317F83903003612CD /* SAStorage_Proxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909417F83F8200A5D284 /* SAStorage_Query.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DD517F83903003612CD /* SAStorage_Query.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909517F83F8200A5D284 /* SAStorage_Record.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DD717F83903003612CD /* SAStorage_Record.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909617F83F8200A5D284 /* SAStorage_RecordCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DD917F83903003612CD /* SAStorage_RecordCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909717F83F8200A5D284 /* SAStorage_ResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DDB17F83903003612CD /* SAStorage_ResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909817F83F8200A5D284 /* SAStorage_Table.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DDD17F83903003612CD /* SAStorage_Table.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909917F83F8200A5D284 /* SAStorage_Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DDF17F83903003612CD /* SAStorage_Tools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909A17F83F8200A5D284 /* SAStorage_CSVDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DE217F83903003612CD /* SAStorage_CSVDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909B17F83F8200A5D284 /* SAStorage_CSVParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DE417F83903003612CD /* SAStorage_CSVParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909C17F83F8200A5D284 /* SAStorage_FSDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DE717F83903003612CD /* SAStorage_FSDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909D17F83F8200A5D284 /* SAStorage_JSONDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DEA17F83903003612CD /* SAStorage_JSONDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909E17F83F8200A5D284 /* SAStorage_JSONTable.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DEC17F83903003612CD /* SAStorage_JSONTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A8909F17F83F8200A5D284 /* SAStorage_Schema.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DEF17F83903003612CD /* SAStorage_Schema.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A890A017F83F8200A5D284 /* SAStorage_SchemaBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DF117F83903003612CD /* SAStorage_SchemaBundle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A890A117F83F8200A5D284 /* SAStorage_SchemaField.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DF317F83903003612CD /* SAStorage_SchemaField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A890A217F83F8200A5D284 /* SAStorage_SchemaTable.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DF517F83903003612CD /* SAStorage_SchemaTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A890A317F83F8200A5D284 /* SAStorage_Internal_SQL_Database.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DF817F83903003612CD /* SAStorage_Internal_SQL_Database.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A890A417F83F8200A5D284 /* SAStorage_Internal_SQL_ResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DFA17F83903003612CD /* SAStorage_Internal_SQL_ResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A890A517F83F8200A5D284 /* SAStorage_Internal_SQL_Row.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DFC17F83903003612CD /* SAStorage_Internal_SQL_Row.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5A890A617F83F8200A5D284 /* SAStorage_SQLiteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = B5FB6DFE17F83903003612CD /* SAStorage_SQLiteDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B8D4081733BF9C0019BCAF /* SAStorage_DatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B8D4071733BF9C0019BCAF /* SAStorage_DatabaseTests.m */; };
 		B5B8D40A1733C0DF0019BCAF /* sample_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B5B8D4091733C0DF0019BCAF /* sample_schema.json */; };
 		B5B8D40B1733C9400019BCAF /* sample_schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B5B8D4091733C0DF0019BCAF /* sample_schema.json */; };
@@ -411,6 +435,40 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B5A8908D17F83F7200A5D284 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5A8909917F83F8200A5D284 /* SAStorage_Tools.h in Headers */,
+				B5A8909617F83F8200A5D284 /* SAStorage_RecordCache.h in Headers */,
+				B5A8909817F83F8200A5D284 /* SAStorage_Table.h in Headers */,
+				B5A8908F17F83F8200A5D284 /* SAStorage.h in Headers */,
+				B5A8909C17F83F8200A5D284 /* SAStorage_FSDatabase.h in Headers */,
+				B5A8909E17F83F8200A5D284 /* SAStorage_JSONTable.h in Headers */,
+				B5A8909517F83F8200A5D284 /* SAStorage_Record.h in Headers */,
+				B5A8909017F83F8200A5D284 /* SAStorage_Database.h in Headers */,
+				B5A8909117F83F8200A5D284 /* SAStorage_Error.h in Headers */,
+				B5A890A017F83F8200A5D284 /* SAStorage_SchemaBundle.h in Headers */,
+				B5A8909F17F83F8200A5D284 /* SAStorage_Schema.h in Headers */,
+				B5A890A117F83F8200A5D284 /* SAStorage_SchemaField.h in Headers */,
+				B5A890A317F83F8200A5D284 /* SAStorage_Internal_SQL_Database.h in Headers */,
+				B5A8909D17F83F8200A5D284 /* SAStorage_JSONDatabase.h in Headers */,
+				B5A8909317F83F8200A5D284 /* SAStorage_Proxy.h in Headers */,
+				B5A890A617F83F8200A5D284 /* SAStorage_SQLiteDatabase.h in Headers */,
+				B5A890A517F83F8200A5D284 /* SAStorage_Internal_SQL_Row.h in Headers */,
+				B5A8909217F83F8200A5D284 /* SAStorage_ErrorManager.h in Headers */,
+				B5A8909417F83F8200A5D284 /* SAStorage_Query.h in Headers */,
+				B5A8909B17F83F8200A5D284 /* SAStorage_CSVParser.h in Headers */,
+				B5A890A417F83F8200A5D284 /* SAStorage_Internal_SQL_ResultSet.h in Headers */,
+				B5A8909A17F83F8200A5D284 /* SAStorage_CSVDatabase.h in Headers */,
+				B5A890A217F83F8200A5D284 /* SAStorage_SchemaTable.h in Headers */,
+				B5A8909717F83F8200A5D284 /* SAStorage_ResultSet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		B5980DC71730B05B00D77EE8 /* SAStorage_Harness */ = {
 			isa = PBXNativeTarget;
@@ -453,6 +511,7 @@
 			buildConfigurationList = B5980E4E1730B6A200D77EE8 /* Build configuration list for PBXNativeTarget "SAStorage_Library" */;
 			buildPhases = (
 				B5980E411730B6A200D77EE8 /* Sources */,
+				B5A8908D17F83F7200A5D284 /* Headers */,
 				B5980E421730B6A200D77EE8 /* Frameworks */,
 				B5980E431730B6A200D77EE8 /* CopyFiles */,
 			);

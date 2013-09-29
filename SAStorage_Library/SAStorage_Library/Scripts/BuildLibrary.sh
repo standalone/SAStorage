@@ -16,7 +16,7 @@ mkdir -p "${LIB_DESTINATION}/Versions/A"
 mkdir -p "${LIB_DESTINATION}/Versions/A/Headers"
 mkdir -p "${LIB_DESTINATION}/Versions/A/Resources"
 
-lipo -create "build/Release-iphoneos/libSAStorage Library.a" "build/Debug-iphonesimulator/libSAStorage Library.a" -output "${LIB_DESTINATION}/Versions/A/SAStorage"
+lipo -create "build/Release-iphoneos/libSAStorage_Library.a" "build/Debug-iphonesimulator/libSAStorage_Library.a" -output "${LIB_DESTINATION}/Versions/A/SAStorage"
 
 ln -s "${LIB_DESTINATION}/Versions/A/Headers/" "${LIB_DESTINATION}/Headers"
 ln -s "${LIB_DESTINATION}/Versions/A/Resources/" "${LIB_DESTINATION}/Resources"
@@ -25,7 +25,7 @@ ln -s "${LIB_DESTINATION}/Versions/A/SAStorage" "${LIB_DESTINATION}/SAStorage"
 
 
 
-HEADERS="build/Debug-iphonesimulator/headers/*.h"
+HEADERS="build/Debug-iphonesimulator/usr/local/include/*.h"
 for HEADER in ${HEADERS}; do
 	FILENAME="${HEADER##*/}"
 	cp $HEADER "${LIB_DESTINATION}/Versions/A/Headers/${FILENAME}"
