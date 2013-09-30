@@ -32,7 +32,26 @@ const NSString *FILE_FORMAT_KEY = @"file_type";
 	SAStorage_Database				*db = nil;
 	
 	if (type == SAStorage_Database_any) {
+		NSURL			*metadataURL = [url URLByAppendingPathComponent: @"metadata.json"];
+		NSData			*data = [NSData dataWithContentsOfURL: metadataURL];
 		
+		if (data) {
+			NSError			*jsonError = nil;
+			NSDictionary	*metadata = [NSJSONSerialization JSONObjectWithData: data options: 0 error: &jsonError];
+			
+			if (metadata) type = [self stringToDatabaseType: metadata[FILE_FORMAT_KEY]];
+		}
+		
+		if (type == SAStorage_Database_any) {
+			NSString			*extension = url.pathExtension.lowercaseString;
+			
+			if ([extension isEqual: @"csv"] || [[NSFileManager defaultManager] fileExistsAtPath: [url.path stringByAppendingPathComponent: @"data.csv"]])
+				type = SAStorage_Database_CSV;
+			else if ([extension isEqual: @"json"])
+				type = SAStorage_Database_JSON;
+			else if ([extension isEqual: @"db"] || [extension isEqual: @"sql"] || [extension isEqual: @"sqlite"])
+				type = SAStorage_Database_SQL;
+		}
 	}
 	
 	switch (type) {
@@ -106,7 +125,7 @@ const NSString *FILE_FORMAT_KEY = @"file_type";
 + (SAStorage_Database_Type) stringToDatabaseType: (NSString *) type {
 	if (type.length == 0) return SAStorage_Database_any;
 	
-	NSArray		*types = @[ @"", @"SQL", @"JSON,", @"FS,", @"CSV"];
+	NSArray		*types = @[ @"", @"SQL", @"JSON", @"FS", @"CSV"];
 	NSUInteger	index = [types indexOfObject: type];
 	
 	return (index == NSNotFound) ? SAStorage_Database_any : (SAStorage_Database_Type) index;
