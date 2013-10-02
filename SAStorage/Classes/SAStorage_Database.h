@@ -32,7 +32,7 @@ typedef void (^SAStorage_ErrorCallback)(NSError *error);
 
 
 @interface SAStorage_Database : NSObject
-@property (nonatomic, readonly) NSString *uuid;
+@property (nonatomic, readonly) NSString *uuid, *databaseTypeAsString, *prettyName;
 @property (nonatomic) BOOL dirty;
 @property (nonatomic) BOOL validateSchemaFields;			//may be set by the database automatically, can be forced for others
 @property (nonatomic) BOOL readOnly;						//prevent saves

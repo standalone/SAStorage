@@ -110,13 +110,13 @@ const NSString *FILE_FORMAT_KEY = @"file_type";
 	NSMutableDictionary			*metadata = [NSMutableDictionary dictionary];
 	
 	if (self.schema) metadata[SCHEMA_HASH_KEY] = @(self.schema.hash);
-	metadata[FILE_FORMAT_KEY] = [SAStorage_Database databaseTypToString: self.type];
+	metadata[FILE_FORMAT_KEY] = [SAStorage_Database databaseTypeToString: self.type];
 	
 	return metadata;
 }
 
-+ (NSString *) databaseTypToString: (SAStorage_Database_Type) type {
-	NSArray		*types = @[ @"", @"SQL", @"JSON,", @"FS,", @"CSV"];
++ (NSString *) databaseTypeToString: (SAStorage_Database_Type) type {
+	NSArray		*types = @[ @"", @"SQL", @"JSON", @"FS", @"CSV"];
 	
 	if (type < types.count) return types[type];
 	return @"";
@@ -155,6 +155,10 @@ const NSString *FILE_FORMAT_KEY = @"file_type";
 - (BOOL) dirty {
 	return _dirty || self.changedRecords.count > 0;
 }
+
+- (NSString *) databaseTypeAsString { return [SAStorage_Database databaseTypeToString: self.type]; }
+
+- (NSString *) prettyName { return self.url.lastPathComponent.stringByDeletingPathExtension; }
 
 //=============================================================================================================================
 #pragma mark Overrides
