@@ -10,6 +10,10 @@
 #import "SAStorage.h"
 #import "SAStorage_CSVDatabase.h"
 
+@interface NSDate (CSV)
++ (NSDate *) dateWithCSVString: (NSString *) string;
+@end
+
 @interface SAStorage_CSVParser ()
 @property (nonatomic, strong) NSData *data;
 @property (nonatomic, strong) NSMutableData *output;
@@ -79,10 +83,11 @@
 		
 		for (id subField in reps) {
 			if (![subField isEqual: [NSNull null]]) switch (field.type) {
-				case SAStorage_SchemaField_Date:
-					result = [subField description];
+				case SAStorage_SchemaField_Date: {
+					NSDateComponents		*components = [[NSCalendar currentCalendar] components: NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate: subField];
+					result = [NSString stringWithFormat: @"%02d/%02d/%02d", (UInt16) components.month, (UInt16) components.day, (UInt16) components.year];
 					[self.output appendBytes: result.UTF8String length: strlen(result.UTF8String)];
-					break;
+				} break;
 					
 				case SAStorage_SchemaField_Integer:
 					result = [subField stringValue];
@@ -209,7 +214,7 @@
 			
 		case SAStorage_SchemaField_Date: {
 			if (string.length == 0) return nil;
-			return [NSDate date];
+			return [NSDate dateWithCSVString: string];
 		}
 			
 		default:
@@ -280,6 +285,36 @@
 	table.recordClass = [SAStorage_Record class];
 	table.fields = fields;
 	return table;
+}
+
+@end
+
+
+@implementation NSDate (CSV)
++ (NSDate *) dateWithCSVString: (NSString *) string {
+	NSArray			*components = [string componentsSeparatedByString: @"-"];
+	if (components.count < 3) components = [string componentsSeparatedByString: @"/"];
+	
+	if (components.count == 3) {
+		NSUInteger			month = [components[0] integerValue], day = [components[1] integerValue], year = [components[2] integerValue];
+		
+		if (month > 31) { NSUInteger			t = month; month = day; day = year; year = t; }
+		if (month > 12) { NSUInteger			t = month; month = day; day = t; }
+		if (month < 12 && day < 31) {
+			NSDateComponents		*components = [[NSCalendar currentCalendar] components: NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate: [NSDate date]];
+			
+			components.second = 0;
+			components.hour = 0;
+			components.minute = 0;
+			components.day = day;
+			components.month = month;
+			components.year = year;
+			
+			return [[NSCalendar currentCalendar] dateFromComponents: components];
+		}
+	}
+	
+	return [NSDate date];
 }
 
 @end
