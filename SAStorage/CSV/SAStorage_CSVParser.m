@@ -228,14 +228,13 @@
 	NSUInteger						position = self.position, fieldStart = self.position, length = self.data.length, lastFieldEnd = -1;
 	char							*raw = self.raw;
 	BOOL							inField = 0, inQuotes = NO;
-	NSStringEncoding				encoding = NSUTF8StringEncoding;
 	
 	while (position < length) {
 		char				chr = raw[position];
 		
 		if (chr == '"') {
 			if (inField && (position == 0 || raw[position - 1] != '\\')) {
-				[fields addObject: [[NSString alloc] initWithBytes: &raw[fieldStart] length: position - fieldStart encoding: encoding] ?: @""];
+				[fields addObject: [self stringWithBytes: &raw[fieldStart] length: position - fieldStart]];
 				inField = NO;
 				inQuotes = NO;
 			} else if (!inField) {
@@ -248,15 +247,15 @@
 			char					prev = position ? raw[position - 1] : self.fieldSeparator;
 			
 			if (prev == self.fieldSeparator) {
-				if (inField) [fields addObject: [[NSString alloc] initWithBytes: &raw[fieldStart] length: position - fieldStart encoding: encoding] ?: @""];
+				[fields addObject: [self stringWithBytes: &raw[fieldStart] length: position - fieldStart]];
 				inField = YES;
 			} else if (prev != '"') {
-				if (inField) [fields addObject: [[NSString alloc] initWithBytes: &raw[fieldStart] length: position - fieldStart encoding: encoding] ?: @""];
+				[fields addObject: [self stringWithBytes: &raw[fieldStart] length: position - fieldStart]];
 				inField = YES;
 			}
 			
 		} else if (chr == self.recordSeparator && !inQuotes) {
-			if (inField) [fields addObject: [[NSString alloc] initWithBytes: &raw[fieldStart] length: position - fieldStart encoding: encoding] ?: @""];
+			[fields addObject: [self stringWithBytes: &raw[fieldStart] length: position - fieldStart]];
 			position++;
 			break;
 		} else if (!inField) {
@@ -267,6 +266,18 @@
 	}
 	self.position = position;
 	return fields;
+}
+
+- (NSString *) stringWithBytes: (char *) bytes length: (NSUInteger) length {
+	NSStringEncoding			encodings[] = { NSUTF8StringEncoding, NSASCIIStringEncoding, NSUTF16StringEncoding };
+	
+	if (length == 0) return @"";
+	for (NSUInteger i = 0; i < 3; i++) {
+		NSString		*string = [[NSString alloc] initWithBytes: bytes length: length encoding: encodings[i]];
+		
+		if (string) return string;
+	}
+	return @"";
 }
 
 //=============================================================================================================================
